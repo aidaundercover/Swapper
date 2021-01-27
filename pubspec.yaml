@@ -28,6 +28,10 @@ dependencies:
   provider:
   convex_bottom_bar: ^2.6.0
   animations: ^1.1.2
+  firebase_storage:
+  cloud_firestore:
+  shared_preferences:
+
 
 
   # The following adds the Cupertino Icons font to your application.

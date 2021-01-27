@@ -1,20 +1,23 @@
-import 'package:swapper/routes.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:swapper/routes.dart';
 import 'package:swapper/const.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:swapper/net/firebase.dart';
 
-
-class LoginPage extends StatefulWidget {
+class SignUp extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _SignUpState createState() => _SignUpState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpState extends State<SignUp> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  TextEditingController _username = TextEditingController();
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
+  TextEditingController _repassword = TextEditingController();
   bool _obscureText = false;
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   void _toggle() {
     setState(() {
@@ -24,11 +27,30 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
-      backgroundColor: greenWhite,
-      body: SingleChildScrollView(
-        child: Column(
+        appBar: AppBar(
+          backgroundColor: greenWhite,
+          title: Text(
+            'SWAPPER',
+            style: TextStyle(
+              color: green,
+              fontFamily: 'Arial',
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          leading: Builder(builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.keyboard_backspace_rounded,
+                  color: green, size: 22),
+              onPressed: () {},
+            );
+          }),
+          centerTitle: true,
+        ),
+        backgroundColor: greenWhite,
+        body: SingleChildScrollView(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
@@ -38,12 +60,12 @@ class _LoginPageState extends State<LoginPage> {
               Container(
                   color: white,
                   width: 330,
-                  height: 220,
+                  height: 500,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Text('Sign In',
+                      Text('Create an Account',
                           style: TextStyle(
                             color: green,
                             fontFamily: 'Arial',
@@ -55,6 +77,36 @@ class _LoginPageState extends State<LoginPage> {
                           key: _formKey,
                           child: Column(
                             children: <Widget>[
+                              Container(
+                                width: 290,
+                                child: TextFormField(
+                                  controller: _username,
+                                  style: TextStyle(
+                                    color: green,
+                                    fontFamily: 'Arial',
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                  validator: (input) {
+                                    if (input.isEmpty) {
+                                      return 'Please enter your name';
+                                    }
+                                  },
+                                  onSaved: (input) => _username.text = input,
+                                  decoration: InputDecoration(
+                                    hintText: 'Full Name',
+                                    filled: false,
+                                    border: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: greenWhite),
+                                        borderRadius: BorderRadius.circular(0)),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: green),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 18),
                               Container(
                                   width: 290,
                                   child: TextFormField(
@@ -98,7 +150,9 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                     validator: (input) {
                                       if (input.isEmpty) {
-                                        return 'Please enter your password';
+                                        return 'Please enter new password';
+                                      } else if (input.length < 8) {
+                                        return 'Password should contain at least 8 characters';
                                       }
                                     },
                                     onSaved: (input) => _password.text = input,
@@ -127,28 +181,75 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                     obscureText: _obscureText,
                                   )),
+                              SizedBox(height: 18),
+                              Container(
+                                width: 290,
+                                child: TextFormField(
+                                  controller: _repassword,
+                                  style: TextStyle(
+                                    color: green,
+                                    fontFamily: 'Arial',
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.normal,
+                                  ),
+                                  validator: (input) {
+                                    if (input.isEmpty) {
+                                      return 'Please confirm your password by reentering it';
+                                    } else if (input != _password.text) {
+                                      return 'Password must be the same as above';
+                                    }
+                                  },
+                                  onSaved: (input) => _repassword.text = input,
+                                  decoration: InputDecoration(
+                                    suffixIcon: IconButton(
+                                      icon: Icon(
+                                          _obscureText
+                                              ? Icons.visibility
+                                              : Icons.visibility_off,
+                                          size: 19),
+                                      color: Color.fromRGBO(168, 168, 168, 1.0),
+                                      onPressed: _toggle,
+                                    ),
+                                    hintText: 'Confirm Password',
+                                    filled: false,
+                                    border: OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: lightGreen),
+                                        borderRadius: BorderRadius.circular(0)),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: green),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: lightGreen),
+                                    ),
+                                  ),
+                                ),
+                              )
                             ],
                           )),
+                      SizedBox(height: 25),
+                      Center(
+                          child: Ink(
+                        child: Text(
+                          'By creating an account you agree to our\nTerms of Service and Privacy Policy',
+                          style: TextStyle(
+                            color: green,
+                            fontFamily: 'Arial',
+                            fontSize: 10,
+                            fontWeight: FontWeight.normal,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      )),
                     ],
                   )),
-              SizedBox(height: 16),
-              Ink(
-                  child: Text(
-                'Forgot your password?',
-                style: TextStyle(
-                  color: white,
-                  fontFamily: 'Arial',
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold,
-                ),
-              )),
-              SizedBox(height: 16),
+              SizedBox(height: 20),
               Container(
                 width: 328,
                 height: 48,
                 child: FlatButton(
                   color: green,
-                  onPressed: signIn,
+                  onPressed: signUp,
                   child: Text(
                     'CONTINUE',
                     style: TextStyle(
@@ -189,7 +290,7 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
               SizedBox(height: 20),
-              Text("Don't have an account yet?",
+              Text("Already have an account?",
                   style: TextStyle(
                     color: green,
                     fontFamily: 'Arial',
@@ -199,7 +300,7 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(height: 40),
               RaisedButton(
                 onPressed: () {
-                  Navigator.of(context).pushNamed(AppRoutes.authSignup);
+                  Navigator.of(context).pushNamed(AppRoutes.authLogin);
                 },
                 color: Color.fromRGBO(169, 241, 185, 1.0),
                 child: Container(
@@ -207,7 +308,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 48,
                   child: Align(
                     alignment: Alignment.center,
-                    child: Text('Sign Up',
+                    child: Text('Login',
                         style: TextStyle(
                           color: green,
                           fontFamily: 'Arial',
@@ -217,25 +318,26 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-            ]),
-      ),
-    );
+            ],
+          ),
+        ));
   }
 
-  Future<void> signIn() async {
+  Future<void> signUp() async {
     final formState = _formKey.currentState;
     if (formState.validate()) {
       formState.save();
       try {
         UserCredential user = await FirebaseAuth.instance
-            .signInWithEmailAndPassword(
+            .createUserWithEmailAndPassword(
                 email: _email.text, password: _password.text);
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString('displayName', user.user.displayName);
+        User updateUser = FirebaseAuth.instance.currentUser;
+        updateUser.updateProfile(displayName: _username.text);
+        userSetup(_username.text);
         Navigator.of(context).pushNamed(AppRoutes.home);
       } on FirebaseAuthException catch (e) {
         if (e.code == 'email-already-in-use') {
-          print('The account already exists for the email');
+          print('The account already exists for that email');
         }
       } catch (e) {
         print(e.message);
