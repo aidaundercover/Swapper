@@ -95,13 +95,18 @@ class _SignUpState extends State<SignUp> {
                                   onSaved: (input) => _username.text = input,
                                   decoration: InputDecoration(
                                     hintText: 'Full Name',
+                                    hintStyle: TextStyle(
+                                        color: lightGreen,
+                                        fontFamily: 'Arial',
+                                        fontSize: 14
+                                        ),
                                     filled: false,
-                                    border: OutlineInputBorder(
+                                    enabledBorder: OutlineInputBorder(
                                         borderSide:
-                                            BorderSide(color: greenWhite),
+                                            BorderSide(color: lightGreen),
                                         borderRadius: BorderRadius.circular(0)),
                                     focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: green),
+                                      borderSide: BorderSide(color: lightGreen ,width:2),
                                     ),
                                   ),
                                 ),
@@ -126,14 +131,19 @@ class _SignUpState extends State<SignUp> {
                                     onSaved: (input) => _email.text = input,
                                     decoration: InputDecoration(
                                       hintText: 'E-mail',
+                                      hintStyle: TextStyle(
+                                        color: lightGreen,
+                                        fontFamily: 'Arial',
+                                        fontSize: 14
+                                        ),
                                       filled: false,
-                                      border: OutlineInputBorder(
+                                      enabledBorder: OutlineInputBorder(
                                           borderSide:
-                                              BorderSide(color: greenWhite),
+                                              BorderSide(color: lightGreen),
                                           borderRadius:
                                               BorderRadius.circular(0)),
                                       focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(color: green),
+                                        borderSide: BorderSide(color: lightGreen,width:2),
                                       ),
                                     ),
                                   )),
@@ -168,15 +178,19 @@ class _SignUpState extends State<SignUp> {
                                         onPressed: _toggle,
                                       ),
                                       hintText: 'Password',
-                                      hintStyle: TextStyle(color: lightGreen),
+                                      hintStyle: TextStyle(
+                                        color: lightGreen,
+                                        fontFamily: 'Arial',
+                                        fontSize: 14
+                                        ),
                                       filled: false,
-                                      border: OutlineInputBorder(
+                                      enabledBorder: OutlineInputBorder(
                                           borderSide:
                                               BorderSide(color: lightGreen),
                                           borderRadius:
                                               BorderRadius.circular(0)),
                                       focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(color: green),
+                                        borderSide: BorderSide(color: lightGreen,width:2),
                                       ),
                                     ),
                                     obscureText: _obscureText,
@@ -211,17 +225,20 @@ class _SignUpState extends State<SignUp> {
                                       onPressed: _toggle,
                                     ),
                                     hintText: 'Confirm Password',
+                                    hintStyle: TextStyle(
+                                        color: lightGreen,
+                                        fontFamily: 'Arial',
+                                        fontSize: 14
+                                        ),
                                     filled: false,
-                                    border: OutlineInputBorder(
+                                    enabledBorder: OutlineInputBorder(
                                         borderSide:
                                             BorderSide(color: lightGreen),
                                         borderRadius: BorderRadius.circular(0)),
                                     focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: green),
+                                      borderSide: BorderSide(color: lightGreen,width:2),
                                     ),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: lightGreen),
-                                    ),
+                                    
                                   ),
                                 ),
                               )
@@ -294,7 +311,7 @@ class _SignUpState extends State<SignUp> {
                   style: TextStyle(
                     color: green,
                     fontFamily: 'Arial',
-                    fontSize: 10,
+                    fontSize: 12,
                     fontWeight: FontWeight.bold,
                   )),
               SizedBox(height: 40),
@@ -312,7 +329,7 @@ class _SignUpState extends State<SignUp> {
                         style: TextStyle(
                           color: green,
                           fontFamily: 'Arial',
-                          fontSize: 10,
+                          fontSize: 13,
                           fontWeight: FontWeight.bold,
                         )),
                   ),

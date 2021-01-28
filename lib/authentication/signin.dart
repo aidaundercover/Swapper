@@ -26,6 +26,10 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: greenWhite,
+        toolbarHeight: 1,
+        ),
       backgroundColor: greenWhite,
       body: SingleChildScrollView(
         child: Column(
@@ -33,8 +37,18 @@ class _LoginPageState extends State<LoginPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               SizedBox(
-                height: 20,
+                height: 30,
               ),
+              Text(
+                'WELCOME BACK',
+                style: TextStyle(
+                  color: green,
+                  fontFamily: 'Arial',
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                )
+              ),
+              SizedBox(height:40),
               Container(
                   color: white,
                   width: 330,
@@ -74,14 +88,19 @@ class _LoginPageState extends State<LoginPage> {
                                     onSaved: (input) => _email.text = input,
                                     decoration: InputDecoration(
                                       hintText: 'E-mail',
+                                      hintStyle: TextStyle(
+                                        color: lightGreen,
+                                        fontFamily: 'Arial',
+                                        fontSize: 14
+                                        ),
                                       filled: false,
-                                      border: OutlineInputBorder(
+                                      enabledBorder: OutlineInputBorder(
                                           borderSide:
-                                              BorderSide(color: greenWhite),
+                                              BorderSide(color: lightGreen),
                                           borderRadius:
                                               BorderRadius.circular(0)),
                                       focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(color: green),
+                                        borderSide: BorderSide(color: lightGreen,width:2),
                                       ),
                                     ),
                                   )),
@@ -114,15 +133,19 @@ class _LoginPageState extends State<LoginPage> {
                                         onPressed: _toggle,
                                       ),
                                       hintText: 'Password',
-                                      hintStyle: TextStyle(color: lightGreen),
+                                      hintStyle: TextStyle(
+                                        color: lightGreen,
+                                        fontFamily: 'Arial',
+                                        fontSize: 14
+                                        ),
                                       filled: false,
-                                      border: OutlineInputBorder(
+                                      enabledBorder: OutlineInputBorder(
                                           borderSide:
                                               BorderSide(color: lightGreen),
                                           borderRadius:
                                               BorderRadius.circular(0)),
                                       focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(color: green),
+                                        borderSide: BorderSide(color: lightGreen,width:2),
                                       ),
                                     ),
                                     obscureText: _obscureText,
@@ -136,9 +159,9 @@ class _LoginPageState extends State<LoginPage> {
                   child: Text(
                 'Forgot your password?',
                 style: TextStyle(
-                  color: white,
+                  color: green,
                   fontFamily: 'Arial',
-                  fontSize: 10,
+                  fontSize: 12,
                   fontWeight: FontWeight.bold,
                 ),
               )),
@@ -193,7 +216,7 @@ class _LoginPageState extends State<LoginPage> {
                   style: TextStyle(
                     color: green,
                     fontFamily: 'Arial',
-                    fontSize: 10,
+                    fontSize: 12,
                     fontWeight: FontWeight.bold,
                   )),
               SizedBox(height: 40),
