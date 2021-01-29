@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swapper/authentication/signin.dart';
 import 'package:swapper/authentication/signup.dart';
-import 'package:swapper/pages/home.dart';
+import 'package:swapper/views/home.dart';
 import 'package:swapper/authentication/forgotpassword.dart';
 
 class AppRoutes {
