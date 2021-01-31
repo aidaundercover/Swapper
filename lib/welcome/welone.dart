@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swapper/const.dart';
 import 'package:swapper/welcome/weltwo.dart';
-import 'package:swapper/welcome/welthree.dart';
 
 class WelcomeOne extends StatelessWidget {
   String description =
@@ -11,130 +10,168 @@ class WelcomeOne extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: greenWhite,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Container(
-            width: MediaQuery.of(context).size.width / 1.18,
-            height: MediaQuery.of(context).size.height / 1.2,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: [
-                  BoxShadow(
-                  color: Color.fromRGBO(239,255,230, 1.0),
-                  blurRadius: 3,
-                  offset: Offset(-8,-6),
-                  spreadRadius: 12,
+      body: SingleChildScrollView(
+          child: Align(
+            alignment: Alignment.center,
+            child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 19.2,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width / 1.18,
+                height: MediaQuery.of(context).size.height / 1.1,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(239,255,230,1.0),
+                      blurRadius: 12,
+                      offset: Offset(-8, -6),
+                      spreadRadius: 3,
+                    ),
+                    BoxShadow(
+                        color: Color.fromRGBO(209, 246, 193, 1.0),
+                        blurRadius: 12,
+                        offset: Offset(8, 6),
+                        spreadRadius: 3),
+                  ],
+                  color: greenWhite
+                ),
+                child: Column(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 55,
+                      child: Container(
+                        color: white,
+                        child: Image(
+                          image: AssetImage('assets/images/welone.png'),
+                          fit: BoxFit.fitWidth,
+                          alignment: Alignment.bottomCenter,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 45,
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(20, 30, 20, 30),
+                        child: Column(
+                          children: <Widget>[
+                            Align(
+                            alignment: Alignment.topLeft,
+                            child: Text('Swap clothes online',
+                                  style: TextStyle(
+                                      fontFamily: 'Arial',
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: mint,
+                                      ),
+                                      textAlign: TextAlign.start,
+                                      ),
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              description,
+                              style: TextStyle(
+                                fontFamily: 'Arial',
+                                fontSize: 12,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                            SizedBox(height: 20),
+                            Row(
+                              children: <Widget>[
+                                Expanded(
+                                    flex: 20,
+                                    child: Padding(
+                                        padding: EdgeInsets.fromLTRB(8, 0, 8, 0),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              width: 7,
+                                              height: 7,
+                                              decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: lightGreen),
+                                              alignment: Alignment.topCenter,
+                                            ),
+                                            SizedBox(width: 4),
+                                            Container(
+                                              width: 7,
+                                              height: 7,
+                                              decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: Color.fromRGBO(228, 228, 228, 1.0)),
+                                              alignment: Alignment.topCenter,
+                                            ),
+                                            SizedBox(width: 4),
+                                            Container(
+                                              width: 7,
+                                              height: 7,
+                                              decoration: BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: Color.fromRGBO(228, 228, 228, 1.0)),
+                                              alignment: Alignment.topCenter,
+                                            )
+                                          ],
+                                        ))),
+                                Expanded(flex: 20, child: Container()),
+                                Expanded(
+                                    flex: 23,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: InkWell(
+                                            child: Container(
+                                            width: 50,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: greenWhite,
+                                              boxShadow: [
+                                                BoxShadow(
+                                                color: white,
+                                                blurRadius: 12,
+                                                offset: Offset(-8, -6),
+                                                spreadRadius: 3,
                 ),
                 BoxShadow(
-                  color: Color.fromRGBO(209,246,193, 1.0),
-                  blurRadius: 6,
-                  offset: Offset(8,6), 
-                  spreadRadius: 12
-                ),
-              ],
-            ),
-            child: Column(
-              children: <Widget>[
-                Expanded(
-                  flex: 55,
-                  child: Container(
-                    color: Colors.white,
-                    child: Image(
-                      image: AssetImage(''),
-                      fit: BoxFit.fitWidth,
-                      alignment: Alignment.bottomCenter,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 45,
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(20, 30, 20, 30),
-                    child: Column(
-                      children: <Widget>[
-                        Text('Swap clothes online',
-                            style: TextStyle(
-                                fontFamily: 'Arial',
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: mint)),
-                        SizedBox(height:10),        
-                        Text(
-                          description,
-                          style: TextStyle(
-                            fontFamily: 'Arial',
-                            fontSize: 12 ,
-                            fontWeight: FontWeight.normal,
-                          ),
+                    color: Color.fromRGBO(213, 241, 221, 1.0),
+                    blurRadius: 12,
+                    offset: Offset(8, 6),
+                    spreadRadius: 3),
+                                              ]
+                                            ),
+                                            child: IconButton(
+                                              icon: Icon(
+                                                Icons.arrow_forward,
+                                                color: white,
+                                                size: 30,
+                                              ),
+                                              onPressed: () {
+                                                Navigator.push (
+                                                context,
+                                                MaterialPageRoute(builder: (context) => WelcomeTwo()),
+                                              );
+                                              },
+                                            )),
+                                      ),
+                                    )),
+                              ],
+                            )
+                          ],
                         ),
-                        Row(children: <Widget>[
-                          Expanded(
-                            flex:20,
-                            child: Padding(
-                              padding: EdgeInsets.fromLTRB(8,0,8,0),
-                              child: Row(
-                                children: [
-                                Container(
-                                  width:7,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: lightGreen
-                                  ),
-                                  alignment: Alignment.topCenter,
-                                ),
-                                Container(
-                                  width:7,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: lightGreen
-                                  ),
-                                  alignment: Alignment.topCenter,
-                                ),
-                                Container(
-                                  width:7,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: lightGreen
-                                  ),
-                                  alignment: Alignment.topCenter,
-                                )
-                              ],)
-                            )
-                          ),
-                          Expanded(
-                            flex:20,
-                            child:Container()
-                          ),
-                          Expanded(
-                            flex:23,
-                            child:Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: Container(
-                                width:50,
-                                color: greenWhite,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                ),
-                                child:Icon(
-                                  Icons.arrow_forward,
-                                  color: white,
-                                  size: 30,
-                                )
-                              ),
-                            )
-                          ),
-                        ],)
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
+        ),
           ),
-        ],
       ),
     );
   }
 }
+
+

@@ -263,10 +263,10 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.of(context).pushNamed(AppRoutes.home);
       } on FirebaseAuthException catch (e) {
         if (e.code == 'email-already-in-use') {
-          return('The account already exists for the email');
+          print('The account already exists for the email');
         }
       } catch (e) {
-        return e.message;
+        print(e.message);
       }
     }
   }
