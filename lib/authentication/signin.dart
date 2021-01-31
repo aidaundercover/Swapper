@@ -11,9 +11,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController _email = TextEditingController();
-  TextEditingController _password = TextEditingController();
-  bool _obscureText = false;
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  bool _obscureText = true;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   void _toggle() {
@@ -72,7 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                               Container(
                                   width: 290,
                                   child: TextFormField(
-                                    controller: _email,
+                                    controller: _emailController,
                                     keyboardType: TextInputType.emailAddress,
                                     style: TextStyle(
                                       color: Colors.black,
@@ -85,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                                         return 'Please enter you e-mail';
                                       }
                                     },
-                                    onSaved: (input) => _email.text = input,
+                                    onSaved: (input) => _emailController.text = input,
                                     decoration: InputDecoration(
                                       hintText: 'E-mail',
                                       hintStyle: TextStyle(
@@ -102,13 +102,16 @@ class _LoginPageState extends State<LoginPage> {
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(color: lightGreen,width:2),
                                       ),
+                                      errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.red[600], width: 2)
+                                    )
                                     ),
                                   )),
                               SizedBox(height: 18),
                               Container(
                                   width: 290,
                                   child: TextFormField(
-                                    controller: _password,
+                                    controller: _passwordController,
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontFamily: 'Arial',
@@ -120,14 +123,13 @@ class _LoginPageState extends State<LoginPage> {
                                         return 'Please enter your password';
                                       }
                                     },
-                                    onSaved: (input) => _password.text = input,
+                                    onSaved: (input) => _passwordController.text = input,
                                     decoration: InputDecoration(
                                       suffixIcon: IconButton(
                                         icon: Icon(
                                             _obscureText
-                                                ? Icons.visibility
-                                                : Icons.visibility_off,
-                                            size: 19),
+                                                ? Icons.visibility_off
+                                                : Icons.visibility,                                          size: 19),
                                         color:
                                             Color.fromRGBO(168, 168, 168, 1.0),
                                         onPressed: _toggle,
@@ -147,6 +149,9 @@ class _LoginPageState extends State<LoginPage> {
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(color: lightGreen,width:2),
                                       ),
+                                      errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.red[600], width: 2)
+                                    )
                                     ),
                                     obscureText: _obscureText,
                                   )),
@@ -234,7 +239,7 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(
                           color: green,
                           fontFamily: 'Arial',
-                          fontSize: 10,
+                          fontSize: 14,
                           fontWeight: FontWeight.bold,
                         )),
                   ),
@@ -252,16 +257,16 @@ class _LoginPageState extends State<LoginPage> {
       try {
         UserCredential user = await FirebaseAuth.instance
             .signInWithEmailAndPassword(
-                email: _email.text, password: _password.text);
+                email: _emailController.text, password: _passwordController.text);
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString('displayName', user.user.displayName);
         Navigator.of(context).pushNamed(AppRoutes.home);
       } on FirebaseAuthException catch (e) {
         if (e.code == 'email-already-in-use') {
-          print('The account already exists for the email');
+          return('The account already exists for the email');
         }
       } catch (e) {
-        print(e.message);
+        return e.message;
       }
     }
   }

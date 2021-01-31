@@ -13,11 +13,11 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  TextEditingController _username = TextEditingController();
-  TextEditingController _email = TextEditingController();
-  TextEditingController _password = TextEditingController();
-  TextEditingController _repassword = TextEditingController();
-  bool _obscureText = false;
+  TextEditingController _usernameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _repasswordController = TextEditingController();
+  bool _obscureText = true;
 
   void _toggle() {
     setState(() {
@@ -73,16 +73,16 @@ class _SignUpState extends State<SignUp> {
                             fontWeight: FontWeight.bold,
                           )),
                       SizedBox(height: 32),
-                      Form(
+                      Form( 
                           key: _formKey,
                           child: Column(
                             children: <Widget>[
                               Container(
                                 width: 290,
                                 child: TextFormField(
-                                  controller: _username,
+                                  controller: _usernameController,
                                   style: TextStyle(
-                                    color: green,
+                                    color: Colors.black,
                                     fontFamily: 'Arial',
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal,
@@ -92,7 +92,7 @@ class _SignUpState extends State<SignUp> {
                                       return 'Please enter your name';
                                     }
                                   },
-                                  onSaved: (input) => _username.text = input,
+                                  onSaved: (input) => _usernameController.text = input,
                                   decoration: InputDecoration(
                                     hintText: 'Full Name',
                                     hintStyle: TextStyle(
@@ -108,6 +108,9 @@ class _SignUpState extends State<SignUp> {
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(color: lightGreen ,width:2),
                                     ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.red[600], width: 2)
+                                    )
                                   ),
                                 ),
                               ),
@@ -115,7 +118,7 @@ class _SignUpState extends State<SignUp> {
                               Container(
                                   width: 290,
                                   child: TextFormField(
-                                    controller: _email,
+                                    controller: _emailController,
                                     keyboardType: TextInputType.emailAddress,
                                     style: TextStyle(
                                       color: Colors.black,
@@ -128,7 +131,7 @@ class _SignUpState extends State<SignUp> {
                                         return 'Please enter you e-mail';
                                       }
                                     },
-                                    onSaved: (input) => _email.text = input,
+                                    onSaved: (input) => _emailController.text = input,
                                     decoration: InputDecoration(
                                       hintText: 'E-mail',
                                       hintStyle: TextStyle(
@@ -145,13 +148,16 @@ class _SignUpState extends State<SignUp> {
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(color: lightGreen,width:2),
                                       ),
+                                      errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.red[600], width: 2)
+                                    )
                                     ),
                                   )),
                               SizedBox(height: 18),
                               Container(
                                   width: 290,
                                   child: TextFormField(
-                                    controller: _password,
+                                    controller: _passwordController,
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontFamily: 'Arial',
@@ -165,14 +171,13 @@ class _SignUpState extends State<SignUp> {
                                         return 'Password should contain at least 8 characters';
                                       }
                                     },
-                                    onSaved: (input) => _password.text = input,
+                                    onSaved: (input) => _passwordController.text = input,
                                     decoration: InputDecoration(
                                       suffixIcon: IconButton(
                                         icon: Icon(
                                             _obscureText
-                                                ? Icons.visibility
-                                                : Icons.visibility_off,
-                                            size: 19),
+                                                ? Icons.visibility_off
+                                                : Icons.visibility,                                           size: 19),
                                         color:
                                             Color.fromRGBO(168, 168, 168, 1.0),
                                         onPressed: _toggle,
@@ -192,6 +197,9 @@ class _SignUpState extends State<SignUp> {
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(color: lightGreen,width:2),
                                       ),
+                                      errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.red[600], width: 2)
+                                    )
                                     ),
                                     obscureText: _obscureText,
                                   )),
@@ -199,9 +207,9 @@ class _SignUpState extends State<SignUp> {
                               Container(
                                 width: 290,
                                 child: TextFormField(
-                                  controller: _repassword,
+                                  controller: _repasswordController,
                                   style: TextStyle(
-                                    color: green,
+                                    color: Colors.black,
                                     fontFamily: 'Arial',
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal,
@@ -209,17 +217,17 @@ class _SignUpState extends State<SignUp> {
                                   validator: (input) {
                                     if (input.isEmpty) {
                                       return 'Please confirm your password by reentering it';
-                                    } else if (input != _password.text) {
+                                    } else if (input != _passwordController.text) {
                                       return 'Password must be the same as above';
                                     }
                                   },
-                                  onSaved: (input) => _repassword.text = input,
+                                  onSaved: (input) => _repasswordController.text = input,
                                   decoration: InputDecoration(
                                     suffixIcon: IconButton(
                                       icon: Icon(
                                           _obscureText
-                                              ? Icons.visibility
-                                              : Icons.visibility_off,
+                                              ? Icons.visibility_off
+                                              : Icons.visibility,
                                           size: 19),
                                       color: Color.fromRGBO(168, 168, 168, 1.0),
                                       onPressed: _toggle,
@@ -238,8 +246,11 @@ class _SignUpState extends State<SignUp> {
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: BorderSide(color: lightGreen,width:2),
                                     ),
-                                    
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.red[600], width: 2)
+                                    )
                                   ),
+                                  obscureText: _obscureText,
                                 ),
                               )
                             ],
@@ -347,11 +358,11 @@ class _SignUpState extends State<SignUp> {
       try {
         UserCredential user = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(
-                email: _email.text, password: _password.text);
+                email: _emailController.text, password: _passwordController.text);
         User updateUser = FirebaseAuth.instance.currentUser;
-        updateUser.updateProfile(displayName: _username.text);
-        userSetup(_username.text);
-        Navigator.of(context).pushNamed(AppRoutes.home);
+        updateUser.updateProfile(displayName: _usernameController.text);
+        userSetup(_usernameController.text);
+        Navigator.of(context).pushNamed(AppRoutes.welcome);
       } on FirebaseAuthException catch (e) {
         if (e.code == 'email-already-in-use') {
           print('The account already exists for that email');
