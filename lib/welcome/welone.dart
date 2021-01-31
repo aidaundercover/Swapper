@@ -34,7 +34,7 @@ class WelcomeOne extends StatelessWidget {
                     ),
                     BoxShadow(
                         color: Color.fromRGBO(209, 246, 193, 1.0),
-                        blurRadius: 12,
+                        blurRadius: 15,
                         offset: Offset(8, 6),
                         spreadRadius: 3),
                   ],

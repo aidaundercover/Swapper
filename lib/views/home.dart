@@ -28,7 +28,7 @@ class _HomeState extends State<Home> {
           TabItem(icon: Icons.person, title: 'Profile'),
         ],
         initialActiveIndex: selectedPage,
-        backgroundColor: green,
+        backgroundColor: Color.fromRGBO(138,223,157, 1.0),
         activeColor: white,
         height: 45,
         onTap: (int i ){
