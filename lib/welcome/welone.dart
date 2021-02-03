@@ -48,7 +48,6 @@ class WelcomeOne extends StatelessWidget {
                         color: white,
                         child: Image(
                           image: AssetImage('assets/images/welone.png'),
-                          fit: BoxFit.fitWidth,
                           alignment: Alignment.bottomCenter,
                         ),
                       ),

@@ -47,7 +47,7 @@ class WelcomeTwo extends StatelessWidget {
                       child: Container(
                         color: white,
                         child: Image(
-                          image: AssetImage('assets/images/welone.png'),
+                          image: AssetImage('assets/images/weltwo.png'),
                           fit: BoxFit.fitWidth,
                           alignment: Alignment.bottomCenter,
                         ),

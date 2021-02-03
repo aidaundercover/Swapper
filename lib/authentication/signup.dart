@@ -110,7 +110,10 @@ class _SignUpState extends State<SignUp> {
                                     ),
                                     errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(color: Colors.red[600], width: 2)
-                                    )
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.red[600], width: 2)
+                                    ),
                                   ),
                                 ),
                               ),
@@ -150,7 +153,10 @@ class _SignUpState extends State<SignUp> {
                                       ),
                                       errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(color: Colors.red[600], width: 2)
-                                    )
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.red[600], width: 2)
+                                    ),
                                     ),
                                   )),
                               SizedBox(height: 18),
@@ -199,7 +205,10 @@ class _SignUpState extends State<SignUp> {
                                       ),
                                       errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(color: Colors.red[600], width: 2)
-                                    )
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.red[600], width: 2)
+                                    ),
                                     ),
                                     obscureText: _obscureText,
                                   )),
@@ -248,7 +257,10 @@ class _SignUpState extends State<SignUp> {
                                     ),
                                     errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(color: Colors.red[600], width: 2)
-                                    )
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.red[600], width: 2)
+                                    ),
                                   ),
                                   obscureText: _obscureText,
                                 ),

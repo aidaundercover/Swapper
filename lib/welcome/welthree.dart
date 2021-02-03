@@ -47,7 +47,7 @@ class WelcomeThree extends StatelessWidget {
                       child: Container(
                         color: white,
                         child: Image(
-                          image: AssetImage('assets/images/welone.png'),
+                          image: AssetImage('assets/images/welthree.png'),
                           fit: BoxFit.fitWidth,
                           alignment: Alignment.bottomCenter,
                         ),

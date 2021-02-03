@@ -104,7 +104,10 @@ class _LoginPageState extends State<LoginPage> {
                                       ),
                                       errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(color: Colors.red[600], width: 2)
-                                    )
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.red[600], width: 2)
+                                    ),
                                     ),
                                   )),
                               SizedBox(height: 18),
@@ -151,7 +154,10 @@ class _LoginPageState extends State<LoginPage> {
                                       ),
                                       errorBorder: OutlineInputBorder(
                                       borderSide: BorderSide(color: Colors.red[600], width: 2)
-                                    )
+                                    ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.red[600], width: 2)
+                                    ),
                                     ),
                                     obscureText: _obscureText,
                                   )),
