@@ -25,7 +25,10 @@ dependencies:
     sdk: flutter
   firebase_auth:
   firebase_core: ^0.5.3
+  google_sign_in: ^4.5.9
   provider:
+  geolocator: ^6.1.14
+  geocoder: ^0.2.1
   convex_bottom_bar: ^2.6.0
   firebase_storage:
   cloud_firestore:

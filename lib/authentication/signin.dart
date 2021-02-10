@@ -1,9 +1,7 @@
 import 'package:swapper/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:swapper/const.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:swapper/net/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -11,8 +9,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextEditingController _emailController = TextEditingController();
-  TextEditingController _passwordController = TextEditingController();
   bool _obscureText = true;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -24,12 +20,11 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: greenWhite,
         toolbarHeight: 1,
-        ),
+      ),
       backgroundColor: greenWhite,
       body: SingleChildScrollView(
         child: Column(
@@ -39,16 +34,14 @@ class _LoginPageState extends State<LoginPage> {
               SizedBox(
                 height: 30,
               ),
-              Text(
-                'WELCOME BACK',
-                style: TextStyle(
-                  color: green,
-                  fontFamily: 'Arial',
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                )
-              ),
-              SizedBox(height:40),
+              Text('WELCOME BACK',
+                  style: TextStyle(
+                    color: green,
+                    fontFamily: 'Arial',
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  )),
+              SizedBox(height: 40),
               Container(
                   color: white,
                   width: 330,
@@ -72,7 +65,7 @@ class _LoginPageState extends State<LoginPage> {
                               Container(
                                   width: 290,
                                   child: TextFormField(
-                                    controller: _emailController,
+                                    controller: emailController,
                                     keyboardType: TextInputType.emailAddress,
                                     style: TextStyle(
                                       color: Colors.black,
@@ -85,14 +78,14 @@ class _LoginPageState extends State<LoginPage> {
                                         return 'Please enter you e-mail';
                                       }
                                     },
-                                    onSaved: (input) => _emailController.text = input,
+                                    onSaved: (input) =>
+                                        emailController.text = input,
                                     decoration: InputDecoration(
                                       hintText: 'E-mail',
                                       hintStyle: TextStyle(
-                                        color: lightGreen,
-                                        fontFamily: 'Arial',
-                                        fontSize: 14
-                                        ),
+                                          color: lightGreen,
+                                          fontFamily: 'Arial',
+                                          fontSize: 14),
                                       filled: false,
                                       enabledBorder: OutlineInputBorder(
                                           borderSide:
@@ -100,21 +93,24 @@ class _LoginPageState extends State<LoginPage> {
                                           borderRadius:
                                               BorderRadius.circular(0)),
                                       focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(color: lightGreen,width:2),
+                                        borderSide: BorderSide(
+                                            color: lightGreen, width: 2),
                                       ),
                                       errorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.red[600], width: 2)
-                                    ),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.red[600], width: 2)
-                                    ),
+                                          borderSide: BorderSide(
+                                              color: Colors.red[600],
+                                              width: 2)),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                          borderSide: BorderSide(
+                                              color: Colors.red[600],
+                                              width: 2)),
                                     ),
                                   )),
                               SizedBox(height: 18),
                               Container(
                                   width: 290,
                                   child: TextFormField(
-                                    controller: _passwordController,
+                                    controller: passwordController,
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontFamily: 'Arial',
@@ -126,23 +122,24 @@ class _LoginPageState extends State<LoginPage> {
                                         return 'Please enter your password';
                                       }
                                     },
-                                    onSaved: (input) => _passwordController.text = input,
+                                    onSaved: (input) =>
+                                        passwordController.text = input,
                                     decoration: InputDecoration(
                                       suffixIcon: IconButton(
                                         icon: Icon(
                                             _obscureText
                                                 ? Icons.visibility_off
-                                                : Icons.visibility,                                          size: 19),
+                                                : Icons.visibility,
+                                            size: 19),
                                         color:
                                             Color.fromRGBO(168, 168, 168, 1.0),
                                         onPressed: _toggle,
                                       ),
                                       hintText: 'Password',
                                       hintStyle: TextStyle(
-                                        color: lightGreen,
-                                        fontFamily: 'Arial',
-                                        fontSize: 14
-                                        ),
+                                          color: lightGreen,
+                                          fontFamily: 'Arial',
+                                          fontSize: 14),
                                       filled: false,
                                       enabledBorder: OutlineInputBorder(
                                           borderSide:
@@ -150,14 +147,17 @@ class _LoginPageState extends State<LoginPage> {
                                           borderRadius:
                                               BorderRadius.circular(0)),
                                       focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(color: lightGreen,width:2),
+                                        borderSide: BorderSide(
+                                            color: lightGreen, width: 2),
                                       ),
                                       errorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.red[600], width: 2)
-                                    ),
+                                          borderSide: BorderSide(
+                                              color: Colors.red[600],
+                                              width: 2)),
                                       focusedErrorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: Colors.red[600], width: 2)
-                                    ),
+                                          borderSide: BorderSide(
+                                              color: Colors.red[600],
+                                              width: 2)),
                                     ),
                                     obscureText: _obscureText,
                                   )),
@@ -182,7 +182,10 @@ class _LoginPageState extends State<LoginPage> {
                 height: 48,
                 child: FlatButton(
                   color: green,
-                  onPressed: signIn,
+                  onPressed: () {
+                    signIn;
+                    Navigator.of(context).pushNamed(AppRoutes.home);
+                  },
                   child: Text(
                     'CONTINUE',
                     style: TextStyle(
@@ -200,21 +203,33 @@ class _LoginPageState extends State<LoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   OutlineButton(
-                    child: Icon(Icons.face, color: green, size: 16),
+                    child: Image(
+                      image: AssetImage('assets/images/google.svg'),
+                      width: 17,
+                      height: 17,
+                    ),
                     borderSide: BorderSide(color: lightGreen, width: 1),
                     shape: CircleBorder(),
                     padding: EdgeInsets.all(22),
                     onPressed: () {},
                   ),
                   OutlineButton(
-                    child: Icon(Icons.face, color: green, size: 16),
+                    child: Image(
+                      image: AssetImage('assets/images/twitter.svg'),
+                      width: 17,
+                      height: 17,
+                    ),
                     borderSide: BorderSide(color: lightGreen, width: 1),
                     shape: CircleBorder(),
                     padding: EdgeInsets.all(22),
                     onPressed: () {},
                   ),
                   OutlineButton(
-                    child: Icon(Icons.face, color: green, size: 16),
+                    child: Image(
+                      image: AssetImage('assets/images/facebook.svg'),
+                      width: 17,
+                      height: 17,
+                    ),
                     borderSide: BorderSide(color: lightGreen, width: 1),
                     shape: CircleBorder(),
                     padding: EdgeInsets.all(22),
@@ -254,26 +269,5 @@ class _LoginPageState extends State<LoginPage> {
             ]),
       ),
     );
-  }
-
-  Future<void> signIn() async {
-    final formState = _formKey.currentState;
-    if (formState.validate()) {
-      formState.save();
-      try {
-        UserCredential user = await FirebaseAuth.instance
-            .signInWithEmailAndPassword(
-                email: _emailController.text, password: _passwordController.text);
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        prefs.setString('displayName', user.user.displayName);
-        Navigator.of(context).pushNamed(AppRoutes.home);
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'email-already-in-use') {
-          print('The account already exists for the email');
-        }
-      } catch (e) {
-        print(e.message);
-      }
-    }
   }
 }

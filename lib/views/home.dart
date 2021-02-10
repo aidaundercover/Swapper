@@ -24,7 +24,7 @@ class _HomeState extends State<Home> {
           TabItem(icon: Icons.location_on, title: 'Swap-events'),
           TabItem(icon: Icons.swap_horizontal_circle, title: 'Swap stuff'),
           TabItem(icon: Icons.add_circle_outline, title: 'Add'),
-          TabItem(icon: Icons.clean_hands, title: 'Charity'),
+          TabItem(icon: Icons.chat,title: 'Chat'),
           TabItem(icon: Icons.person, title: 'Profile'),
         ],
         initialActiveIndex: selectedPage,
