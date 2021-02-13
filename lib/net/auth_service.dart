@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 
 
 FirebaseAuth auth = FirebaseAuth.instance;
+TextEditingController passwordControllerSignIn = TextEditingController();
+TextEditingController emailControllerSignIn = TextEditingController();
 TextEditingController usernameController = TextEditingController();
 TextEditingController emailController = TextEditingController();
 TextEditingController passwordController = TextEditingController();
@@ -30,7 +32,7 @@ Future<void> signIn() async {
     formState.save();
     try {
       UserCredential user = await _auth.signInWithEmailAndPassword(
-          email: emailController.text, password: passwordController.text);
+          email: emailControllerSignIn.text, password: passwordControllerSignIn.text);
       SharedPreferences prefs = await SharedPreferences.getInstance();
       prefs.setString('displayName', user.user.displayName);
       

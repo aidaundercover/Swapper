@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:swapper/routes.dart';
 import 'package:swapper/const.dart';
 import 'package:swapper/net/auth_service.dart';
+import 'package:swapper/net/firebase.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -295,9 +296,10 @@ class _SignUpState extends State<SignUp> {
                 child: FlatButton(
                   color: green,
                   onPressed: () {
+                    addToCloud;
                     signUp;
                     Navigator.of(context).pushNamed(AppRoutes.welcome);
-                    },
+                  },
                   child: Text(
                     'CONTINUE',
                     style: TextStyle(
