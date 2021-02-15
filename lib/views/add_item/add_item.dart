@@ -24,23 +24,31 @@ class _AddItemState extends State<AddItem> {
           SizedBox(
             height:10
           ),
-          GestureDetector(
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => AddStuff()));
-            },
-              child: Container(
-              color: green
+          Center(
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => AddStuff()));
+              },
+                child: Container(
+                color: green,
+                width: MediaQuery.of(context).size.width / 1.4,
+                height: 150
+              ),
             ),
           ),
           SizedBox(
             height:10
           ),
-          GestureDetector(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => AddSwapEvent()));
-              },
-              child: Container(
-              color: green
+          Center(
+            child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => AddSwapEvent()));
+                },
+                child: Container(
+                color: green,
+                width: MediaQuery.of(context).size.width / 1.4,
+                height: 150
+              ),
             ),
           ),
         ]
