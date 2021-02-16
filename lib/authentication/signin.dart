@@ -21,6 +21,26 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: RaisedButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed(AppRoutes.authSignup);
+                },
+                color: Color.fromRGBO(169, 241, 185, 1.0),
+                child: Container(
+                  width: (MediaQuery.of(context).size.width),
+                  height: 48,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text('Sign Up',
+                        style: TextStyle(
+                          color: green,
+                          fontFamily: 'Arial',
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        )),
+                  ),
+                ),
+              ),
       appBar: AppBar(
         backgroundColor: greenWhite,
         toolbarHeight: 1,
@@ -165,25 +185,31 @@ class _LoginPageState extends State<LoginPage> {
                           )),
                     ],
                   )),
-              SizedBox(height: 16),
+              SizedBox(height: 20),
               Ink(
+                child: InkWell(
+                  onTap: () {
+                    Navigator.of(context).pushNamed(AppRoutes.forgotPassword);
+                  },
                   child: Text(
-                'Forgot your password?',
-                style: TextStyle(
-                  color: green,
-                  fontFamily: 'Arial',
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
+                  'Forgot your password?',
+                  style: TextStyle(
+                    color: green,
+                    fontFamily: 'Arial',
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+              ),
                 ),
-              )),
-              SizedBox(height: 16),
+              ),
+              SizedBox(height: 20),
               Container(
                 width: 328,
                 height: 48,
                 child: FlatButton(
                   color: green,
                   onPressed: () {
-                    signIn;
+                    signIn();
                     Navigator.of(context).pushNamed(AppRoutes.home);
                   },
                   child: Text(
@@ -197,14 +223,14 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              SizedBox(height: 50),
+              SizedBox(height: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   OutlineButton(
                     child: Image(
-                      image: AssetImage('assets/images/google.svg'),
+                      image: AssetImage('assets/images/google.png'),
                       width: 17,
                       height: 17,
                     ),
@@ -215,7 +241,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   OutlineButton(
                     child: Image(
-                      image: AssetImage('assets/images/twitter.svg'),
+                      image: AssetImage('assets/images/twitter.png'),
                       width: 17,
                       height: 17,
                     ),
@@ -226,7 +252,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   OutlineButton(
                     child: Image(
-                      image: AssetImage('assets/images/facebook.svg'),
+                      image: AssetImage('assets/images/facebook.png'),
                       width: 17,
                       height: 17,
                     ),
@@ -245,27 +271,7 @@ class _LoginPageState extends State<LoginPage> {
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
                   )),
-              SizedBox(height: 40),
-              RaisedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(AppRoutes.authSignup);
-                },
-                color: Color.fromRGBO(169, 241, 185, 1.0),
-                child: Container(
-                  width: (MediaQuery.of(context).size.width),
-                  height: 48,
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Text('Sign Up',
-                        style: TextStyle(
-                          color: green,
-                          fontFamily: 'Arial',
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  ),
-                ),
-              ),
+              
             ]),
       ),
     );

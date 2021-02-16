@@ -165,24 +165,33 @@ class _AddStuffState extends State<AddStuff> {
       appBar: AppBar(
         backgroundColor: green,
         toolbarHeight: 50,
+        title: Text(
+          'Add Stuff',
+          style: TextStyle(
+            color: white,
+            fontFamily: 'Arial'
+          )
+        ),
+        centerTitle: true,
       ),
       body: SingleChildScrollView(
           child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-            SizedBox(height: 5),
+            SizedBox(height: 30),
             GestureDetector(
               onTap: () => imageUpload,
               child: DottedBorder(
                 borderType: BorderType.RRect,
                 radius: Radius.circular(15),
+                strokeWidth: 2,
                 dashPattern: [2, 2, 2, 2],
                 color: green,
                 child: Container(
                   color: Color.fromRGBO(248, 248, 248, 1.0),
-                  width: MediaQuery.of(context).size.width / 1.22,
-                  height: 100,
+                  width: MediaQuery.of(context).size.width / 1.2,
+                  height: 150,
                   child: Icon(Icons.camera_alt, color: darkGreen, size: 40),
                 ),
               ),
@@ -192,15 +201,23 @@ class _AddStuffState extends State<AddStuff> {
               key: _formKey,
               child: Column(
                 children: [
-                  Text(
-                    'Title',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontFamily: 'Arial'
-                    )
-                  ),
                   Container(
-                    width: MediaQuery.of(context).size.width / 1.22,
+                    width: MediaQuery.of(context).size.width / 1.2,
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                        'Title',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontFamily: 'Arial',
+                          color: Color.fromRGBO(112,112,112,1.0)
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height:5),
+                  Container(
+                    width: MediaQuery.of(context).size.width / 1.2,
                     child: TextFormField(
                       controller: _title,
                       keyboardType: TextInputType.emailAddress,
@@ -216,20 +233,19 @@ class _AddStuffState extends State<AddStuff> {
                                     onSaved: (input) =>
                                         _title.text = input,
                                     decoration: InputDecoration(
-                                      hintText: 'Title',
+                                      hintText: "Gucci Bag FX45022",
                                       hintStyle: TextStyle(
-                                          color: lightGreen,
                                           fontFamily: 'Arial',
                                           fontSize: 14),
                                       filled: false,
                                       enabledBorder: OutlineInputBorder(
                                           borderSide:
-                                              BorderSide(color: lightGreen),
+                                              BorderSide(color: Color.fromRGBO(112,112,112,1.0)),
                                           borderRadius:
                                               BorderRadius.circular(0)),
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                            color: lightGreen, width: 2),
+                                            color: Color.fromRGBO(112,112,112,1.0), width: 2),
                                       ),
                                       errorBorder: OutlineInputBorder(
                                           borderSide: BorderSide(
@@ -243,12 +259,19 @@ class _AddStuffState extends State<AddStuff> {
                     ),
                   ),
                   SizedBox(height: 10),
-                  Text(
-                    'Category',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontFamily: 'Arial'
-                    )
+                  Container(
+                    width: MediaQuery.of(context).size.width / 1.2,
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                        'Category',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontFamily: 'Arial',
+                          color: Color.fromRGBO(112,112,112,1.0)
+                        ),
+                      ),
+                    ),
                   ),
                   FlatButton(
                   onPressed: () {
@@ -257,26 +280,40 @@ class _AddStuffState extends State<AddStuff> {
                   child: Container()
                   ),
                   SizedBox(height: 15),
-                  Text(
-                    'Description',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontFamily: 'Arial'
-                    )
+                  Container(
+                    width: MediaQuery.of(context).size.width / 1.2,
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                        'Description',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontFamily: 'Arial',
+                          color: Color.fromRGBO(112,112,112,1.0)
+                        ),
+                      ),
+                    ),
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width / 1.22,
+                    width: MediaQuery.of(context).size.width / 1.2,
                     child: TextFormField(
                       controller: _description,
                     ),
                   ),
                   SizedBox(height: 10),
-                  Text(
-                    'Prefered Swaps',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontFamily: 'Arial'
-                    )
+                  Container(
+                    width: MediaQuery.of(context).size.width / 1.2,
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                        'Prefered Swaps',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontFamily: 'Arial',
+                          color: Color.fromRGBO(112,112,112,1.0)
+                        ),
+                      ),
+                    ),
                   ),
                   FlatButton(
                     onPressed: () {
@@ -285,15 +322,22 @@ class _AddStuffState extends State<AddStuff> {
                     child: Container()
                   ),
                   SizedBox(height: 10),
-                  Text(
-                    'Contacts',
-                    style: TextStyle(
-                      fontSize: 13,
-                      fontFamily: 'Arial'
-                    )
+                  Container(
+                    width: MediaQuery.of(context).size.width / 1.2,
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                        'Contacts',
+                        style: TextStyle(
+                          fontSize: 13,
+                          fontFamily: 'Arial',
+                          color: Color.fromRGBO(112,112,112,1.0)
+                        ),
+                      ),
+                    ),
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width / 1.22,
+                    width: MediaQuery.of(context).size.width / 1.2,
                     child: TextFormField(
                       controller: _contact
                     ),

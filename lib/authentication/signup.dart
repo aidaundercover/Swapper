@@ -24,26 +24,26 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: greenWhite,
-          title: Text(
-            'SWAPPER',
-            style: TextStyle(
-              color: green,
-              fontFamily: 'Arial',
-              fontSize: 14,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          leading: Builder(builder: (BuildContext context) {
-            return IconButton(
-              icon: const Icon(Icons.keyboard_backspace_rounded,
-                  color: green, size: 22),
-              onPressed: () {},
-            );
-          }),
-          centerTitle: true,
-        ),
+        bottomNavigationBar:  RaisedButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed(AppRoutes.authLogin);
+                },
+                color: Color.fromRGBO(169, 241, 185, 1.0),
+                child: Container(
+                  width: (MediaQuery.of(context).size.width),
+                  height: 48,
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Text('Login',
+                        style: TextStyle(
+                          color: green,
+                          fontFamily: 'Arial',
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold,
+                        )),
+                  ),
+                ),
+              ),
         backgroundColor: greenWhite,
         body: SingleChildScrollView(
           child: Column(
@@ -296,8 +296,8 @@ class _SignUpState extends State<SignUp> {
                 child: FlatButton(
                   color: green,
                   onPressed: () {
-                    addToCloud;
-                    signUp;
+                    addToCloud();
+                    signUp();
                     Navigator.of(context).pushNamed(AppRoutes.welcome);
                   },
                   child: Text(
@@ -318,7 +318,7 @@ class _SignUpState extends State<SignUp> {
                 children: <Widget>[
                   OutlineButton(
                     child: Image(
-                      image: AssetImage('assets/images/google.svg'),
+                      image: AssetImage('assets/images/google.png'),
                       width: 17,
                       height: 17,
                     ),
@@ -329,7 +329,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                   OutlineButton(
                     child: Image(
-                      image: AssetImage('assets/images/twitter.svg'),
+                      image: AssetImage('assets/images/twitter.png'),
                       width: 17,
                       height: 17,
                     ),
@@ -340,7 +340,7 @@ class _SignUpState extends State<SignUp> {
                   ),
                   OutlineButton(
                     child: Image(
-                      image: AssetImage('assets/images/facebook.svg'),
+                      image: AssetImage('assets/images/facebook.png'),
                       width: 17,
                       height: 17,
                     ),
@@ -359,27 +359,7 @@ class _SignUpState extends State<SignUp> {
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
                   )),
-              SizedBox(height: 40),
-              RaisedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(AppRoutes.authLogin);
-                },
-                color: Color.fromRGBO(169, 241, 185, 1.0),
-                child: Container(
-                  width: (MediaQuery.of(context).size.width),
-                  height: 48,
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Text('Login',
-                        style: TextStyle(
-                          color: green,
-                          fontFamily: 'Arial',
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  ),
-                ),
-              ),
+            
             ],
           ),
         ));

@@ -30,9 +30,23 @@ class _AddItemState extends State<AddItem> {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => AddStuff()));
               },
                 child: Container(
-                color: green,
                 width: MediaQuery.of(context).size.width / 1.4,
-                height: 150
+                height: 150,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: green
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                  Text("Add Stuff",
+                  style:TextStyle(
+                    color: white,
+                    fontFamily: 'Arial'
+                  )
+                  )
+                ],)
               ),
             ),
           ),
@@ -45,9 +59,23 @@ class _AddItemState extends State<AddItem> {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => AddSwapEvent()));
                 },
                 child: Container(
-                color: green,
                 width: MediaQuery.of(context).size.width / 1.4,
-                height: 150
+                height: 150,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: green
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                  Text("Create Event",
+                  style:TextStyle(
+                    color: white,
+                    fontFamily: 'Arial'
+                  )
+                  )
+                ],)
               ),
             ),
           ),
