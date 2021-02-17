@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swapper/const.dart';
-import 'package:swapper/welcome/welthree.dart';
+import 'package:swapper/views/welcome/welthree.dart';
 
 class WelcomeTwo extends StatelessWidget {
   String description =

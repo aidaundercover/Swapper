@@ -85,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                               Container(
                                   width: 290,
                                   child: TextFormField(
-                                    controller: emailController,
+                                    controller: emailControllerSignIn,
                                     keyboardType: TextInputType.emailAddress,
                                     style: TextStyle(
                                       color: Colors.black,
@@ -130,7 +130,7 @@ class _LoginPageState extends State<LoginPage> {
                               Container(
                                   width: 290,
                                   child: TextFormField(
-                                    controller: passwordController,
+                                    controller: passwordControllerSignIn,
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontFamily: 'Arial',

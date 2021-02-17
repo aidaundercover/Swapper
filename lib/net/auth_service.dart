@@ -88,3 +88,15 @@ Future<void> signUp() async {
       }
     }
   }
+
+  Future signOut() async {
+    try {
+      FirebaseAuth.instance.signOut();
+    } catch (e) {
+      print(e.message);
+    }
+  }
+
+  Future sendPasswordResetEmail(String email) async {
+    return FirebaseAuth.instance..sendPasswordResetEmail(email: email);
+  }

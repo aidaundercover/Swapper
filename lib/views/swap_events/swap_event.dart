@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:swapper/const.dart';
-import 'package:swapper/src/swap_event.dart';
+import 'package:swapper/models/swap_event.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoder/geocoder.dart';
 

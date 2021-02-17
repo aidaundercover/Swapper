@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swapper/const.dart';
-import 'package:swapper/welcome/weltwo.dart';
+import 'package:swapper/views/welcome/weltwo.dart';
 
 class WelcomeOne extends StatelessWidget {
   String description =

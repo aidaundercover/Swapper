@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:swapper/routes.dart';
+import 'package:swapper/net/auth_service.dart';
 
 class Profile extends StatefulWidget {
   @override
@@ -16,17 +16,13 @@ class _ProfileState extends State<Profile> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        FlatButton(onPressed: signOut, child: Text('Sign Out'))
+        FlatButton(
+            onPressed: () {
+              signOut();
+              Navigator.of(context).pushNamed(AppRoutes.authLogin);
+            },
+            child: Text('Sign Out'))
       ],
     )));
-  }
-
-  Future signOut() async {
-    try {
-      FirebaseAuth.instance.signOut();
-      Navigator.of(context).pushNamed(AppRoutes.authLogin);
-    } catch (e) {
-      print(e.message);
-    }
   }
 }
