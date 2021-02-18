@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       bottomNavigationBar: ConvexAppBar(
         items: [
-          TabItem(icon: Icons.location_on, title: 'Swap-events'),
+          TabItem(icon: Icons.location_on, title: 'Events'),
           TabItem(icon: Icons.swap_horizontal_circle, title: 'Swap stuff'),
           TabItem(icon: Icons.add_circle_outline, title: 'Add'),
           TabItem(icon: Icons.chat,title: 'Chat'),

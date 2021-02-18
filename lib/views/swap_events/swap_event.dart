@@ -88,8 +88,8 @@ class _SwapEventsState extends State<SwapEvents> {
         Padding(
             padding: EdgeInsets.all(20),
             child: Visibility(
-                visible: isVisible,
-                child: Container(
+              visible: isVisible,
+              child: Container(
                 width: MediaQuery.of(context).size.width / 1.12,
                 height: 120,
                 decoration: BoxDecoration(
@@ -163,35 +163,168 @@ class _SwapEventsState extends State<SwapEvents> {
             )),
         SizedBox(height: 28),
         ListView(
-          children: _events.map(_buildItem).toList(),
+          children: _events.isEmpty
+              ? Text('No more Swap Events')
+              : _events.map(_buildItem).toList(),
         )
       ])),
     );
   }
 
-  Widget _buildItem(SwapEvent swap) {
+  Widget _buildItem(SwapEvent event) {
+    final eventIndex = _events.indexOf(event);
+
     return Padding(
         padding: EdgeInsets.fromLTRB(0, 0, 8, 8),
         child: Container(
-            color: white,
+            width: MediaQuery.of(context).size.width / 1.12,
+            height: 135,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
+                color: white,
                 boxShadow: [
                   BoxShadow(
                       color: Color.fromRGBO(0, 0, 0, 0.16),
                       offset: Offset(3, 4),
                       blurRadius: 7)
                 ]),
-            width: MediaQuery.of(context).size.width / 1.12,
-            height: 135,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text('k'),
-                Row(
-                  children: [Image(image: null), Column(children: [])],
-                )
-              ],
+            child: Container(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    '',
+                    style: TextStyle(
+                        color: green,
+                        fontFamily: 'Arial',
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 7),
+                  Row(
+                    children: [
+                      Container(
+                        width: 150,
+                        height: 92,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          image: DecorationImage(
+                            image: AssetImage('${_events[eventIndex].imageURL}'),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Row(children: [
+                              Text('Date',
+                                  style: TextStyle(
+                                      color: gray,
+                                      fontSize: 10,
+                                      fontFamily: 'Arial',
+                                      fontWeight: FontWeight.bold)),
+                              SizedBox(width: 5),
+                              Text('${_events[eventIndex].date}',
+                                  style: TextStyle(
+                                      color: gray,
+                                      fontSize: 10,
+                                      fontFamily: 'Arial',
+                                      fontWeight: FontWeight.normal)),
+                            ]),
+                            SizedBox(height: 8),
+                            Row(children: [
+                              Text('Items for swaps',
+                                  style: TextStyle(
+                                      color: gray,
+                                      fontSize: 10,
+                                      fontFamily: 'Arial',
+                                      fontWeight: FontWeight.bold)),
+                              SizedBox(width: 5),
+                              Text('${_events[eventIndex].stuff}',
+                                  style: TextStyle(
+                                      color: gray,
+                                      fontSize: 10,
+                                      fontFamily: 'Arial',
+                                      fontWeight: FontWeight.normal)),
+                            ]),
+                            SizedBox(height: 8),
+                            Row(children: [
+                              Text('Amount of people',
+                                  style: TextStyle(
+                                      color: gray,
+                                      fontSize: 10,
+                                      fontFamily: 'Arial',
+                                      fontWeight: FontWeight.bold)),
+                              SizedBox(width: 5),
+                              Text('${_events[eventIndex].people}',
+                                  style: TextStyle(
+                                      color: gray,
+                                      fontSize: 10,
+                                      fontFamily: 'Arial',
+                                      fontWeight: FontWeight.normal)),
+                            ]),
+                            SizedBox(height: 8),
+                            InkWell(
+                              child: Text(
+                                'Check out full info',
+                                style: TextStyle(
+                                      color: gray,
+                                      fontSize: 10,
+                                      fontFamily: 'Arial',
+                                      fontWeight: FontWeight.normal,
+                                      fontStyle: FontStyle.italic,
+                                      decoration: TextDecoration.underline,
+                                      )),
+                                onTap : () {}
+                              ),
+                            SizedBox(height: 12),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                FlatButton(
+                                  onPressed: () {},
+                                  child: Container(
+                                    width: 106,
+                                    height: 27,
+                                    decoration: BoxDecoration(
+                                      color: green,
+                                      borderRadius: BorderRadius.circular(4)
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'Register',
+                                          style: TextStyle(
+                                            color: white,
+                                            fontFamily: 'Arial',
+                                            fontSize: 13,
+                                            fontWeight: FontWeight.bold
+                                          )
+                                        )
+                                      ],
+                                    ),
+                                  )
+                                ),
+                                IconButton(
+                                  onPressed : () {},
+                                  icon: Icon(
+                                    Icons.add_alarm_outlined,
+                                    size: 27,
+                                    color: green
+                                    )
+                                )
+                              ],
+                            )
+                          ])
+                    ],
+                  ),
+                  SizedBox(height: 20,)
+                ],
+              ),
             )));
   }
 
