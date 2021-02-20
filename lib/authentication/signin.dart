@@ -99,10 +99,11 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                     onSaved: (input) =>
                                         emailRecover.toString().isEmpty ? emailControllerSignIn.text = input : emailRecover.text= input,
-                                    validator: (input) {
+                                    validator:(String input) {
                                       if (input.isEmpty) {
                                         return 'Please enter you e-mail';
                                       }
+                                      return null;
                                     },
                                     decoration: InputDecoration(
                                       hintText: 'E-mail',
@@ -141,10 +142,11 @@ class _LoginPageState extends State<LoginPage> {
                                       fontSize: 14,
                                       fontWeight: FontWeight.normal,
                                     ),
-                                    validator: (input) {
+                                    validator: (String input) {
                                       if (input.isEmpty) {
                                         return 'Please enter your password';
                                       }
+                                      return null;
                                     },
                                     onSaved: (input) =>
                                         passwordControllerSignIn.text = input,

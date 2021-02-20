@@ -170,286 +170,291 @@ class _AddStuffState extends State<AddStuff> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-          child: Container(
-            width: MediaQuery.of(context).size.width / 1.2,
-            child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-              SizedBox(height: 30),
-              GestureDetector(
-                onTap: () => imageUpload(),
-                child: DottedBorder(
-                  borderType: BorderType.RRect,
-                  radius: Radius.circular(15),
-                  strokeWidth: 2,
-                  dashPattern: [2, 2, 2, 2],
-                  color: green,
-                  child: Container(
-                    color: Color.fromRGBO(248, 248, 248, 1.0),
-                    width: MediaQuery.of(context).size.width / 1.2,
-                    height: 150,
-                    child: Icon(Icons.camera_alt, color: darkGreen, size: 40),
+          child: Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+              width: MediaQuery.of(context).size.width / 1.2,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                SizedBox(height: 30),
+                GestureDetector(
+                  onTap: () => imageUpload(),
+                  child: DottedBorder(
+                    borderType: BorderType.RRect,
+                    radius: Radius.circular(15),
+                    strokeWidth: 2,
+                    dashPattern: [2, 2, 2, 2],
+                    color: green,
+                    child: Container(
+                      color: Color.fromRGBO(248, 248, 248, 1.0),
+                      width: MediaQuery.of(context).size.width / 1.2,
+                      height: 150,
+                      child: Icon(Icons.camera_alt, color: darkGreen, size: 40),
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: 20),
-              Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Title',
-                          style: TextStyle(
-                              fontSize: 13,
-                              fontFamily: 'Arial',
-                              color: Color.fromRGBO(112, 112, 112, 1.0)),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 5),
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      child: TextFormField(
-                        controller: _title,
-                        keyboardType: TextInputType.emailAddress,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: 'Arial',
-                          fontSize: 14,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        validator: (input) {},
-                        onSaved: (input) => _title.text = input,
-                        decoration: InputDecoration(
-                          hintText: "Gucci Bag FX45022",
-                          hintStyle: TextStyle(
-                              color: Color.fromRGBO(112, 112, 112, 0.7),
-                              fontFamily: 'Arial',
-                              fontSize: 14),
-                          filled: false,
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color.fromRGBO(112, 112, 112, 1.0)),
-                              borderRadius: BorderRadius.circular(0)),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Color.fromRGBO(112, 112, 112, 1.0),
-                                width: 2),
+                SizedBox(height: 20),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width / 1.2,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Title',
+                            style: TextStyle(
+                                fontSize: 13,
+                                fontFamily: 'Arial',
+                                color: Color.fromRGBO(112, 112, 112, 1.0)),
                           ),
-                          errorBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.red[600], width: 2)),
-                          focusedErrorBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.red[600], width: 2)),
                         ),
                       ),
-                    ),
-                    SizedBox(height: 10),
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Category',
+                      SizedBox(height: 5),
+                      Container(
+                        width: MediaQuery.of(context).size.width / 1.2,
+                        child: TextFormField(
+                          controller: _title,
+                          keyboardType: TextInputType.emailAddress,
                           style: TextStyle(
-                              fontSize: 13,
-                              fontFamily: 'Arial',
-                              color: Color.fromRGBO(112, 112, 112, 1.0)),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 5),
-                    FlatButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => CategoryList()));
-                        },
-                        child: Container(
-                            width: MediaQuery.of(context).size.width / 1.2,
-                            height: 50,
-                            decoration: BoxDecoration(
-                                color: lightGreen,
-                                borderRadius: BorderRadius.circular(7)))),
-                    SizedBox(height: 15),
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Description',
-                          style: TextStyle(
-                              fontSize: 13,
-                              fontFamily: 'Arial',
-                              color: Color.fromRGBO(112, 112, 112, 1.0)),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 5),
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      height: 120,
-                      child: TextFormField(
-                        controller: _description,
-                        keyboardType: TextInputType.emailAddress,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: 'Arial',
-                          fontSize: 14,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        validator: (input) {},
-                        onSaved: (input) => _title.text = input,
-                        decoration: InputDecoration(
-                          hintText: "Gucci Bag FX45022",
-                          hintStyle: TextStyle(
-                              color: Color.fromRGBO(112, 112, 112, 0.7),
-                              fontFamily: 'Arial',
-                              fontSize: 14),
-                          filled: false,
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color.fromRGBO(112, 112, 112, 1.0)),
-                              borderRadius: BorderRadius.circular(0)),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Color.fromRGBO(112, 112, 112, 1.0),
-                                width: 2),
+                            color: Colors.black,
+                            fontFamily: 'Arial',
+                            fontSize: 14,
+                            fontWeight: FontWeight.normal,
                           ),
-                          errorBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.red[600], width: 2)),
-                          focusedErrorBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.red[600], width: 2)),
+                          validator: (input) {},
+                          onSaved: (input) => _title.text = input,
+                          decoration: InputDecoration(
+                            hintText: "Gucci Bag FX45022",
+                            hintStyle: TextStyle(
+                                color: Color.fromRGBO(112, 112, 112, 0.7),
+                                fontFamily: 'Arial',
+                                fontSize: 14),
+                            filled: false,
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Color.fromRGBO(112, 112, 112, 1.0)),
+                                borderRadius: BorderRadius.circular(0)),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color.fromRGBO(112, 112, 112, 1.0),
+                                  width: 2),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red[600], width: 2)),
+                            focusedErrorBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red[600], width: 2)),
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(height: 10),
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Prefered Swaps',
+                      SizedBox(height: 10),
+                      Container(
+                        width: MediaQuery.of(context).size.width / 1.2,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Category',
+                            style: TextStyle(
+                                fontSize: 13,
+                                fontFamily: 'Arial',
+                                color: Color.fromRGBO(112, 112, 112, 1.0)),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      FlatButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => CategoryList()));
+                          },
+                          child: Container(
+                              width: MediaQuery.of(context).size.width / 1.2,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                  color: lightGreen,
+                                  borderRadius: BorderRadius.circular(7)))),
+                      SizedBox(height: 15),
+                      Container(
+                        width: MediaQuery.of(context).size.width / 1.2,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Description',
+                            style: TextStyle(
+                                fontSize: 13,
+                                fontFamily: 'Arial',
+                                color: Color.fromRGBO(112, 112, 112, 1.0)),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Container(
+                        width: MediaQuery.of(context).size.width / 1.2,
+                        height: 120,
+                        child: TextFormField(
+                          controller: _description,
+                          keyboardType: TextInputType.emailAddress,
                           style: TextStyle(
-                              fontSize: 13,
-                              fontFamily: 'Arial',
-                              color: Color.fromRGBO(112, 112, 112, 1.0)),
+                            color: Colors.black,
+                            fontFamily: 'Arial',
+                            fontSize: 14,
+                            fontWeight: FontWeight.normal,
+                          ),
+                          validator: (input) {},
+                          onSaved: (input) => _title.text = input,
+                          decoration: InputDecoration(
+                            hintText: "Gucci Bag FX45022",
+                            hintStyle: TextStyle(
+                                color: Color.fromRGBO(112, 112, 112, 0.7),
+                                fontFamily: 'Arial',
+                                fontSize: 14),
+                            filled: false,
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Color.fromRGBO(112, 112, 112, 1.0)),
+                                borderRadius: BorderRadius.circular(0)),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color.fromRGBO(112, 112, 112, 1.0),
+                                  width: 2),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red[600], width: 2)),
+                            focusedErrorBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red[600], width: 2)),
+                          ),
                         ),
                       ),
-                    ),
-                    SizedBox(height: 5),
-                    FlatButton(
-                        onPressed: () {
-                          _showMultiSelect(context);
-                        },
-                        child: Container(
-                            width: MediaQuery.of(context).size.width / 1.2,
-                            height: 50,
+                      SizedBox(height: 10),
+                      Container(
+                        width: MediaQuery.of(context).size.width / 1.2,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Prefered Swaps',
+                            style: TextStyle(
+                                fontSize: 13,
+                                fontFamily: 'Arial',
+                                color: Color.fromRGBO(112, 112, 112, 1.0)),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      FlatButton(
+                          onPressed: () {
+                            _showMultiSelect(context);
+                          },
+                          child: Container(
+                              width: MediaQuery.of(context).size.width / 1.2,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                  color: lightGreen,
+                                  borderRadius: BorderRadius.circular(7)),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Choose',
+                                    style: TextStyle(
+                                      color: darkGreen,
+                                    ),
+                                  ),
+                                ],
+                              ))),
+                      SizedBox(height: 10),
+                      Container(
+                        width: MediaQuery.of(context).size.width / 1.2,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Contacts',
+                            style: TextStyle(
+                                fontSize: 13,
+                                fontFamily: 'Arial',
+                                color: Color.fromRGBO(112, 112, 112, 1.0)),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Container(
+                        width: MediaQuery.of(context).size.width / 1.2,
+                        child: TextFormField(
+                          controller: _contact,
+                          keyboardType: TextInputType.emailAddress,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: 'Arial',
+                            fontSize: 14,
+                            fontWeight: FontWeight.normal,
+                          ),
+                          validator: (input) {},
+                          onSaved: (input) => _title.text = input,
+                          decoration: InputDecoration(
+                            hintText: "Gucci Bag FX45022",
+                            hintStyle: TextStyle(
+                                color: Color.fromRGBO(112, 112, 112, 0.7),
+                                fontFamily: 'Arial',
+                                fontSize: 14),
+                            filled: false,
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Color.fromRGBO(112, 112, 112, 1.0)),
+                                borderRadius: BorderRadius.circular(0)),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color.fromRGBO(112, 112, 112, 1.0),
+                                  width: 2),
+                            ),
+                            errorBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red[600], width: 2)),
+                            focusedErrorBorder: OutlineInputBorder(
+                                borderSide:
+                                    BorderSide(color: Colors.red[600], width: 2)),
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 25),
+                      FlatButton(
+                          onPressed: () {
+                            addStuffData();
+                          },
+                          child: Container(
                             decoration: BoxDecoration(
-                                color: lightGreen,
-                                borderRadius: BorderRadius.circular(7)),
+                              color: green,
+                              borderRadius: BorderRadius.circular(10)
+                            ),
+                            width: MediaQuery.of(context).size.width / 1.8,
+                            height: 40,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(
-                                  'Choose',
-                                  style: TextStyle(
-                                    color: darkGreen,
-                                  ),
-                                ),
+                                Text('PUBLISH',
+                                    style: TextStyle(
+                                        color: white,
+                                        fontFamily: 'Arial',
+                                        fontSize: 15)),
                               ],
-                            ))),
-                    SizedBox(height: 10),
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          'Contacts',
-                          style: TextStyle(
-                              fontSize: 13,
-                              fontFamily: 'Arial',
-                              color: Color.fromRGBO(112, 112, 112, 1.0)),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 5),
-                    Container(
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      child: TextFormField(
-                        controller: _contact,
-                        keyboardType: TextInputType.emailAddress,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontFamily: 'Arial',
-                          fontSize: 14,
-                          fontWeight: FontWeight.normal,
-                        ),
-                        validator: (input) {},
-                        onSaved: (input) => _title.text = input,
-                        decoration: InputDecoration(
-                          hintText: "Gucci Bag FX45022",
-                          hintStyle: TextStyle(
-                              color: Color.fromRGBO(112, 112, 112, 0.7),
-                              fontFamily: 'Arial',
-                              fontSize: 14),
-                          filled: false,
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Color.fromRGBO(112, 112, 112, 1.0)),
-                              borderRadius: BorderRadius.circular(0)),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Color.fromRGBO(112, 112, 112, 1.0),
-                                width: 2),
-                          ),
-                          errorBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.red[600], width: 2)),
-                          focusedErrorBorder: OutlineInputBorder(
-                              borderSide:
-                                  BorderSide(color: Colors.red[600], width: 2)),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 20),
-                    FlatButton(
-                        onPressed: () {
-                          addStuffData();
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: green,
-                            borderRadius: BorderRadius.circular(10)
-                          ),
-                          width: MediaQuery.of(context).size.width / 1.8,
-                          height: 40,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text('PUBLISH',
-                                  style: TextStyle(
-                                      color: white,
-                                      fontFamily: 'Arial',
-                                      fontSize: 15)),
-                            ],
-                          ),
-                        ))
-                  ],
+                            ),
+                          )),
+                        SizedBox(height: 25),
+
+                    ],
+                  ),
                 ),
-              ),
-            ]),
+              ]),
+            ),
           )),
     );
   }

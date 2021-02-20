@@ -25,26 +25,26 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar:  RaisedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed(AppRoutes.authLogin);
-                },
-                color: Color.fromRGBO(169, 241, 185, 1.0),
-                child: Container(
-                  width: (MediaQuery.of(context).size.width),
-                  height: 48,
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Text('Login',
-                        style: TextStyle(
-                          color: green,
-                          fontFamily: 'Arial',
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold,
-                        )),
-                  ),
-                ),
-              ),
+        bottomNavigationBar: RaisedButton(
+          onPressed: () {
+            Navigator.of(context).pushNamed(AppRoutes.authLogin);
+          },
+          color: Color.fromRGBO(169, 241, 185, 1.0),
+          child: Container(
+            width: (MediaQuery.of(context).size.width),
+            height: 48,
+            child: Align(
+              alignment: Alignment.center,
+              child: Text('Login',
+                  style: TextStyle(
+                    color: green,
+                    fontFamily: 'Arial',
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                  )),
+            ),
+          ),
+        ),
         backgroundColor: greenWhite,
         body: SingleChildScrollView(
           child: Column(
@@ -84,10 +84,11 @@ class _SignUpState extends State<SignUp> {
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal,
                                   ),
-                                  validator: (input) {
+                                  validator: (String input) {
                                     if (input.isEmpty) {
                                       return 'Please enter your name';
                                     }
+                                    return null;
                                   },
                                   onSaved: (input) =>
                                       usernameController.text = input,
@@ -127,10 +128,11 @@ class _SignUpState extends State<SignUp> {
                                       fontSize: 14,
                                       fontWeight: FontWeight.normal,
                                     ),
-                                    validator: (input) {
+                                    validator: (String input) {
                                       if (input.isEmpty) {
                                         return 'Please enter you e-mail';
                                       }
+                                      return null;
                                     },
                                     onSaved: (input) =>
                                         emailController.text = input,
@@ -171,12 +173,13 @@ class _SignUpState extends State<SignUp> {
                                       fontSize: 14,
                                       fontWeight: FontWeight.normal,
                                     ),
-                                    validator: (input) {
+                                    validator: (String input) {
                                       if (input.isEmpty) {
                                         return 'Please enter new password';
                                       } else if (input.length < 8) {
                                         return 'Password should contain at least 8 characters';
                                       }
+                                      return null;
                                     },
                                     onSaved: (input) =>
                                         passwordController.text = input,
@@ -228,13 +231,14 @@ class _SignUpState extends State<SignUp> {
                                     fontSize: 14,
                                     fontWeight: FontWeight.normal,
                                   ),
-                                  validator: (input) {
+                                  validator: (String input) {
                                     if (input.isEmpty) {
                                       return 'Please confirm your password by reentering it';
                                     } else if (input !=
                                         passwordController.text) {
                                       return 'Password must be the same as above';
                                     }
+                                    return null;
                                   },
                                   onSaved: (input) =>
                                       repasswordController.text = input,
@@ -356,11 +360,11 @@ class _SignUpState extends State<SignUp> {
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
                   )),
-            
             ],
           ),
         ));
   }
+
   Future<void> signUp() async {
     final formState = _formKey.currentState;
     if (formState.validate()) {

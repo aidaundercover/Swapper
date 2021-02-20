@@ -92,104 +92,104 @@ class _SwapEventsState extends State<SwapEvents> {
                                         fontSize: 13))),
                           ))
                     ]),
-          Padding(
-              padding: EdgeInsets.all(20),
-              child: Visibility(
+              Visibility(
                 visible: isVisible,
-                child: Container(
-                  width: MediaQuery.of(context).size.width / 1.12,
-                  height: 120,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(2),
-                      border: Border.all(width: 1, color: green),
-                      color: white
-                      ),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Text('Looks like you are here',
-                            style: TextStyle(
-                                fontFamily: 'Arial',
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: green)),
-                        Row(children: <Widget>[
-                          Icon(Icons.location_city_outlined,
-                              color: green, size: 28),
-                          Text("${_address?.addressLine ?? '-'}",
-                              style: TextStyle(
-                                  fontFamily: 'Arial',
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.normal,
-                                  color: Color.fromRGBO(112, 112, 112, 1.0)))
-                        ]),
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              FlatButton(
-                                onPressed: () {},
-                                child: Container(
-                                  width: 97,
-                                  height: 23,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: green,
+                child: Column(
+                  children: [
+                    SizedBox(height: 10),
+                    Container(
+                      width: MediaQuery.of(context).size.width / 1.12,
+                      height: 110,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(2),
+                          border: Border.all(width: 1, color: green),
+                          color: white
+                          ),
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Text('Looks like you are here',
+                                style: TextStyle(
+                                    fontFamily: 'Arial',
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: green)),
+                            Row(children: <Widget>[
+                              Icon(Icons.location_city_outlined,
+                                  color: green, size: 28),
+                              Text("${_address?.addressLine ?? '-'}",
+                                  style: TextStyle(
+                                      fontFamily: 'Arial',
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.normal,
+                                      color: Color.fromRGBO(112, 112, 112, 1.0)))
+                            ]),
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  FlatButton(
+                                    onPressed: () {},
+                                    child: Container(
+                                      width: 97,
+                                      height: 23,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: green,
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Text("No, I'm in...",
+                                              style: TextStyle(
+                                                  fontFamily: 'Arial',
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.normal,
+                                                  color: white)),
+                                        ],
+                                      ),
+                                    ),
+                                    
                                   ),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Text("No, I'm in...",
-                                          style: TextStyle(
-                                              fontFamily: 'Arial',
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.normal,
-                                              color: white)),
-                                    ],
+                                  SizedBox(width: 15),
+                                  FlatButton(
+                                    onPressed: () {
+                                      isVisible = false;
+                                    },
+                                    child: Container(
+                                      width: 97,
+                                      height: 23,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: green
+                                      ),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        children: [
+                                          Text("That's right",
+                                              style: TextStyle(
+                                                  fontFamily: 'Arial',
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.normal,
+                                                  color: white)),
+                                        ],
+                                      ),
+                                    ),
                                   ),
-                                ),
-                                
-                              ),
-                              SizedBox(width: 15),
-                              FlatButton(
-                                onPressed: () {
-                                  isVisible = false;
-                                },
-                                child: Container(
-                                  width: 97,
-                                  height: 23,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: green
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Text("That's right",
-                                          style: TextStyle(
-                                              fontFamily: 'Arial',
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.normal,
-                                              color: white)),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ])
-                      ]),
+                                ])
+                          ]),
+                    ),
+                  ],
                 ),
-              )),
-          SizedBox(height: 20),
+              ),
           Column(
-            children: [
-              ListView(
-                shrinkWrap: true,
-                          children: _events.isEmpty
-                              ? Text('No more Swap Events')
-                              : _events.map(_buildItem).toList(),
-                        ),
+            children: <Widget> [
+                  ListView(
+                  shrinkWrap: true,
+                  children: _events.isEmpty ? Text('No more Swap Events') : _events.map(_buildItem).toList(),
+              ),
             ],
           ),
         ])),
@@ -205,7 +205,7 @@ class _SwapEventsState extends State<SwapEvents> {
       children: [
         Container(
           width: MediaQuery.of(context).size.width / 1.12,
-                  height: 170,
+                  height: 150,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: white,
@@ -216,7 +216,7 @@ class _SwapEventsState extends State<SwapEvents> {
                             blurRadius: 7)
                       ]),
           child: Padding(
-              padding: EdgeInsets.fromLTRB(20, 10, 0, 10),    
+              padding: EdgeInsets.fromLTRB(20, 10, 0, 5),    
                   child: Container(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -234,11 +234,12 @@ class _SwapEventsState extends State<SwapEvents> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 4),
+                        SizedBox(height: 6),
                         Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Container(
-                              width: 150,
+                              width: MediaQuery.of(context).size.width / 2.5,
                               height: 92,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(4),
@@ -311,32 +312,33 @@ class _SwapEventsState extends State<SwapEvents> {
                                   SizedBox(height: 7),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
-                                      FlatButton(
-                                        onPressed: () {},
-                                        child: Container(
-                                          width: 106,
-                                          height: 27,
-                                          decoration: BoxDecoration(
-                                            color: green,
-                                            borderRadius: BorderRadius.circular(4)
-                                          ),
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                'Register',
-                                                style: TextStyle(
-                                                  color: white,
-                                                  fontFamily: 'Arial',
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.bold
+                                      Container(
+                                        width: 106,
+                                        height: 27,
+                                        decoration: BoxDecoration(
+                                              color: green,
+                                              borderRadius: BorderRadius.circular(4)
+                                            ),
+                                        child: FlatButton(
+                                          onPressed: () {},
+                                            child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  'Register',
+                                                  style: TextStyle(
+                                                    color: white,
+                                                    fontFamily: 'Arial',
+                                                    fontSize: 13,
+                                                    fontWeight: FontWeight.bold
+                                                  )
                                                 )
-                                              )
-                                            ],
-                                          ),
-                                        )
+                                              ],
+                                            ),
+                                          )
                                       ),
                                       IconButton(
                                         onPressed : () {},
