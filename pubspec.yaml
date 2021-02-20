@@ -72,6 +72,9 @@ flutter:
     - assets/images/twitter.png
     - assets/images/welthree.png
     - assets/images/makedeed.png
+    - assets/images/boots.jpg
+    - assets/images/dummyswap.png
+  
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -2,6 +2,8 @@ import 'package:swapper/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:swapper/const.dart';
 import 'package:swapper/net/auth_service.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -11,6 +13,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   bool _obscureText = true;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
 
   void _toggle() {
     setState(() {
@@ -85,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                               Container(
                                   width: 290,
                                   child: TextFormField(
-                                    controller: emailControllerSignIn,
+                                    controller: emailRecover.toString().isEmpty ? emailControllerSignIn : emailRecover,
                                     keyboardType: TextInputType.emailAddress,
                                     style: TextStyle(
                                       color: Colors.black,
@@ -93,13 +97,13 @@ class _LoginPageState extends State<LoginPage> {
                                       fontSize: 14,
                                       fontWeight: FontWeight.normal,
                                     ),
+                                    onSaved: (input) =>
+                                        emailRecover.toString().isEmpty ? emailControllerSignIn.text = input : emailRecover.text= input,
                                     validator: (input) {
                                       if (input.isEmpty) {
                                         return 'Please enter you e-mail';
                                       }
                                     },
-                                    onSaved: (input) =>
-                                        emailController.text = input,
                                     decoration: InputDecoration(
                                       hintText: 'E-mail',
                                       hintStyle: TextStyle(
@@ -143,7 +147,7 @@ class _LoginPageState extends State<LoginPage> {
                                       }
                                     },
                                     onSaved: (input) =>
-                                        passwordController.text = input,
+                                        passwordControllerSignIn.text = input,
                                     decoration: InputDecoration(
                                       suffixIcon: IconButton(
                                         icon: Icon(
@@ -208,10 +212,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 48,
                 child: FlatButton(
                   color: green,
-                  onPressed: () {
-                    signIn();
-                    Navigator.of(context).pushNamed(AppRoutes.home);
-                  },
+                  onPressed:signIn,
                   child: Text(
                     'CONTINUE',
                     style: TextStyle(
@@ -276,4 +277,25 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
+  Future<void> signIn() async {
+  final formState = _formKey.currentState;
+  if (formState.validate()) {
+    formState.save();
+    try {
+      UserCredential user = await _auth.signInWithEmailAndPassword(
+          email: emailControllerSignIn.text, password: passwordControllerSignIn.text);
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      prefs.setString('displayName', user.user.displayName);
+      Navigator.of(context).pushNamed(AppRoutes.home);
+      
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'email-already-in-use') {
+        print('The account already exists for the email');
+      }
+    } catch (e) {
+      print(e.message);
+    }
+  }
+}
 }

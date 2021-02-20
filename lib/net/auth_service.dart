@@ -1,9 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
 
 FirebaseAuth auth = FirebaseAuth.instance;
 TextEditingController passwordControllerSignIn = TextEditingController();
@@ -12,11 +10,12 @@ TextEditingController usernameController = TextEditingController();
 TextEditingController emailController = TextEditingController();
 TextEditingController passwordController = TextEditingController();
 TextEditingController repasswordController = TextEditingController();
+TextEditingController emailRecover = TextEditingController();
+
+String warning;
 
 final GoogleSignIn googleSignIn = GoogleSignIn();
 final FirebaseAuth _auth = FirebaseAuth.instance;
-final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
 
 Future<void> userSetup(String displayName) async {
   CollectionReference users = FirebaseFirestore.instance.collection('User');
@@ -24,26 +23,6 @@ Future<void> userSetup(String displayName) async {
   String uid = auth.currentUser.uid.toString();
   users.add({'displayName': displayName, 'uid': uid});
   return;
-}
-
-Future<void> signIn() async {
-  final formState = _formKey.currentState;
-  if (formState.validate()) {
-    formState.save();
-    try {
-      UserCredential user = await _auth.signInWithEmailAndPassword(
-          email: emailControllerSignIn.text, password: passwordControllerSignIn.text);
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('displayName', user.user.displayName);
-      
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'email-already-in-use') {
-        print('The account already exists for the email');
-      }
-    } catch (e) {
-      print(e.message);
-    }
-  }
 }
 
 Future<User> signInWithGoogle() async {
@@ -68,35 +47,14 @@ Future<User> signInWithGoogle() async {
   return user;
 }
 
-Future<void> signUp() async {
-    final formState = _formKey.currentState;
-    if (formState.validate()) {
-      formState.save();
-      try {
-        UserCredential user = await FirebaseAuth.instance
-            .createUserWithEmailAndPassword(
-                email: emailController.text, password: passwordController.text);
-        User updateUser = FirebaseAuth.instance.currentUser;
-        updateUser.updateProfile(displayName: usernameController.text);
-        userSetup(usernameController.text);
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'email-already-in-use') {
-          print('The account already exists for that email');
-        }
-      } catch (e) {
-        print(e.message);
-      }
-    }
+Future signOut() async {
+  try {
+    FirebaseAuth.instance.signOut();
+  } catch (e) {
+    print(e.message);
   }
+}
 
-  Future signOut() async {
-    try {
-      FirebaseAuth.instance.signOut();
-    } catch (e) {
-      print(e.message);
-    }
-  }
-
-  Future sendPasswordResetEmail(String email) async {
-    return FirebaseAuth.instance..sendPasswordResetEmail(email: email);
-  }
+Future sendPasswordResetEmail(String email) async {
+  return FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+}

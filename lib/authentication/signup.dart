@@ -4,6 +4,7 @@ import 'package:swapper/routes.dart';
 import 'package:swapper/const.dart';
 import 'package:swapper/net/auth_service.dart';
 import 'package:swapper/net/firebase.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -51,7 +52,7 @@ class _SignUpState extends State<SignUp> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               SizedBox(
-                height: 20,
+                height: 25,
               ),
               Container(
                   color: white,
@@ -295,11 +296,7 @@ class _SignUpState extends State<SignUp> {
                 height: 48,
                 child: FlatButton(
                   color: green,
-                  onPressed: () {
-                    addToCloud();
-                    signUp();
-                    Navigator.of(context).pushNamed(AppRoutes.welcome);
-                  },
+                  onPressed: signUp,
                   child: Text(
                     'CONTINUE',
                     style: TextStyle(
@@ -363,5 +360,27 @@ class _SignUpState extends State<SignUp> {
             ],
           ),
         ));
+  }
+  Future<void> signUp() async {
+    final formState = _formKey.currentState;
+    if (formState.validate()) {
+      formState.save();
+      try {
+        UserCredential user = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+                email: emailController.text, password: passwordController.text);
+        User updateUser = FirebaseAuth.instance.currentUser;
+        updateUser.updateProfile(displayName: usernameController.text);
+        userSetup(usernameController.text);
+        addToCloud();
+        Navigator.of(context).pushNamed(AppRoutes.welcome);
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'email-already-in-use') {
+          print('The account already exists for that email');
+        }
+      } catch (e) {
+        print(e.message);
+      }
+    }
   }
 }
