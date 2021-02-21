@@ -56,5 +56,26 @@ Future signOut() async {
 }
 
 Future sendPasswordResetEmail(String email) async {
-  return FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+  return _auth.sendPasswordResetEmail(email: email);
 }
+
+Future<String> getCurrentUID() async {
+  return (_auth.currentUser).uid;
+}
+
+Future getCurrentUser() async {
+  return _auth.currentUser;
+}
+
+Stream<String> get onAuthStateChanged => _auth.authStateChanges().map(
+      (User user) => user?.uid,
+    );
+
+
+getProfileImage() {
+    if(_auth.currentUser.photoURL != null) {
+      return Image.network(_auth.currentUser.photoURL, height: 100, width: 100);
+    } else {
+      return Icon(Icons.account_circle, size: 100);
+    }
+  }

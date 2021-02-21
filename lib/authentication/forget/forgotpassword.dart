@@ -14,7 +14,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     return Scaffold(
       backgroundColor: greenWhite,
       body: SingleChildScrollView(
-              child: Column(
+        child: Column(
           children: [
             Padding(
                 padding: const EdgeInsets.fromLTRB(20, 30, 0, 50),
@@ -73,10 +73,11 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     fontSize: 15,
                     fontWeight: FontWeight.normal,
                   ),
-                  validator: (input) {
+                  validator: (String input) {
                     if (input.isEmpty) {
                       return 'Please enter you e-mail';
                     }
+                    return null;
                   },
                   decoration: InputDecoration(
                     hintText: 'exmaple@mail.com',
@@ -90,42 +91,46 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       borderSide: BorderSide(color: lightGreen, width: 2),
                     ),
                     errorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.red[600], width: 2)),
+                        borderSide:
+                            BorderSide(color: Colors.red[600], width: 2)),
                     focusedErrorBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.red[600], width: 2)),
+                        borderSide:
+                            BorderSide(color: Colors.red[600], width: 2)),
                   ),
                 )),
-              SizedBox(height: 20,),
-              Column(
-                children: [
-                  Container(
-                    width: 300,
-                    height: 48,
-                    child: FlatButton(
-                      color: green,
-                      onPressed: () {
-                        try {
-                          sendPasswordResetEmail(emailRecover.toString());
-                          Navigator.of(context).pushNamed(AppRoutes.authLogin);
-                          warning =
-                              "A password reset link has been sent to $emailRecover";
-                        } catch (e) {
-                          warning = e.message;
-                        }
-                      },
-                      child: Text(
-                        'SUBMIT',
-                        style: TextStyle(
-                          color: white,
-                          fontFamily: 'Arial',
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                        ),
+            SizedBox(
+              height: 20,
+            ),
+            Column(
+              children: [
+                Container(
+                  width: 300,
+                  height: 48,
+                  child: FlatButton(
+                    color: green,
+                    onPressed: () {
+                      try {
+                        sendPasswordResetEmail(emailRecover.toString());
+                        Navigator.of(context).pushNamed(AppRoutes.authLogin);
+                        warning =
+                            "A password reset link has been sent to $emailRecover";
+                      } catch (e) {
+                        return e.message;
+                      }
+                    },
+                    child: Text(
+                      'SUBMIT',
+                      style: TextStyle(
+                        color: white,
+                        fontFamily: 'Arial',
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
+            ),
           ],
         ),
       ),

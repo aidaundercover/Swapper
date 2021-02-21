@@ -171,13 +171,13 @@ class _AddStuffState extends State<AddStuff> {
       ),
       body: SingleChildScrollView(
           child: Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-              width: MediaQuery.of(context).size.width / 1.2,
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
+        alignment: Alignment.topCenter,
+        child: Container(
+          width: MediaQuery.of(context).size.width / 1.2,
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
                 SizedBox(height: 30),
                 GestureDetector(
                   onTap: () => imageUpload(),
@@ -225,7 +225,12 @@ class _AddStuffState extends State<AddStuff> {
                             fontSize: 14,
                             fontWeight: FontWeight.normal,
                           ),
-                          validator: (input) {},
+                          validator: (String input) {
+                            if (input.isEmpty) {
+                              return 'Please enter the title of ad';
+                            }
+                            return null;
+                          },
                           onSaved: (input) => _title.text = input,
                           decoration: InputDecoration(
                             hintText: "Gucci Bag FX45022",
@@ -244,11 +249,11 @@ class _AddStuffState extends State<AddStuff> {
                                   width: 2),
                             ),
                             errorBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.red[600], width: 2)),
+                                borderSide: BorderSide(
+                                    color: Colors.red[600], width: 2)),
                             focusedErrorBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.red[600], width: 2)),
+                                borderSide: BorderSide(
+                                    color: Colors.red[600], width: 2)),
                           ),
                         ),
                       ),
@@ -267,19 +272,32 @@ class _AddStuffState extends State<AddStuff> {
                         ),
                       ),
                       SizedBox(height: 5),
-                      FlatButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => CategoryList()));
-                          },
-                          child: Container(
-                              width: MediaQuery.of(context).size.width / 1.2,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                  color: lightGreen,
-                                  borderRadius: BorderRadius.circular(7)))),
+                      Container(
+                        width: MediaQuery.of(context).size.width / 1.2,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                    color: lightGreen,
+                                    borderRadius: BorderRadius.circular(7)),
+                        child: FlatButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CategoryList()));
+                            },
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Pick a category',
+                                  style:TextStyle(
+                                    color: green
+                                  )
+                                )
+                              ]
+                            )),
+                      ),
                       SizedBox(height: 15),
                       Container(
                         width: MediaQuery.of(context).size.width / 1.2,
@@ -297,7 +315,6 @@ class _AddStuffState extends State<AddStuff> {
                       SizedBox(height: 5),
                       Container(
                         width: MediaQuery.of(context).size.width / 1.2,
-                        height: 120,
                         child: TextFormField(
                           controller: _description,
                           keyboardType: TextInputType.emailAddress,
@@ -307,8 +324,13 @@ class _AddStuffState extends State<AddStuff> {
                             fontSize: 14,
                             fontWeight: FontWeight.normal,
                           ),
-                          validator: (input) {},
-                          onSaved: (input) => _title.text = input,
+                          validator: (input) {
+                            if (input.isEmpty) {
+                              return 'PLease enter a description';
+                            }
+                            return null;
+                          },
+                          onSaved: (input) => _description.text = input,
                           decoration: InputDecoration(
                             hintText: "Gucci Bag FX45022",
                             hintStyle: TextStyle(
@@ -326,11 +348,11 @@ class _AddStuffState extends State<AddStuff> {
                                   width: 2),
                             ),
                             errorBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.red[600], width: 2)),
+                                borderSide: BorderSide(
+                                    color: Colors.red[600], width: 2)),
                             focusedErrorBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.red[600], width: 2)),
+                                borderSide: BorderSide(
+                                    color: Colors.red[600], width: 2)),
                           ),
                         ),
                       ),
@@ -349,28 +371,29 @@ class _AddStuffState extends State<AddStuff> {
                         ),
                       ),
                       SizedBox(height: 5),
-                      FlatButton(
-                          onPressed: () {
-                            _showMultiSelect(context);
-                          },
-                          child: Container(
-                              width: MediaQuery.of(context).size.width / 1.2,
-                              height: 50,
-                              decoration: BoxDecoration(
-                                  color: lightGreen,
-                                  borderRadius: BorderRadius.circular(7)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    'Choose',
-                                    style: TextStyle(
-                                      color: darkGreen,
+                      Container(
+                        width: MediaQuery.of(context).size.width / 1.2,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                    color: lightGreen,
+                                    borderRadius: BorderRadius.circular(7)),
+                        child: FlatButton(
+                            onPressed: () {
+                              _showMultiSelect(context);
+                            },
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Choose',
+                                      style: TextStyle(
+                                        color: darkGreen,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ))),
+                                  ],
+                                )),
+                      ),
                       SizedBox(height: 10),
                       Container(
                         width: MediaQuery.of(context).size.width / 1.2,
@@ -397,8 +420,13 @@ class _AddStuffState extends State<AddStuff> {
                             fontSize: 14,
                             fontWeight: FontWeight.normal,
                           ),
-                          validator: (input) {},
-                          onSaved: (input) => _title.text = input,
+                          validator: (String input) {
+                            if (input.isEmpty) {
+                              return 'Please enter your contacts';
+                            }
+                            return null;
+                          },
+                          onSaved: (input) => _contact.text = input,
                           decoration: InputDecoration(
                             hintText: "Gucci Bag FX45022",
                             hintStyle: TextStyle(
@@ -416,11 +444,11 @@ class _AddStuffState extends State<AddStuff> {
                                   width: 2),
                             ),
                             errorBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.red[600], width: 2)),
+                                borderSide: BorderSide(
+                                    color: Colors.red[600], width: 2)),
                             focusedErrorBorder: OutlineInputBorder(
-                                borderSide:
-                                    BorderSide(color: Colors.red[600], width: 2)),
+                                borderSide: BorderSide(
+                                    color: Colors.red[600], width: 2)),
                           ),
                         ),
                       ),
@@ -431,9 +459,8 @@ class _AddStuffState extends State<AddStuff> {
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                              color: green,
-                              borderRadius: BorderRadius.circular(10)
-                            ),
+                                color: green,
+                                borderRadius: BorderRadius.circular(10)),
                             width: MediaQuery.of(context).size.width / 1.8,
                             height: 40,
                             child: Column(
@@ -448,14 +475,13 @@ class _AddStuffState extends State<AddStuff> {
                               ],
                             ),
                           )),
-                        SizedBox(height: 25),
-
+                      SizedBox(height: 25),
                     ],
                   ),
                 ),
               ]),
-            ),
-          )),
+        ),
+      )),
     );
   }
 
@@ -468,9 +494,9 @@ class _AddStuffState extends State<AddStuff> {
     };
 
     CollectionReference collectionReference =
-      FirebaseFirestore.instance.collection('stuff');
+        FirebaseFirestore.instance.collection('stuff');
 
-  collectionReference.add(userStuff);
+    collectionReference.add(userStuff);
   }
 
   imageUpload() async {

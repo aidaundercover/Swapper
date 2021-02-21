@@ -24,7 +24,7 @@ class _TinderStuffState extends State<TinderStuff> {
           child: Column(
             children: [
               users.isEmpty
-                  ? Text('No more users')
+                  ? Text('No more swaps')
                   : Stack(children: users.map(buildUser).toList()),
               Expanded(child: Container()),
               BottomButtonsWidget()

@@ -86,9 +86,15 @@ class _SignUpState extends State<SignUp> {
                                   ),
                                   validator: (String input) {
                                     if (input.isEmpty) {
-                                      return 'Please enter your name';
-                                    }
-                                    return null;
+                                      return "Name can't be empty";
+                                      }
+                                      if (input.length < 2) {
+                                          return "Name must be at least 2 characters long";
+                                        }
+                                        if (input.length > 50) {
+                                          return "Name must be less than 50 characters long";
+                                        }
+                                        return null;
                                   },
                                   onSaved: (input) =>
                                       usernameController.text = input,
@@ -360,6 +366,7 @@ class _SignUpState extends State<SignUp> {
                     fontSize: 12,
                     fontWeight: FontWeight.bold,
                   )),
+              SizedBox(height: 20),
             ],
           ),
         ));
