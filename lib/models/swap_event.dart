@@ -15,6 +15,7 @@ class SwapEvent {
   String username;
   String description;
   String documentId;
+  bool registered;
 
   SwapEvent(
       {@required this.country,
@@ -28,7 +29,8 @@ class SwapEvent {
       this.charity,
       this.username,
       this.description,
-      this.documentId
+      this.documentId,
+      this.registered
       });
 
   Map<String, dynamic> toJson() => {
@@ -42,7 +44,8 @@ class SwapEvent {
         'address': address,
         'charity': charity,
         'username': username,
-        'documentId' : documentId,
+        'documentId': documentId,
+        'registered' : registered,
       };
 
   SwapEvent.fromSnapshot(DocumentSnapshot snapshot)
@@ -56,6 +59,7 @@ class SwapEvent {
         stuff = snapshot.data()['stuff'],
         charity = snapshot.data()['charity'],
         country = snapshot.data()['country'],
+        registered = snapshot.data()['registered'],
         documentId = snapshot.id;
 }
 
@@ -68,7 +72,9 @@ final events = [
       date: '15.08.2021',
       people: 100,
       address: 'Arbat 14',
-      stuff: 'hats only'),
+      stuff: 'hats only',
+      registered: false,
+      ),
   SwapEvent(
       title: 'Biggest Swap event for Hat lovers',
       country: 'Russia',
@@ -77,7 +83,9 @@ final events = [
       date: '15.08.2021',
       people: 100,
       address: 'Arbat 14',
-      stuff: 'hats only'),
+      stuff: 'hats only',
+      registered: false,
+      ),
   SwapEvent(
       title: 'Biggest Swap event for Hat lovers',
       country: 'Russia',
@@ -86,7 +94,9 @@ final events = [
       date: '15.08.2021',
       people: 100,
       address: 'Arbat 14',
-      stuff: 'hats only'),
+      stuff: 'hats only',
+      registered: false,
+      ),
   SwapEvent(
       title: 'Biggest Swap event for Hat lovers',
       country: 'Russia',
@@ -95,7 +105,9 @@ final events = [
       date: '15.08.2021',
       people: 100,
       address: 'Arbat 14',
-      stuff: 'hats only'),
+      stuff: 'hats only',
+      registered: false,
+      ),
   SwapEvent(
       title: 'Biggest Swap event for Hat lovers',
       country: 'Russia',
@@ -104,7 +116,9 @@ final events = [
       date: '15.08.2021',
       people: 100,
       address: 'Arbat 14',
-      stuff: 'hats only'),
+      stuff: 'hats only',
+      registered: false,
+      ),
   SwapEvent(
       title: 'Biggest Swap event for Hat lovers',
       country: 'Russia',
@@ -113,7 +127,9 @@ final events = [
       date: '15.08.2021',
       people: 100,
       address: 'Arbat 14',
-      stuff: 'hats only'),
+      stuff: 'hats only',
+      registered: false,
+      ),
   SwapEvent(
       title: 'Biggest Swap event for Hat lovers',
       country: 'Russia',
@@ -122,5 +138,8 @@ final events = [
       date: '15.08.2021',
       people: 100,
       address: 'Arbat 14',
-      stuff: 'hats only'),
+      stuff: 'hats only',
+      registered: false,
+      ),
+
 ];

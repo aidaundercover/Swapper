@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                               Container(
                                   width: 290,
                                   child: TextFormField(
-                                    controller: emailRecover.toString().isEmpty ? emailControllerSignIn : emailRecover,
+                                    controller: emailControllerSignIn,
                                     keyboardType: TextInputType.emailAddress,
                                     style: TextStyle(
                                       color: Colors.black,
@@ -98,7 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                                       fontWeight: FontWeight.normal,
                                     ),
                                     onSaved: (input) =>
-                                        emailRecover.toString().isEmpty ? emailControllerSignIn.text = input : emailRecover.text= input,
+                                      emailControllerSignIn.text = input,
                                     validator:(String input) {
                                       if (input.isEmpty) {
                                         return 'Please enter you e-mail';
@@ -214,7 +214,9 @@ class _LoginPageState extends State<LoginPage> {
                 height: 48,
                 child: FlatButton(
                   color: green,
-                  onPressed:signIn,
+                  onPressed: () {
+                    signIn();
+                  },
                   child: Text(
                     'CONTINUE',
                     style: TextStyle(
@@ -291,10 +293,6 @@ class _LoginPageState extends State<LoginPage> {
       prefs.setString('displayName', user.user.displayName);
       Navigator.of(context).pushNamed(AppRoutes.home);
       
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'email-already-in-use') {
-        print('The account already exists for the email');
-      }
     } catch (e) {
       print(e.message);
     }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swapper/const.dart';
 import 'package:swapper/views/switch-swap/tinder_switch.dart';
+import 'package:swapper/models/swap_stuff.dart';
 
 class SwitchSwap extends StatefulWidget {
   @override
@@ -9,26 +10,18 @@ class SwitchSwap extends StatefulWidget {
 
 class _SwitchSwapState extends State<SwitchSwap> {
   bool isVisible = true;
+  ScrollController _controller = new ScrollController();
+  List<UserStuff> _stuff = dummyStuff;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        key: _scaffoldKey,
         backgroundColor: greenWhite,
         drawer: Drawer(
             child: ListView(
           children: const <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-              child: Text(
-                'Drawer Header',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
             ListTile(
               leading: Icon(Icons.message),
               title: Text('Messages'),
@@ -59,7 +52,7 @@ class _SwitchSwapState extends State<SwitchSwap> {
                             color: Color.fromRGBO(34, 31, 31, 1.0),
                           ),
                           onPressed: () {
-                            Scaffold.of(context).openDrawer();
+                            _scaffoldKey.currentState.openDrawer();
                           }),
                     ),
                     Expanded(
@@ -221,18 +214,106 @@ class _SwitchSwapState extends State<SwitchSwap> {
                                 ],
                               ),
                               onPressed: () {
-                                  isVisible = false;
+                                isVisible = false;
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) => TinderStuff()));
                               }),
-                        )
+                        ),
+                        SizedBox(height: 20)
                       ],
                     )),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    children: <Widget>[
+                      ListView(
+                        physics: const BouncingScrollPhysics(
+                            parent: AlwaysScrollableScrollPhysics()),
+                        controller: _controller,
+                        shrinkWrap: true,
+                        children: _stuff.isEmpty
+                            ? Text('No more Swaps')
+                            : _stuff.map(_buildItemOne).toList(),
+                      ),
+                    ],
+                  ),
+                  SizedBox(width: 5),
+                  Column(
+                    children: <Widget>[
+                      ListView(
+                        physics: const BouncingScrollPhysics(
+                            parent: AlwaysScrollableScrollPhysics()),
+                        controller: _controller,
+                        shrinkWrap: true,
+                        children: _stuff.isEmpty
+                            ? Text('No more Swaps')
+                            : _stuff.map(_buildItemTwo).toList(),
+                      ),
+                    ],
+                  ),
+                ],
               )
             ],
           ),
         ));
+  }
+
+  Widget _buildItemOne(UserStuff stuff) {
+    final stuffIndex = _stuff.indexOf(stuff);
+
+    return Column(children: <Widget>[
+      Container(
+          width: MediaQuery.of(context).size.width / 2.343,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: white
+            ),
+          child: Column(
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width / 2.343,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10),
+                    ),
+                    image: DecorationImage(
+                        image: AssetImage('${_stuff[stuffIndex].imgUrl}'),
+                        fit: BoxFit.cover)),
+              ),
+              Padding(
+                padding: EdgeInsets.fromLTRB(10,10,0,0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${_stuff[stuffIndex].title}',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 12,
+                        fontFamily: 'Arial',
+                        fontWeight: FontWeight.bold
+                      )
+                    ),
+                    SizedBox(height: 5),
+                    Text(
+                      '${_stuff[stuffIndex].location}',
+                      
+                    )
+                  ]
+                )
+              )
+            ],
+          )),
+      SizedBox(height: 12)
+    ]);
+  }
+
+  Widget _buildItemTwo(UserStuff stuff) {
+    final stuffIndex = _stuff.indexOf(stuff);
   }
 }

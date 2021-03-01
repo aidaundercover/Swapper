@@ -64,16 +64,8 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/welone.png
-    - assets/images/weltwo.png
-    - assets/images/google.png
-    - assets/images/forgot_password_girl.png
-    - assets/images/facebook.png
-    - assets/images/twitter.png
-    - assets/images/welthree.png
-    - assets/images/makedeed.png
-    - assets/images/boots.jpg
-    - assets/images/dummyswap.png
+    - assets/images/
+    
   
 
 

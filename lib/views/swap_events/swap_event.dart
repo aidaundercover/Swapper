@@ -16,7 +16,14 @@ class _SwapEventsState extends State<SwapEvents> {
   Address _address;
   bool isVisible = true;
   List<SwapEvent> _events = events;
+  bool isPressed = false;
   ScrollController _controller = new ScrollController();
+
+  void _registerPress() {
+    setState(() {
+      isPressed = !isPressed;
+    });
+  }
 
   @override
   void initState() {
@@ -40,6 +47,186 @@ class _SwapEventsState extends State<SwapEvents> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          toolbarHeight: 60,
+          titleSpacing: 0,
+          centerTitle: false,
+          leading: Builder(
+            builder: (context) => IconButton(
+              icon: Icon(Icons.menu_rounded, size: 25, color: gray),
+              onPressed: () => Scaffold.of(context).openDrawer(),
+            ),
+          ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                color: white,
+                width: MediaQuery.of(context).size.width / 1.23,
+                height: 40,
+                child: TextFormField(
+                    decoration: InputDecoration(
+                        suffixIcon: IconButton(
+                            icon: Icon(Icons.search, color: green, size: 25),
+                            onPressed: () {}),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: green),
+                            borderRadius: BorderRadius.circular(7)),
+                        disabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: green),
+                            borderRadius: BorderRadius.circular(7)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: green),
+                            borderRadius: BorderRadius.circular(7)),
+                        hintText: 'Search for swap-events',
+                        hintStyle: TextStyle(
+                            color: Color.fromRGBO(112, 112, 112, 1.0),
+                            fontFamily: 'Arial',
+                            fontSize: 13))),
+              ),
+            ],
+          )),
+      drawer: Drawer(
+        child: Container(
+          color: Color.fromRGBO(245, 245,245, 1.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: green,
+                    boxShadow: [
+                      BoxShadow(
+                      color: Color.fromRGBO(0,0,0,0.16),
+                      blurRadius: 6,
+                      offset: Offset(0, 3),
+                    ),
+                    ]
+                  ),
+                  height: 143,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height:10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(20,0,0,0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CircleAvatar(
+                                  minRadius: 27,
+                                  maxRadius: 32,
+                                backgroundColor: white,
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                      "A",
+                                      style: TextStyle(
+                                        fontSize: 35.0, 
+                                        color: greenSlight
+                                      ),
+                                      ),
+                                    ),
+                                ),
+                                SizedBox(height:15),
+                                Text(
+                                  "Amira Artykbaeva",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontFamily: 'Arial',
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13,
+                                  ),
+                                  textAlign: TextAlign.start,
+                                ),
+                                SizedBox(height: 2),
+                                Text(
+                                  "amiraartykbaeva@gmail.com",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontFamily: 'Arial',
+                                    fontWeight: FontWeight.normal,
+                                    fontSize: 12
+                                  ),
+                                  textAlign: TextAlign.start,
+                                ),
+                              ]
+                            ),
+                          ),
+                          IconButton(
+                            icon: Icon(
+                            Icons.more_vert_rounded,
+                            size: 20,
+                            color: Colors.black
+                            ),
+                            onPressed: () {},
+                          )
+                        ]
+                      ),
+                    ],
+                  )
+                ),
+                Container(
+                  height:60,
+                  child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children:[
+                          Row(
+                            children: [
+                              SizedBox(width: 20),
+                              Icon(
+                              Icons.location_on_rounded,
+                              size: 22,
+                            color: Colors.red
+                          ),
+                          SizedBox(width: 15),
+                            ],
+                          ),
+                          
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                '${_address.adminArea},'+'${_address.countryName}',
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontFamily: 'Arial',
+                                  fontWeight: FontWeight.normal,
+                                  color: Colors.black
+                                )
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(25.0, 0,25,0),
+                                child: IconButton(
+                                  icon: Icon(
+                                    Icons.chevron_right_rounded,
+                                    size: 20,
+                                    color: Colors.black
+                                  ),
+                                  onPressed: () {}
+                                ),
+                              )
+                            ]
+                          )
+                        ]
+                      ),
+                ),
+                Divider()
+              ]
+          )
+        ),
+      ),
       backgroundColor: greenWhite,
       body: RefreshIndicator(
         onRefresh: () async {
@@ -49,50 +236,6 @@ class _SwapEventsState extends State<SwapEvents> {
         },
         child: SingleChildScrollView(
             child: Column(children: <Widget>[
-          SizedBox(height: 20),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Expanded(
-                  flex: 2,
-                  child: IconButton(
-                      icon: Icon(
-                        Icons.menu_rounded,
-                        size: 30,
-                        color: Color.fromRGBO(34, 31, 31, 1.0),
-                      ),
-                      onPressed: () {
-                        Scaffold.of(context).openDrawer();
-                      }),
-                ),
-                Expanded(
-                    flex: 10,
-                    child: Container(
-                      color: white,
-                      width: MediaQuery.of(context).size.width / 1.5,
-                      height: 40,
-                      child: TextFormField(
-                          decoration: InputDecoration(
-                              suffixIcon: IconButton(
-                                  icon: Icon(Icons.search,
-                                      color: green, size: 23),
-                                  onPressed: () {}),
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: green),
-                                  borderRadius: BorderRadius.circular(7)),
-                              disabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: green),
-                                  borderRadius: BorderRadius.circular(7)),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: green),
-                                  borderRadius: BorderRadius.circular(7)),
-                              hintText: 'Search for swap-events',
-                              hintStyle: TextStyle(
-                                  color: Color.fromRGBO(112, 112, 112, 1.0),
-                                  fontFamily: 'Arial',
-                                  fontSize: 13))),
-                    ))
-              ]),
           Visibility(
             visible: isVisible,
             child: Column(
@@ -115,16 +258,19 @@ class _SwapEventsState extends State<SwapEvents> {
                                 fontSize: 15,
                                 fontWeight: FontWeight.bold,
                                 color: green)),
-                        Row(children: <Widget>[
-                          Icon(Icons.location_city_outlined,
-                              color: green, size: 28),
-                          Text("${_address?.addressLine}",
-                              style: TextStyle(
-                                  fontFamily: 'Arial',
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.normal,
-                                  color: Color.fromRGBO(112, 112, 112, 1.0)))
-                        ]),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(Icons.location_city_outlined,
+                                  color: green, size: 28),
+                              Text(" ${_address.adminArea}, "+"${_address.countryName}",
+                                  style: TextStyle(
+                                      fontFamily: 'Arial',
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.normal,
+                                      color:
+                                          Color.fromRGBO(112, 112, 112, 1.0)))
+                            ]),
                         Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
@@ -181,6 +327,7 @@ class _SwapEventsState extends State<SwapEvents> {
                             ])
                       ]),
                 ),
+                SizedBox(height: 20)
               ],
             ),
           ),
@@ -210,7 +357,7 @@ class _SwapEventsState extends State<SwapEvents> {
       children: [
         Container(
           width: MediaQuery.of(context).size.width / 1.12,
-          height: 150,
+          height: 155,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: white,
@@ -221,7 +368,7 @@ class _SwapEventsState extends State<SwapEvents> {
                     blurRadius: 7)
               ]),
           child: Padding(
-              padding: EdgeInsets.fromLTRB(20, 10, 0, 5),
+              padding: EdgeInsets.fromLTRB(20, 10, 0, 0),
               child: Container(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -300,6 +447,20 @@ class _SwapEventsState extends State<SwapEvents> {
                                         fontFamily: 'Arial',
                                         fontWeight: FontWeight.normal)),
                               ]),
+                              Row(children: [
+                                Text('Left spots:',
+                                    style: TextStyle(
+                                        color: gray,
+                                        fontSize: 10,
+                                        fontFamily: 'Arial',
+                                        fontWeight: FontWeight.bold)),
+                                Text('${_events[eventIndex].people}',
+                                    style: TextStyle(
+                                        color: gray,
+                                        fontSize: 10,
+                                        fontFamily: 'Arial',
+                                        fontWeight: FontWeight.normal)),
+                              ]),
                               SizedBox(height: 3),
                               InkWell(
                                   child: Text('Check out full info',
@@ -317,31 +478,39 @@ class _SwapEventsState extends State<SwapEvents> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Container(
-                                      width: 106,
-                                      height: 27,
-                                      decoration: BoxDecoration(
-                                          color: green,
-                                          borderRadius:
-                                              BorderRadius.circular(4)),
-                                      child: FlatButton(
-                                        onPressed: () {},
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Text('Register',
-                                                style: TextStyle(
-                                                    color: white,
-                                                    fontFamily: 'Arial',
-                                                    fontSize: 13,
-                                                    fontWeight:
-                                                        FontWeight.bold))
-                                          ],
-                                        ),
-                                      )),
+                                  Row(children: [
+                                    Container(
+                                        width: 106,
+                                        height: 27,
+                                        decoration: BoxDecoration(
+                                            color:
+                                                isPressed ? lightGreen : green,
+                                            borderRadius:
+                                                BorderRadius.circular(4)),
+                                        child: FlatButton(
+                                          onPressed: _registerPress,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                  isPressed
+                                                      ? 'Registered'
+                                                      : 'Register',
+                                                  style: TextStyle(
+                                                      color: isPressed
+                                                          ? green
+                                                          : white,
+                                                      fontFamily: 'Arial',
+                                                      fontSize: 13,
+                                                      fontWeight:
+                                                          FontWeight.bold))
+                                            ],
+                                          ),
+                                        )),
+                                  ]),
                                   IconButton(
                                       onPressed: () {},
                                       icon: Icon(Icons.add_alarm_outlined,

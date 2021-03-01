@@ -11,6 +11,7 @@ Future<void> main() async {
   var username = preferences.getString('displayName');
   await Firebase.initializeApp();
   runApp(MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: username==null ? LoginPage() : Home(),
       routes: AppRoutes.define(),
     ));
