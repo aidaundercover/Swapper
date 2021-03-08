@@ -4,6 +4,7 @@ import 'package:swapper/const.dart';
 import 'package:swapper/models/swap_event.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoder/geocoder.dart';
+import 'package:swapper/widgets/drawer.dart';
 
 class SwapEvents extends StatefulWidget {
   @override
@@ -13,11 +14,12 @@ class SwapEvents extends StatefulWidget {
 class _SwapEventsState extends State<SwapEvents> {
   Position _position;
   StreamSubscription<Position> _streamSubscription;
-  Address _address;
+  Address address;
   bool isVisible = true;
   List<SwapEvent> _events = events;
   bool isPressed = false;
   ScrollController _controller = new ScrollController();
+  
 
   void _registerPress() {
     setState(() {
@@ -39,13 +41,16 @@ class _SwapEventsState extends State<SwapEvents> {
         final coordinates =
             new Coordinates(position.latitude, position.longitude);
         convertCoordinatesToAddress(coordinates)
-            .then((value) => _address = value);
+            .then((value) => address = value);
       });
     });
   }
 
   @override
   Widget build(BuildContext context) {
+    String locationAddress;
+    locationAddress = " ${address.adminArea}, " + "${address.countryName}";
+    
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.transparent,
@@ -64,9 +69,12 @@ class _SwapEventsState extends State<SwapEvents> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                color: white,
                 width: MediaQuery.of(context).size.width / 1.23,
                 height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7),
+                  color: white,
+                ),
                 child: TextFormField(
                     decoration: InputDecoration(
                         suffixIcon: IconButton(
@@ -89,144 +97,7 @@ class _SwapEventsState extends State<SwapEvents> {
               ),
             ],
           )),
-      drawer: Drawer(
-        child: Container(
-          color: Color.fromRGBO(245, 245,245, 1.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: green,
-                    boxShadow: [
-                      BoxShadow(
-                      color: Color.fromRGBO(0,0,0,0.16),
-                      blurRadius: 6,
-                      offset: Offset(0, 3),
-                    ),
-                    ]
-                  ),
-                  height: 143,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(height:10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(20,0,0,0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                CircleAvatar(
-                                  minRadius: 27,
-                                  maxRadius: 32,
-                                backgroundColor: white,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                      "A",
-                                      style: TextStyle(
-                                        fontSize: 35.0, 
-                                        color: greenSlight
-                                      ),
-                                      ),
-                                    ),
-                                ),
-                                SizedBox(height:15),
-                                Text(
-                                  "Amira Artykbaeva",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontFamily: 'Arial',
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 13,
-                                  ),
-                                  textAlign: TextAlign.start,
-                                ),
-                                SizedBox(height: 2),
-                                Text(
-                                  "amiraartykbaeva@gmail.com",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontFamily: 'Arial',
-                                    fontWeight: FontWeight.normal,
-                                    fontSize: 12
-                                  ),
-                                  textAlign: TextAlign.start,
-                                ),
-                              ]
-                            ),
-                          ),
-                          IconButton(
-                            icon: Icon(
-                            Icons.more_vert_rounded,
-                            size: 20,
-                            color: Colors.black
-                            ),
-                            onPressed: () {},
-                          )
-                        ]
-                      ),
-                    ],
-                  )
-                ),
-                Container(
-                  height:60,
-                  child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children:[
-                          Row(
-                            children: [
-                              SizedBox(width: 20),
-                              Icon(
-                              Icons.location_on_rounded,
-                              size: 22,
-                            color: Colors.red
-                          ),
-                          SizedBox(width: 15),
-                            ],
-                          ),
-                          
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                '${_address.adminArea},'+'${_address.countryName}',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  fontFamily: 'Arial',
-                                  fontWeight: FontWeight.normal,
-                                  color: Colors.black
-                                )
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.fromLTRB(25.0, 0,25,0),
-                                child: IconButton(
-                                  icon: Icon(
-                                    Icons.chevron_right_rounded,
-                                    size: 20,
-                                    color: Colors.black
-                                  ),
-                                  onPressed: () {}
-                                ),
-                              )
-                            ]
-                          )
-                        ]
-                      ),
-                ),
-                Divider()
-              ]
-          )
-        ),
-      ),
+      drawer: DrawerCustom(),
       backgroundColor: greenWhite,
       body: RefreshIndicator(
         onRefresh: () async {
@@ -235,7 +106,8 @@ class _SwapEventsState extends State<SwapEvents> {
           return;
         },
         child: SingleChildScrollView(
-            child: Column(children: <Widget>[
+            child: Column(
+              children: <Widget>[
           Visibility(
             visible: isVisible,
             child: Column(
@@ -263,7 +135,7 @@ class _SwapEventsState extends State<SwapEvents> {
                             children: <Widget>[
                               Icon(Icons.location_city_outlined,
                                   color: green, size: 28),
-                              Text(" ${_address.adminArea}, "+"${_address.countryName}",
+                              Text("$locationAddress",
                                   style: TextStyle(
                                       fontFamily: 'Arial',
                                       fontSize: 13,
@@ -274,7 +146,7 @@ class _SwapEventsState extends State<SwapEvents> {
                         Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              FlatButton(
+                              TextButton(
                                 onPressed: () {},
                                 child: Container(
                                   width: 97,
@@ -299,7 +171,7 @@ class _SwapEventsState extends State<SwapEvents> {
                                 ),
                               ),
                               SizedBox(width: 15),
-                              FlatButton(
+                              TextButton(
                                 onPressed: () {
                                   isVisible = false;
                                 },
@@ -487,7 +359,7 @@ class _SwapEventsState extends State<SwapEvents> {
                                                 isPressed ? lightGreen : green,
                                             borderRadius:
                                                 BorderRadius.circular(4)),
-                                        child: FlatButton(
+                                        child: TextButton(
                                           onPressed: _registerPress,
                                           child: Column(
                                             mainAxisAlignment:

@@ -106,8 +106,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 Container(
                   width: 300,
                   height: 48,
-                  child: FlatButton(
-                    color: green,
+                  child: TextButton(
                     onPressed: () {
                       try {
                         sendPasswordResetEmail(emailRecover.toString());
@@ -118,13 +117,16 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                         return e.message;
                       }
                     },
-                    child: Text(
-                      'SUBMIT',
-                      style: TextStyle(
-                        color: white,
-                        fontFamily: 'Arial',
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
+                    child: Container(
+                      color: green,
+                      child: Text(
+                        'SUBMIT',
+                        style: TextStyle(
+                          color: white,
+                          fontFamily: 'Arial',
+                          fontSize: 10,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),

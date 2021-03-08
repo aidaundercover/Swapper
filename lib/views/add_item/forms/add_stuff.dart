@@ -72,11 +72,11 @@ class _MultiSelectDialogState<V> extends State<MultiSelectDialog<V>> {
         ),
       ),
       actions: <Widget>[
-        FlatButton(
+        TextButton(
           child: Text('CANCEL'),
           onPressed: _onCancelTap,
         ),
-        FlatButton(
+        TextButton(
           child: Text('OK'),
           onPressed: _onSubmitTap,
         )
@@ -109,7 +109,7 @@ class _AddStuffState extends State<AddStuff> {
   TextEditingController _description = TextEditingController();
   TextEditingController _contact = TextEditingController();
 
-  List<MultiSelectDialogItem<int>> multiItem = List();
+  List<MultiSelectDialogItem<int>> multiItem = [];
 
   final valuestopopulate = {
     1: "Children Stuff",
@@ -278,7 +278,7 @@ class _AddStuffState extends State<AddStuff> {
                                 decoration: BoxDecoration(
                                     color: lightGreen,
                                     borderRadius: BorderRadius.circular(7)),
-                        child: FlatButton(
+                        child: TextButton(
                             onPressed: () {
                               Navigator.push(
                                   context,
@@ -377,7 +377,7 @@ class _AddStuffState extends State<AddStuff> {
                                 decoration: BoxDecoration(
                                     color: lightGreen,
                                     borderRadius: BorderRadius.circular(7)),
-                        child: FlatButton(
+                        child: TextButton(
                             onPressed: () {
                               _showMultiSelect(context);
                             },
@@ -453,7 +453,7 @@ class _AddStuffState extends State<AddStuff> {
                         ),
                       ),
                       SizedBox(height: 25),
-                      FlatButton(
+                      TextButton(
                           onPressed: () {
                             addStuffData();
                           },
@@ -526,7 +526,7 @@ class _AddStuffState extends State<AddStuff> {
           title: Text('Path is required'),
           content: Text('Grant permission for access to gellery'),
           actions: [
-            FlatButton(
+            TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -539,7 +539,7 @@ class _AddStuffState extends State<AddStuff> {
         title: Text('Permissiom is denied'),
         content: Text('Grant permission for access to gellery'),
         actions: [
-          FlatButton(
+          TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },

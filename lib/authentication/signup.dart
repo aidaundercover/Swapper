@@ -25,12 +25,12 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: RaisedButton(
+        bottomNavigationBar: ElevatedButton(
           onPressed: () {
             Navigator.of(context).pushNamed(AppRoutes.authLogin);
           },
-          color: Color.fromRGBO(169, 241, 185, 1.0),
           child: Container(
+            color: Color.fromRGBO(169, 241, 185, 1.0),
             width: (MediaQuery.of(context).size.width),
             height: 48,
             child: Align(
@@ -302,10 +302,10 @@ class _SignUpState extends State<SignUp> {
                   )),
               SizedBox(height: 20),
               Container(
+                color: green,
                 width: 328,
                 height: 48,
-                child: FlatButton(
-                  color: green,
+                child: TextButton(
                   onPressed: signUp,
                   child: Text(
                     'CONTINUE',
@@ -323,38 +323,44 @@ class _SignUpState extends State<SignUp> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  OutlineButton(
+                  OutlinedButton(
                     child: Image(
                       image: AssetImage('assets/images/google.png'),
                       width: 17,
                       height: 17,
                     ),
-                    borderSide: BorderSide(color: lightGreen, width: 1),
+                    style: OutlinedButton.styleFrom(
+                    side: BorderSide(color: lightGreen, width: 1),
                     shape: CircleBorder(),
                     padding: EdgeInsets.all(22),
+                    ),
                     onPressed: () {},
                   ),
-                  OutlineButton(
+                  OutlinedButton(
                     child: Image(
                       image: AssetImage('assets/images/twitter.png'),
                       width: 17,
                       height: 17,
                     ),
-                    borderSide: BorderSide(color: lightGreen, width: 1),
+                    style: OutlinedButton.styleFrom(
+                    side: BorderSide(color: lightGreen, width: 1),
                     shape: CircleBorder(),
                     padding: EdgeInsets.all(22),
+                    ),
                     onPressed: () {},
                   ),
-                  OutlineButton(
+                  OutlinedButton(
                     child: Image(
                       image: AssetImage('assets/images/facebook.png'),
                       width: 17,
                       height: 17,
                     ),
-                    borderSide: BorderSide(color: lightGreen, width: 1),
+                    style: OutlinedButton.styleFrom(
+                    side: BorderSide(color: lightGreen, width: 1),
                     shape: CircleBorder(),
                     padding: EdgeInsets.all(22),
-                    onPressed: () {},
+                    ),
+                    onPressed: () {}
                   )
                 ],
               ),

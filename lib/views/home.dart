@@ -5,7 +5,8 @@ import 'package:swapper/views/profile/profile.dart';
 import 'package:swapper/views/add_item/add_item.dart';
 import 'package:swapper/views/swap_events/swap_event.dart';
 import 'package:swapper/views/switch-swap/switch_swap.dart';
-import 'package:swapper/views/charity/charity.dart';
+import 'package:swapper/views/chat/chat_list.dart';
+
 
 class Home extends StatefulWidget {
   @override
@@ -14,7 +15,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int selectedPage = 0;
-  final _pageOptions = [SwapEvents(), SwitchSwap(), AddItem(), Charity(), Profile()];
+  final _pageOptions = [SwapEvents(), SwitchSwap(), AddItem(), ChatList(), Profile()];
 
   @override
   Widget build(BuildContext context) {

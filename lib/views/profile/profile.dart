@@ -16,7 +16,7 @@ class _ProfileState extends State<Profile> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        FlatButton(
+        TextButton(
             onPressed: () {
               signOut();
               Navigator.of(context).pushNamed(AppRoutes.authLogin);

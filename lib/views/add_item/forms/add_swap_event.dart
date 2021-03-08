@@ -143,7 +143,7 @@ class _AddSwapEventState extends State<AddSwapEvent> {
                         decoration: BoxDecoration(
                             color: lightGreen,
                             borderRadius: BorderRadius.circular(7)),
-                        child: FlatButton(child: Container(), onPressed: () {}),
+                        child: TextButton(child: Container(), onPressed: () {}),
                       ),
                       SizedBox(height: 15),
                       Container(
@@ -443,7 +443,7 @@ class _AddSwapEventState extends State<AddSwapEvent> {
                             borderRadius: BorderRadius.circular(7)),
                       ),
                       SizedBox(height: 25),
-                      FlatButton(
+                      TextButton(
                           onPressed: () {
                             addStuffData();
                           },
@@ -520,7 +520,7 @@ class _AddSwapEventState extends State<AddSwapEvent> {
           title: Text('Path is required'),
           content: Text('Grant permission for access to gellery'),
           actions: [
-            FlatButton(
+            TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -533,7 +533,7 @@ class _AddSwapEventState extends State<AddSwapEvent> {
         title: Text('Permissiom is denied'),
         content: Text('Grant permission for access to gellery'),
         actions: [
-          FlatButton(
+          TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
