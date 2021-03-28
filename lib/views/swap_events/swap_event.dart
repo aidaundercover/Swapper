@@ -6,6 +6,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:swapper/widgets/drawer.dart';
 
+
+
 class SwapEvents extends StatefulWidget {
   @override
   _SwapEventsState createState() => _SwapEventsState();
@@ -48,7 +50,7 @@ class _SwapEventsState extends State<SwapEvents> {
 
   @override
   Widget build(BuildContext context) {
-    String locationAddress;
+    
     locationAddress = " ${address.adminArea}, " + "${address.countryName}";
     
     return Scaffold(
@@ -351,37 +353,37 @@ class _SwapEventsState extends State<SwapEvents> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Row(children: [
-                                    Container(
-                                        width: 106,
+                                    TextButton(
+                                          onPressed: _registerPress,
+                                          child: Container(
+                                            width: 106,
                                         height: 27,
                                         decoration: BoxDecoration(
                                             color:
                                                 isPressed ? lightGreen : green,
                                             borderRadius:
                                                 BorderRadius.circular(4)),
-                                        child: TextButton(
-                                          onPressed: _registerPress,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                  isPressed
-                                                      ? 'Registered'
-                                                      : 'Register',
-                                                  style: TextStyle(
-                                                      color: isPressed
-                                                          ? green
-                                                          : white,
-                                                      fontFamily: 'Arial',
-                                                      fontSize: 13,
-                                                      fontWeight:
-                                                          FontWeight.bold))
-                                            ],
-                                          ),
-                                        )),
+                                            child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                        isPressed
+                                                            ? 'Registered'
+                                                            : 'Register',
+                                                        style: TextStyle(
+                                                            color: isPressed
+                                                                ? green
+                                                                : white,
+                                                            fontFamily: 'Arial',
+                                                            fontSize: 13,
+                                                            fontWeight:
+                                                                FontWeight.bold)),
+                                              ],
+                                            ),
+                                          )
+                                        )
+                                        ,
                                   ]),
                                   IconButton(
                                       onPressed: () {},

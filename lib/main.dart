@@ -18,6 +18,7 @@ Future<void> main() async {
       exit(1);
   };
   runApp(MaterialApp(
+      initialRoute: '/',
       debugShowCheckedModeBanner: false,
       home: username==null ? LoginPage() : Home(),
       routes: AppRoutes.define(),

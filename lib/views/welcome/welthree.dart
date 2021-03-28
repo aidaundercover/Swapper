@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swapper/const.dart';
-import 'package:swapper/routes.dart';
+import 'package:swapper/views/home.dart';
 
 
 class WelcomeThree extends StatelessWidget {
@@ -152,7 +152,26 @@ class WelcomeThree extends StatelessWidget {
                                                 size: 30,
                                               ),
                                               onPressed: () {
-                                                Navigator.of(context).pushNamed(AppRoutes.home);
+                                                Navigator.push (
+                                                context,
+                                                PageRouteBuilder(
+                                                  transitionDuration: Duration(milliseconds: 500),
+                                                  transitionsBuilder: (context, animation, animationTime, child){
+                                                    animation = CurvedAnimation(
+                                                      parent: animation, 
+                                                      curve:  Curves.elasticOut
+                                                    );
+                                                  return ScaleTransition(
+                                                    scale: animation,
+                                                    child: child,
+                                                  );
+                                                  },
+                                                  pageBuilder: (context, animation, animationTime) {
+                                                    return Home();
+                                                  }
+                                                )
+                                              );
+                                                
                                               },
                                             )),
                                       ),

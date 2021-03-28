@@ -6,8 +6,6 @@ import 'package:swapper/routes.dart';
 import 'package:swapper/net/auth_service.dart';
 import 'dart:async';
 
-
-
 class DrawerCustom extends StatefulWidget {
   @override
   _DrawerCustomState createState() => _DrawerCustomState();
@@ -17,12 +15,11 @@ class _DrawerCustomState extends State<DrawerCustom> {
   bool isSwitched = false;
   StreamSubscription<Position> _streamSubscription;
   Address addres;
-  
 
   @override
   void initState() {
     super.initState();
-    
+
     _streamSubscription =
         Geolocator.getPositionStream().listen((Position position) {
       setState(() {
@@ -132,7 +129,7 @@ class _DrawerCustomState extends State<DrawerCustom> {
                                     size: 23, color: Colors.red),
                                 SizedBox(width: 15),
                                 Text(
-                                    " ${addres.adminArea}, " + "${addres.countryName}",
+                                    " $locationAddress",
                                     style: TextStyle(
                                         fontSize: 13,
                                         fontFamily: 'Arial',
@@ -309,17 +306,16 @@ class _DrawerCustomState extends State<DrawerCustom> {
                     Icon(Icons.exit_to_app, size: 23, color: Colors.black),
                     SizedBox(width: 15),
                     InkWell(
-                      child: Text('Sign Out',
-                          style: TextStyle(
-                              fontSize: 13,
-                              fontFamily: 'Arial',
-                              fontWeight: FontWeight.normal,
-                              color: Colors.black)),
-                      onTap: () {
-                        signOut();
-                        Navigator.of(context).pushNamed(AppRoutes.authLogin);
-                      }
-                    ),
+                        child: Text('Sign Out',
+                            style: TextStyle(
+                                fontSize: 13,
+                                fontFamily: 'Arial',
+                                fontWeight: FontWeight.normal,
+                                color: Colors.black)),
+                        onTap: () {
+                          signOut();
+                          Navigator.of(context).pushNamed(AppRoutes.authLogin);
+                        }),
                   ]))
             ],
           )),
@@ -337,5 +333,4 @@ class _DrawerCustomState extends State<DrawerCustom> {
         await Geocoder.local.findAddressesFromCoordinates(coordinates);
     return addresses.first;
   }
-
 }

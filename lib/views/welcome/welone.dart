@@ -133,12 +133,12 @@ class WelcomeOne extends StatelessWidget {
                                                 blurRadius: 12,
                                                 offset: Offset(-8, -6),
                                                 spreadRadius: 3,
-                ),
-                BoxShadow(
-                    color: Color.fromRGBO(213, 241, 221, 1.0),
-                    blurRadius: 12,
-                    offset: Offset(8, 6),
-                    spreadRadius: 3),
+                            ),
+                            BoxShadow(
+                            color: Color.fromRGBO(213, 241, 221, 1.0),
+                            blurRadius: 12,
+                            offset: Offset(8, 6),
+                            spreadRadius: 3),
                                               ]
                                             ),
                                             child: IconButton(
@@ -150,7 +150,22 @@ class WelcomeOne extends StatelessWidget {
                                               onPressed: () {
                                                 Navigator.push (
                                                 context,
-                                                MaterialPageRoute(builder: (context) => WelcomeTwo()),
+                                                PageRouteBuilder(
+                                                  transitionDuration: Duration(milliseconds: 500),
+                                                  transitionsBuilder: (context, animation, animationTime, child){
+                                                    animation = CurvedAnimation(
+                                                      parent: animation, 
+                                                      curve:  Curves.elasticOut
+                                                    );
+                                                  return ScaleTransition(
+                                                    scale: animation,
+                                                    child: child,
+                                                  );
+                                                  },
+                                                  pageBuilder: (context, animation, animationTime) {
+                                                    return WelcomeTwo();
+                                                  }
+                                                )
                                               );
                                               },
                                             )),

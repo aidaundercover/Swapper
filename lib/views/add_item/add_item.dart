@@ -13,13 +13,19 @@ class _AddItemState extends State<AddItem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: greenWhite,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Text(
-            'Choose smth smth',
-            style:TextStyle()
+            'PUBLISH SOMETHING!',
+            style:TextStyle(
+              color: Color.fromRGBO(94, 163, 109, 1.0),
+              fontSize: 27,
+              fontWeight: FontWeight.bold, 
+              fontFamily: 'Arial'
+            )
           ),
           SizedBox(
             height:10
@@ -30,11 +36,28 @@ class _AddItemState extends State<AddItem> {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => AddStuff()));
               },
                 child: Container(
-                width: MediaQuery.of(context).size.width / 1.4,
-                height: 150,
+                width: MediaQuery.of(context).size.width / 1.25,
+                height: 198,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: green
+                  borderRadius: BorderRadius.circular(20),
+                  color: Color.fromRGBO(246, 255, 240, 1.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(239,255,230,1.0),
+                      blurRadius: 12,
+                      offset: Offset(-8, -6),
+                      spreadRadius: 3,
+                    ),
+                    BoxShadow(
+                        color: Color.fromRGBO(209, 246, 193, 1.0),
+                        blurRadius: 15,
+                        offset: Offset(8, 6),
+                        spreadRadius: 3),
+                  ],
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/bc1ai.png"),
+                      fit: BoxFit.fill,
+                  )
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -42,8 +65,13 @@ class _AddItemState extends State<AddItem> {
                   children: [
                   Text("Add Stuff",
                   style:TextStyle(
-                    color: white,
-                    fontFamily: 'Arial'
+                    color: Colors.black,
+                    fontSize: 33,
+                    fontFamily: 'Arial',
+                    foreground: Paint()
+                    ..style = PaintingStyle.stroke
+                    ..strokeWidth = 1
+                    ..color = Color.fromRGBO(99, 180, 161, 1.0),
                   )
                   )
                 ],)
@@ -58,25 +86,7 @@ class _AddItemState extends State<AddItem> {
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => AddSwapEvent()));
                 },
-                child: Container(
-                width: MediaQuery.of(context).size.width / 1.4,
-                height: 150,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: green
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                  Text("Create Event",
-                  style:TextStyle(
-                    color: white,
-                    fontFamily: 'Arial'
-                  )
-                  )
-                ],)
-              ),
+                child: Container()
             ),
           ),
         ]

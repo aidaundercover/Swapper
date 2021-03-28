@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
               Container(
                   color: white,
                   width: 330,
-                  height: 220,
+                  height: 300,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -230,7 +230,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(height: 30),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   OutlinedButton(

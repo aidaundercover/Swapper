@@ -23,6 +23,22 @@ class _AddSwapEventState extends State<AddSwapEvent> {
   TextEditingController _people = TextEditingController();
   TextEditingController _city = TextEditingController();
   TextEditingController _address = TextEditingController();
+  TextEditingController _date = TextEditingController();
+
+  DateTime selectedDate = DateTime.now();
+
+  _selectDate(BuildContext context) async {
+  final DateTime picked = await showDatePicker(
+    context: context,
+    initialDate: selectedDate, // Refer step 1
+    firstDate: DateTime.now(),
+    lastDate: DateTime(2025),
+  );
+  if (picked != null && picked != selectedDate)
+    setState(() {
+      selectedDate = picked;
+    });
+}
 
   @override
   Widget build(BuildContext context) {
@@ -137,13 +153,54 @@ class _AddSwapEventState extends State<AddSwapEvent> {
                         ),
                       ),
                       SizedBox(height: 5),
-                      Container(
-                        width: MediaQuery.of(context).size.width / 1.2,
-                        height: 50,
-                        decoration: BoxDecoration(
-                            color: lightGreen,
-                            borderRadius: BorderRadius.circular(7)),
-                        child: TextButton(child: Container(), onPressed: () {}),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width / 2,
+                            height: 40,
+                            decoration: BoxDecoration(
+                              border: Border()
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(5,0,0,0),
+                              child: Text(
+                                '${selectedDate.toLocal()}'.split(' ')[0],
+                                style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'Arial',
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal,
+                          ),
+                              ),
+                            )
+                          ),
+                          TextButton(
+                            child: Container(
+                            width: MediaQuery.of(context).size.width / 1.2,
+                            height: 40,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment : CrossAxisAlignment.center,
+                              children: [
+                                Text('Pick',
+                                style: TextStyle(
+                                  color: white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 13,
+                                  fontFamily: 'Arial'
+                                )
+                                ),
+                              ],
+                            ),
+                            decoration: BoxDecoration(
+                                color: lightGreen,
+                                borderRadius: BorderRadius.circular(5)),
+                                ), 
+                                onPressed: _selectDate(context)
+                                )
+                        ],
                       ),
                       SizedBox(height: 15),
                       Container(
@@ -481,9 +538,9 @@ class _AddSwapEventState extends State<AddSwapEvent> {
       "description": "$_description",
       "url": "$imageURL",
       "contact": "$_contact",
-      "address" : "$_address",
+      "address": "$_address",
       "city": "$_city",
-      "swaps" : "$_swaps",
+      "swaps": "$_swaps",
       "people": "$_people"
     };
 

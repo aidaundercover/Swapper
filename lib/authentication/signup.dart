@@ -320,7 +320,7 @@ class _SignUpState extends State<SignUp> {
               ),
               SizedBox(height: 50),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   OutlinedButton(

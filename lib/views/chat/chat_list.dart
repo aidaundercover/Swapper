@@ -13,6 +13,7 @@ class _ChatListState extends State<ChatList> {
         appBar: AppBar(
       toolbarHeight: 55,
       backgroundColor: green,
+      centerTitle: true,
       title: Text('Chats', 
       style: TextStyle(
         fontSize: 19, 
