@@ -6,6 +6,7 @@ import 'package:swapper/widgets/drawer.dart';
 import 'dart:async';
 
 
+
 class SwitchSwap extends StatefulWidget {
   @override
   _SwitchSwapState createState() => _SwitchSwapState();
@@ -13,14 +14,24 @@ class SwitchSwap extends StatefulWidget {
 
 class _SwitchSwapState extends State<SwitchSwap> {
   bool isVisible = true;
-  ScrollController _controller = ScrollController();
-  List<UserStuff> _stuff = dummyStuff;
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  List<UserStuff> _stuff = [];
+  int itemLength = 0;
+  
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setState(() {
+      _stuff = dummyStuff;
+      itemLength = dummyStuff.length;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
-        key: _scaffoldKey,
         backgroundColor: greenWhite,
         appBar: AppBar(
             backgroundColor: Colors.transparent,
@@ -31,7 +42,7 @@ class _SwitchSwapState extends State<SwitchSwap> {
             leading: Builder(
             builder: (context) => IconButton(
               icon: Icon(Icons.menu_rounded, size: 25, color: gray),
-              onPressed: () => _scaffoldKey.currentState.openDrawer(),
+              onPressed: () => Scaffold.of(context).openDrawer()
             ),
           ),
             title: Row(
@@ -79,20 +90,15 @@ class _SwitchSwapState extends State<SwitchSwap> {
               children: <Widget>[
                 SizedBox(height: 20),
                 Container(
-                    width: MediaQuery.of(context).size.width / 1.13,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        SizedBox(height: 25),
-                        Container(
-                          width: MediaQuery.of(context).size.width / 1.15,
-                          height: 105,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: white,
-                              border: Border.all(color: green, width: 1)),
-                          child: Container(
+                    width: MediaQuery.of(context).size.width / 1.19,
+                    height: 105,
+                    decoration: BoxDecoration(
+                      color: white,
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(color: green, width: 1)
+                    ),
+                    child: Container(
+                            width: MediaQuery.of(context).size.width / 1.44,
                             child: Padding(
                               padding: const EdgeInsets.fromLTRB(25, 0, 15, 0),
                               child: Column(
@@ -147,16 +153,12 @@ class _SwitchSwapState extends State<SwitchSwap> {
                                 ],
                               ),
                             ),
-                          ),
-                        ),
-                      ],
+                          
                     )),
                 SizedBox(height: 15),
-                Visibility(
-                  visible: isVisible,
-                  child: Container(
-                      width: MediaQuery.of(context).size.width / 1.15,
-                      height: 166,
+                Container(
+                      width: MediaQuery.of(context).size.width / 1.19,
+                      height: 159,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: white,
@@ -187,7 +189,7 @@ class _SwitchSwapState extends State<SwitchSwap> {
                                   textAlign: TextAlign.center,
                                 ),
                               )),
-                          SizedBox(height: 5),
+                          SizedBox(height: 10),
                           Container(
                             width: 115,
                             height: 31,
@@ -195,115 +197,130 @@ class _SwitchSwapState extends State<SwitchSwap> {
                                 borderRadius: BorderRadius.circular(10),
                                 color: green),
                             child: TextButton(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text('TRY',
+                                child: Text('TRY',
                                         style: TextStyle(
                                           color: white,
-                                          fontSize: 14,
+                                          fontSize: 13,
                                           fontWeight: FontWeight.bold,
                                           fontFamily: 'Arial',
                                         )),
-                                  ],
-                                ),
-                                onPressed: () {
+                                        onPressed: () {
                                   isVisible = false;
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) => TinderStuff()));
-                                }),
-                          ),
+                                }
+                                ),
+                                ),
                           SizedBox(height: 20)
                         ],
-                      )),
+                      )
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                          ListView(
-                              physics: const BouncingScrollPhysics(
-                                  parent: AlwaysScrollableScrollPhysics()),
-                              controller: _controller,
-                              shrinkWrap: true,
-                              children: _stuff.isEmpty
-                                  ? Text('No more Swaps')
-                                  : _stuff.map(_buildItemOne).toList(),
-                            ),
+                SizedBox(height: 24,),
+                Padding(
+          padding: const EdgeInsets.only(left: 10, right:10),
+          child: Wrap(
+            spacing: 5,
+            runSpacing: 5,
+            children: List.generate(_stuff.length, (index) {
+              return Container(
+                width: (size.width - 30) / 2,
+                height: 250,
+                child: Column(
+                  children: [
+                    Stack(
+                      children: [
+                        Container(
+                          width: (size.width - 30) / 2,
+                          height: 190,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                topRight: Radius.circular(10),
+                              ),
+                              image: DecorationImage(
+                                  image: AssetImage(('${_stuff[index].imgUrl}')),
+                                  fit: BoxFit.cover)),
+                        ),
+                        Container(
+                          width: (size.width - 15) / 2,
+                          height: 190,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                topRight: Radius.circular(10),
+                              ),
+                              gradient: LinearGradient(
+                                  colors: [
+                                    Colors.black.withOpacity(0.25),
+                                    Colors.black.withOpacity(0),
+                                  ],
+                                  end: Alignment.topCenter,
+                                  begin: Alignment.bottomCenter)),
+                        )
                       ],
                     ),
-                    SizedBox(width: 5),
-                    Column(
-                      children: <Widget>[
-                        ListView(
-                              physics: const BouncingScrollPhysics(
-                                  parent: AlwaysScrollableScrollPhysics()),
-                              controller: _controller,
-                              shrinkWrap: true,
-                              children: _stuff.isEmpty
-                                  ? Text('No more Swaps')
-                                  :_stuff.map(_buildItemTwo).toList(),
-                            ),
-                      ],
+                    Container(
+                      width: (size.width - 15) / 2,
+                      decoration: BoxDecoration(
+                        color: white,
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                      ),
+                      child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text('${_stuff[index].title}',
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 10,
+                                fontFamily: 'Arial',
+                                fontWeight: FontWeight.bold)),
+                        SizedBox(height: 5),
+                        Text(
+                          '${_stuff[index].location}',
+                          style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 8,
+                                fontFamily: 'Arial',
+                                fontWeight: FontWeight.normal)
+                        ),
+                        Text(
+                          '14:22',
+                          style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 8,
+                                fontFamily: 'Arial',
+                                fontWeight: FontWeight.normal)
+                        )
+                      ])
+                      ),                  ],
+                ),
+              );
+            }),
+          ),
+        ),
+                  SizedBox(height: 50),
+                  Text(
+                    'No more swaps',
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 12,
+                      fontFamily: 'Arial'
+                    )
                     ),
-                  ],
-                )
+                    SizedBox(height: 10),
               ],
             ),
           ),
         ));
   }
 
-  Widget _buildItemOne(UserStuff stuff) {
-    final stuffIndex = _stuff.indexOf(stuff);
-
-    return Column(children: <Widget>[
-      Container(
-          width: MediaQuery.of(context).size.width / 2.343,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10), color: white),
-          child: Column(
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width / 2.343,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      topRight: Radius.circular(10),
-                    ),
-                    image: DecorationImage(
-                        image: AssetImage('${_stuff[stuffIndex].imgUrl}'),
-                        fit: BoxFit.cover)),
-              ),
-              Padding(
-                  padding: EdgeInsets.fromLTRB(10, 10, 0, 0),
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text('${_stuff[stuffIndex].title}',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 12,
-                                fontFamily: 'Arial',
-                                fontWeight: FontWeight.bold)),
-                        SizedBox(height: 5),
-                        Text(
-                          '${_stuff[stuffIndex].location}',
-                        )
-                      ]))
-            ],
-          )),
-      SizedBox(height: 12)
-    ]);
-  }
-
-  Widget _buildItemTwo(UserStuff stuff) {
-    final stuffIndex = _stuff.indexOf(stuff);
-    return Container();
-  }
+  
+  
   
 }

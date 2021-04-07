@@ -87,17 +87,19 @@ class _SignUpState extends State<SignUp> {
                                   validator: (String input) {
                                     if (input.isEmpty) {
                                       return "Name can't be empty";
-                                      }
-                                      if (input.length < 2) {
-                                          return "Name must be at least 2 characters long";
-                                        }
-                                        if (input.length > 50) {
-                                          return "Name must be less than 50 characters long";
-                                        }
-                                        return null;
+                                    }
+                                    if (input.length < 2) {
+                                      return "Name must be at least 2 characters long";
+                                    }
+                                    if (input.length > 50) {
+                                      return "Name must be less than 50 characters long";
+                                    }
+                                    return null;
                                   },
                                   onSaved: (input) =>
-                                      usernameController.text = input,
+                                      { usernameController.text = input,
+                                        name= usernameController.text
+                                      },
                                   decoration: InputDecoration(
                                     hintText: 'Full Name',
                                     hintStyle: TextStyle(
@@ -330,9 +332,9 @@ class _SignUpState extends State<SignUp> {
                       height: 17,
                     ),
                     style: OutlinedButton.styleFrom(
-                    side: BorderSide(color: lightGreen, width: 1),
-                    shape: CircleBorder(),
-                    padding: EdgeInsets.all(22),
+                      side: BorderSide(color: lightGreen, width: 1),
+                      shape: CircleBorder(),
+                      padding: EdgeInsets.all(22),
                     ),
                     onPressed: () {},
                   ),
@@ -343,25 +345,24 @@ class _SignUpState extends State<SignUp> {
                       height: 17,
                     ),
                     style: OutlinedButton.styleFrom(
-                    side: BorderSide(color: lightGreen, width: 1),
-                    shape: CircleBorder(),
-                    padding: EdgeInsets.all(22),
+                      side: BorderSide(color: lightGreen, width: 1),
+                      shape: CircleBorder(),
+                      padding: EdgeInsets.all(22),
                     ),
                     onPressed: () {},
                   ),
                   OutlinedButton(
-                    child: Image(
-                      image: AssetImage('assets/images/facebook.png'),
-                      width: 17,
-                      height: 17,
-                    ),
-                    style: OutlinedButton.styleFrom(
-                    side: BorderSide(color: lightGreen, width: 1),
-                    shape: CircleBorder(),
-                    padding: EdgeInsets.all(22),
-                    ),
-                    onPressed: () {}
-                  )
+                      child: Image(
+                        image: AssetImage('assets/images/facebook.png'),
+                        width: 17,
+                        height: 17,
+                      ),
+                      style: OutlinedButton.styleFrom(
+                        side: BorderSide(color: lightGreen, width: 1),
+                        shape: CircleBorder(),
+                        padding: EdgeInsets.all(22),
+                      ),
+                      onPressed: () {})
                 ],
               ),
               SizedBox(height: 20),

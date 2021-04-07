@@ -24,23 +24,26 @@ dependencies:
   flutter:
     sdk: flutter
   firebase_auth:
-  firebase_core: ^0.5.3
+  firebase_core: ^1.0.2
   google_sign_in: ^4.5.9
   provider:
-  geolocator: ^6.1.14
+  geolocator: ^7.0.1
   geocoder: ^0.2.1
-  convex_bottom_bar: ^2.6.0
+  catcher: ^0.6.3
+  convex_bottom_bar: ^3.0.0
   firebase_storage:
   cloud_firestore:
   shared_preferences:
   auto_size_text: ^2.1.0
   flutter_spinkit: ^5.0.0
   dotted_border: ^1.0.7
-  image_picker: ^0.6.7+22
-  permission_handler: ^5.1.0+2
+  image_picker: ^0.7.4
+  adobe_xd: ^1.1.0+1
+  flutter_svg: ^0.19.3
+  permission_handler: ^6.1.1
   font_awesome_flutter: ^8.11.0
-
-
+  flutter_tindercard: ^0.2.0
+  flutter_custom_clippers: ^1.1.2
 
 
 
@@ -66,7 +69,7 @@ flutter:
 
   assets:
     - assets/images/
-    
+    - assets/images/girls/
   
 
 

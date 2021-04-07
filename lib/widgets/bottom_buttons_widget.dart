@@ -1,29 +1,62 @@
 import 'package:flutter/material.dart';
+import 'package:swapper/const.dart';
 
 class BottomButtonsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          CircleAvatar(
-            backgroundColor: Colors.white,
-            child: Icon(Icons.replay, color: Colors.yellow),
+          Container(
+            width: 64,
+            height: 64,
+            decoration: BoxDecoration(
+              color: white,
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromRGBO(0,0,0, 0.16),
+                  offset: Offset(0, 3),
+                  blurRadius: 8,
+                )
+              ]
+            ),
+            child: Icon(Icons.dangerous ,size:36, 
+            color: Colors.black 
+            ),
           ),
-          CircleAvatar(
-            backgroundColor: Colors.white,
-            child: Icon(Icons.close, color: Colors.red),
+          Container(
+            width: 70,
+            height: 70,
+            decoration: BoxDecoration(
+              color: white,
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromRGBO(0,0,0, 0.16),
+                  offset: Offset(0, 3),
+                  blurRadius: 8,
+                )
+              ]
+            ),
+            child: Icon(Icons.favorite_outlined ,size:36, 
+            color: Colors.redAccent ),
           ),
-          CircleAvatar(
-            backgroundColor: Colors.white,
-            child: Icon(Icons.star, color: Colors.blue),
-          ),
-          CircleAvatar(
-            backgroundColor: Colors.white,
-            child: Icon(Icons.favorite, color: Colors.green),
-          ),
-          CircleAvatar(
-            backgroundColor: Colors.white,
-            child: Icon(Icons.flash_on, color: Colors.purple),
+          Container(
+            width: 64,
+            height: 64,
+            decoration: BoxDecoration(
+              color: white,
+              shape: BoxShape.circle,
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromRGBO(0,0,0, 0.16),
+                  offset: Offset(0, 3),
+                  blurRadius: 8,
+                )
+              ]
+            ),
+            child: Icon(Icons.chat, size:36, 
+            color: Colors.blueAccent)
           ),
         ],
       );

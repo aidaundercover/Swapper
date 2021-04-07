@@ -9,7 +9,7 @@ class UserStuff {
   String imgUrl;
   String location;
   String description;
-  String preferedSwaps;
+  List preferedSwaps;
   String publishDate;
   String documentId;
   bool isLiked;
@@ -61,7 +61,7 @@ final dummyStuff = [
           'In perfect state, size is 11 inch, \n were bought in USA,orignal',
       imgUrl: 'assets/images/boots.jpg',
       location: "Tver', Russia",
-      preferedSwaps: 'Fashion, Hobby, Home&Garden'),
+      preferedSwaps: ['Fashion', 'Hobby', 'Home&Garden']),
   UserStuff(
       title: 'NIKE FG456 Boots 1 year use only',
       username: 'Igor',
@@ -70,7 +70,7 @@ final dummyStuff = [
           'In perfect state, size is 11 inch, \n were bought in USA,orignal',
       imgUrl: 'assets/images/boots.jpg',
       location: "Tver', Russia",
-      preferedSwaps: 'Fashion, Hobby, Home&Garden'),
+      preferedSwaps: ['Fashion', 'Hobby', 'Home&Garden']),
   UserStuff(
       title: 'NIKE FG456 Boots 1 year use only',
       username: 'Igor',
@@ -79,7 +79,7 @@ final dummyStuff = [
           'In perfect state, size is 11 inch, \n were bought in USA,orignal',
       imgUrl: 'assets/images/boots.jpg',
       location: "Tver', Russia",
-      preferedSwaps: 'Fashion, Hobby, Home&Garden'),
+      preferedSwaps: ['Fashion', 'Hobby', 'Home&Garden']),
   UserStuff(
       title: 'NIKE FG456 Boots 1 year use only',
       username: 'Igor',
@@ -88,7 +88,7 @@ final dummyStuff = [
           'In perfect state, size is 11 inch, \n were bought in USA,orignal',
       imgUrl: 'assets/images/boots.jpg',
       location: "Tver', Russia",
-      preferedSwaps: 'Fashion, Hobby, Home&Garden'),
+      preferedSwaps: ['Fashion', 'Hobby', 'Home&Garden']),
   UserStuff(
       title: 'NIKE FG456 Boots 1 year use only',
       username: 'Igor',
@@ -97,7 +97,7 @@ final dummyStuff = [
           'In perfect state, size is 11 inch, \n were bought in USA,orignal',
       imgUrl: 'assets/images/boots.jpg',
       location: "Tver', Russia",
-      preferedSwaps: 'Fashion, Hobby, Home&Garden'),
+      preferedSwaps: ['Fashion', 'Hobby', 'Home&Garden']),
   UserStuff(
       title: 'NIKE FG456 Boots 1 year use only',
       username: 'Igor',
@@ -106,5 +106,5 @@ final dummyStuff = [
           'In perfect state, size is 11 inch, \n were bought in USA,orignal',
       imgUrl: 'assets/images/boots.jpg',
       location: "Tver', Russia",
-      preferedSwaps: 'Fashion, Hobby, Home&Garden'),
+      preferedSwaps: ['Fashion', 'Hobby', 'Home&Garden']),
 ];

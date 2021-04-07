@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:swapper/const.dart';
 import 'package:swapper/models/swap_stuff.dart';
 import 'package:swapper/views/switch-swap/feedback_position_provider.dart';
 
@@ -20,49 +21,96 @@ class UserCardWidget extends StatelessWidget {
     final size = MediaQuery.of(context).size;
 
     return Container(
-      height: size.height * 0.7,
-      width: size.width * 0.95,
+      height: 510,
+      width: size.width / 1.1,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        image: DecorationImage(
-          image: AssetImage('${user.imgUrl}'),
-          fit: BoxFit.cover,
-        ),
+        borderRadius: BorderRadius.circular(20),
+        color: white
       ),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(color: Colors.black12, spreadRadius: 0.5),
-          ],
-          gradient: LinearGradient(
-            colors: [Colors.black12, Colors.black87],
-            begin: Alignment.center,
-            stops: [0.4, 1],
-            end: Alignment.bottomCenter,
-          ),
-        ),
-        child: Stack(
-          children: [
-            Positioned(
-              right: 10,
-              left: 10,
-              bottom: 10,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  buildUserInfo(user: user),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 16, right: 8),
-                    child: Icon(Icons.info, color: Colors.white),
-                  )
-                ],
-              ),
+      child: Column(
+        children: [
+          Container(
+            width: size.width / 1.19,
+            height: 310,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('${user.imgUrl}'),
+                fit: BoxFit.cover,
             ),
-            if (isUserInFocus) buildLikeBadge(swipingDirection)
-          ],
-        ),
+            borderRadius: BorderRadius.circular(20)
+            ),
+            child: Column(
+              children: [
+                Container(
+                  height: 85,
+                  decoration: BoxDecoration(
+                    color: Color.fromRGBO(30, 30, 30, 0.45),
+                    borderRadius: BorderRadius.only(
+                      bottomLeft:Radius.circular(20), 
+                      bottomRight :Radius.circular(20))
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          '${user.title}',
+                          style: TextStyle(
+                            color: white,
+                            fontFamily: 'Arial',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20
+                          ),
+                        ),
+                        Text(
+                          'Alima Zhakupova',
+                          style: TextStyle(
+                            color: white,
+                            fontFamily: 'Arial',
+                            fontWeight: FontWeight.normal,
+                            fontSize: 15
+                          ),
+                        ),
+                        Text(
+                          'Astana, Kazakhstan',
+                          style: TextStyle(
+                            color: white,
+                            fontFamily: 'Arial',
+                            fontWeight: FontWeight.normal,
+                            fontSize: 15
+                          ),
+                        )
+                    ],),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Container(
+            child: Stack(
+              children: [
+                Positioned(
+                  right: 10,
+                  left: 10,
+                  bottom: 10,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      buildUserInfo(user: user),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: 16, right: 8),
+                        child: Icon(Icons.info, color: Colors.white),
+                      )
+                    ],
+                  ),
+                ),
+                if (isUserInFocus) buildLikeBadge(swipingDirection)
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

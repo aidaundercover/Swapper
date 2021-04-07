@@ -28,7 +28,7 @@ class _AddItemState extends State<AddItem> {
             )
           ),
           SizedBox(
-            height:10
+            height:15
           ),
           Center(
             child: GestureDetector(
@@ -68,10 +68,7 @@ class _AddItemState extends State<AddItem> {
                     color: Colors.black,
                     fontSize: 33,
                     fontFamily: 'Arial',
-                    foreground: Paint()
-                    ..style = PaintingStyle.stroke
-                    ..strokeWidth = 1
-                    ..color = Color.fromRGBO(99, 180, 161, 1.0),
+                    fontWeight: FontWeight.bold
                   )
                   )
                 ],)
@@ -79,14 +76,51 @@ class _AddItemState extends State<AddItem> {
             ),
           ),
           SizedBox(
-            height:10
+            height:20
           ),
           Center(
             child: GestureDetector(
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => AddSwapEvent()));
                 },
-                child: Container()
+                child:  Container(
+                width: MediaQuery.of(context).size.width / 1.25,
+                height: 198,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: Color.fromRGBO(246, 255, 240, 1.0),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(239,255,230,1.0),
+                      blurRadius: 12,
+                      offset: Offset(-8, -6),
+                      spreadRadius: 3,
+                    ),
+                    BoxShadow(
+                        color: Color.fromRGBO(209, 246, 193, 1.0),
+                        blurRadius: 15,
+                        offset: Offset(8, 6),
+                        spreadRadius: 3),
+                  ],
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/bc2ai.png"),
+                      fit: BoxFit.fill,
+                  )
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                  Text("Add ",
+                  style:TextStyle(
+                    color: Colors.black,
+                    fontSize: 33,
+                    fontFamily: 'Arial',
+                    fontWeight: FontWeight.bold
+                  )
+                  )
+                ],)
+              ),
             ),
           ),
         ]
