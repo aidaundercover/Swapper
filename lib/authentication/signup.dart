@@ -96,10 +96,10 @@ class _SignUpState extends State<SignUp> {
                                     }
                                     return null;
                                   },
-                                  onSaved: (input) =>
-                                      { usernameController.text = input,
-                                        name= usernameController.text
-                                      },
+                                  onSaved: (input) {
+                                    usernameController.text = input;
+                                    name = usernameController.text;
+                                  },
                                   decoration: InputDecoration(
                                     hintText: 'Full Name',
                                     hintStyle: TextStyle(
@@ -142,8 +142,10 @@ class _SignUpState extends State<SignUp> {
                                       }
                                       return null;
                                     },
-                                    onSaved: (input) =>
-                                        emailController.text = input,
+                                    onSaved: (input) {
+                                      emailController.text = input;
+                                      emailAdress = emailController.text;
+                                    },
                                     decoration: InputDecoration(
                                       hintText: 'E-mail',
                                       hintStyle: TextStyle(

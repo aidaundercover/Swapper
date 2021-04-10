@@ -22,7 +22,7 @@ class UserStuff {
     @required this.description,
     @required this.imgUrl,
     @required this.location,
-    @required this.preferedSwaps,
+    this.preferedSwaps,
     this.publishDate,
     this.isLiked = false,
     this.isSwipedOff = false,

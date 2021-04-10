@@ -12,3 +12,4 @@ const greenSlight = Color.fromRGBO(75, 186, 100, 1.0);
 
 String locationAddress;
 String name;
+String emailAdress;
