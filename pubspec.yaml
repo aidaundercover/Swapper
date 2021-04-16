@@ -29,7 +29,7 @@ dependencies:
   provider:
   geolocator: ^7.0.1
   geocoder: ^0.2.1
-  catcher: ^0.6.3
+  catcher: 
   convex_bottom_bar: ^3.0.0
   firebase_storage:
   cloud_firestore:
@@ -40,11 +40,22 @@ dependencies:
   image_picker: ^0.7.4
   adobe_xd: ^1.1.0+1
   flutter_svg: ^0.19.3
-  google_maps_flutter: ^2.0.3
+  google_maps_flutter:
   permission_handler: ^6.1.1
   font_awesome_flutter: ^8.11.0
   flutter_tindercard: ^0.2.0
   flutter_custom_clippers: ^1.1.2
+  geocoding:
+  flutter_bloc:
+  meta: 
+  equatable:
+  rxdart: 
+  file_picker:
+  flutter_datetime_picker: 
+  extended_image: 
+  timeago: 
+  intl:
+  uuid: 
 
 
 

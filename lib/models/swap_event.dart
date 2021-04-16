@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SwapEvent {
+  String uid;
   String title;
   String country;
   String city;
@@ -26,6 +27,7 @@ class SwapEvent {
       @required this.people,
       @required this.stuff,
       @required this.address,
+      this.uid,
       this.charity,
       this.username,
       this.description,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:swapper/routes.dart';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
-import 'package:swapper/authentication/signin.dart';
+import 'package:swapper/bloc/authentication/signin.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swapper/views/home.dart';

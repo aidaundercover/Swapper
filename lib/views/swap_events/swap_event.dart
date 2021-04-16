@@ -26,7 +26,7 @@ class _SwapEventsState extends State<SwapEvents> {
 
   void _registerPress() {
     setState(() {
-      isPressed = !isPressed;
+      isPressed = true;
     });
   }
 
@@ -54,7 +54,7 @@ class _SwapEventsState extends State<SwapEvents> {
     locationAddress = " $locationAdminArea, " + "$locationCountry";
     locationAdminArea = '${address.adminArea}';
     locationCountry = "${address.countryName}";
-    
+
     if (locationAdminArea == null)
       return Loading();
     else
@@ -236,176 +236,185 @@ class _SwapEventsState extends State<SwapEvents> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          width: MediaQuery.of(context).size.width / 1.12,
-          height: 156,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: white,
-              boxShadow: [
-                BoxShadow(
-                    color: Color.fromRGBO(0, 0, 0, 0.16),
-                    offset: Offset(3, 4),
-                    blurRadius: 7)
-              ]),
-          child: Padding(
-              padding: EdgeInsets.fromLTRB(20, 10, 0, 0),
-              child: Container(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          '${_events[eventIndex].title}',
-                          style: TextStyle(
-                              color: green,
-                              fontFamily: 'Arial',
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 6),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width / 2.5,
-                          height: 92,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              image: DecorationImage(
-                                image: AssetImage(
-                                    '${_events[eventIndex].imageURL}'),
-                                fit: BoxFit.cover,
-                              )),
-                        ),
-                        SizedBox(width: 10),
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text('Date',
-                                        style: TextStyle(
-                                            color: gray,
-                                            fontSize: 10,
-                                            fontFamily: 'Arial',
-                                            fontWeight: FontWeight.bold)),
-                                    Text('${_events[eventIndex].date}',
-                                        style: TextStyle(
-                                            color: gray,
-                                            fontSize: 10,
-                                            fontFamily: 'Arial',
-                                            fontWeight: FontWeight.normal)),
-                                  ]),
-                              Row(children: [
-                                Text('Items for swaps:',
-                                    style: TextStyle(
-                                        color: gray,
-                                        fontSize: 10,
-                                        fontFamily: 'Arial',
-                                        fontWeight: FontWeight.bold)),
-                                Text('${_events[eventIndex].stuff}',
-                                    style: TextStyle(
-                                        color: gray,
-                                        fontSize: 10,
-                                        fontFamily: 'Arial',
-                                        fontWeight: FontWeight.normal)),
-                              ]),
-                              Row(children: [
-                                Text('Amount of people:',
-                                    style: TextStyle(
-                                        color: gray,
-                                        fontSize: 10,
-                                        fontFamily: 'Arial',
-                                        fontWeight: FontWeight.bold)),
-                                Text('${_events[eventIndex].people}',
-                                    style: TextStyle(
-                                        color: gray,
-                                        fontSize: 10,
-                                        fontFamily: 'Arial',
-                                        fontWeight: FontWeight.normal)),
-                              ]),
-                              Row(children: [
-                                Text('Left spots:',
-                                    style: TextStyle(
-                                        color: gray,
-                                        fontSize: 10,
-                                        fontFamily: 'Arial',
-                                        fontWeight: FontWeight.bold)),
-                                Text('${_events[eventIndex].people}',
-                                    style: TextStyle(
-                                        color: gray,
-                                        fontSize: 10,
-                                        fontFamily: 'Arial',
-                                        fontWeight: FontWeight.normal)),
-                              ]),
-                              InkWell(
-                                  child: Text('Check out full info',
+        InkWell(
+          onTap: () {},
+          child: Container(
+            width: MediaQuery.of(context).size.width / 1.12,
+            height: 156,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: white,
+                boxShadow: [
+                  BoxShadow(
+                      color: Color.fromRGBO(0, 0, 0, 0.16),
+                      offset: Offset(3, 4),
+                      blurRadius: 7)
+                ]),
+            child: Padding(
+                padding: EdgeInsets.fromLTRB(20, 10, 0, 0),
+                child: Container(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${_events[eventIndex].title}',
+                            style: TextStyle(
+                                color: green,
+                                fontFamily: 'Arial',
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 6),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            width: MediaQuery.of(context).size.width / 2.5,
+                            height: 92,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                      '${_events[eventIndex].imageURL}'),
+                                  fit: BoxFit.cover,
+                                )),
+                          ),
+                          SizedBox(width: 10),
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text('Date',
+                                          style: TextStyle(
+                                              color: gray,
+                                              fontSize: 10,
+                                              fontFamily: 'Arial',
+                                              fontWeight: FontWeight.bold)),
+                                      Text('${_events[eventIndex].date}',
+                                          style: TextStyle(
+                                              color: gray,
+                                              fontSize: 10,
+                                              fontFamily: 'Arial',
+                                              fontWeight: FontWeight.normal)),
+                                    ]),
+                                Row(children: [
+                                  Text('Items for swaps:',
                                       style: TextStyle(
-                                        color: gray,
-                                        fontSize: 10,
-                                        fontFamily: 'Arial',
-                                        fontWeight: FontWeight.normal,
-                                        fontStyle: FontStyle.italic,
-                                        decoration: TextDecoration.underline,
-                                      )),
-                                  onTap: () {}),
-                              SizedBox(height: 3),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        Container(
-                                            width: 106,
-                                            height: 27,
-                                            decoration: BoxDecoration(
-                                                color: isPressed
-                                                    ? lightGreen
-                                                    : green,
-                                                borderRadius:
-                                                    BorderRadius.circular(4)),
-                                            child: TextButton(
-                                              onPressed: _registerPress,
-                                              child: Center(
-                                                child: Text(
-                                                    isPressed
-                                                        ? 'Registered'
-                                                        : 'Register',
-                                                    style: TextStyle(
-                                                        color: isPressed
-                                                            ? green
-                                                            : white,
-                                                        fontFamily: 'Arial',
-                                                        fontSize: 12,
-                                                        fontWeight:
-                                                            FontWeight.bold)),
-                                              ),
-                                            )),
-                                      ]),
-                                  IconButton(
-                                      onPressed: () {},
-                                      icon: Icon(Icons.add_alarm_outlined,
-                                          size: 27, color: green))
-                                ],
-                              )
-                            ])
-                      ],
-                    ),
-                  ],
-                ),
-              )),
+                                          color: gray,
+                                          fontSize: 10,
+                                          fontFamily: 'Arial',
+                                          fontWeight: FontWeight.bold)),
+                                  Text('${_events[eventIndex].stuff}',
+                                      style: TextStyle(
+                                          color: gray,
+                                          fontSize: 10,
+                                          fontFamily: 'Arial',
+                                          fontWeight: FontWeight.normal)),
+                                ]),
+                                Row(children: [
+                                  Text('Amount of people:',
+                                      style: TextStyle(
+                                          color: gray,
+                                          fontSize: 10,
+                                          fontFamily: 'Arial',
+                                          fontWeight: FontWeight.bold)),
+                                  Text('${_events[eventIndex].people}',
+                                      style: TextStyle(
+                                          color: gray,
+                                          fontSize: 10,
+                                          fontFamily: 'Arial',
+                                          fontWeight: FontWeight.normal)),
+                                ]),
+                                Row(children: [
+                                  Text('Left spots:',
+                                      style: TextStyle(
+                                          color: gray,
+                                          fontSize: 10,
+                                          fontFamily: 'Arial',
+                                          fontWeight: FontWeight.bold)),
+                                  Text('${_events[eventIndex].people}',
+                                      style: TextStyle(
+                                          color: gray,
+                                          fontSize: 10,
+                                          fontFamily: 'Arial',
+                                          fontWeight: FontWeight.normal)),
+                                ]),
+                                InkWell(
+                                    child: Text('Check out full info',
+                                        style: TextStyle(
+                                          color: gray,
+                                          fontSize: 10,
+                                          fontFamily: 'Arial',
+                                          fontWeight: FontWeight.normal,
+                                          fontStyle: FontStyle.italic,
+                                          decoration: TextDecoration.underline,
+                                        )),
+                                    onTap: () {}),
+                                SizedBox(height: 3),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Container(
+                                              width: 106,
+                                              height: 27,
+                                              decoration: BoxDecoration(
+                                                  color: isPressed
+                                                      ? lightGreen
+                                                      : green,
+                                                  borderRadius:
+                                                      BorderRadius.circular(4)),
+                                              child: TextButton(
+                                                onPressed: () {
+
+                                                  events[eventIndex].registered =
+                                                      !events[eventIndex]
+                                                          .registered;
+                                                },
+                                                child: Center(
+                                                  child: Text(
+                                                      events[eventIndex]
+                                                              .registered
+                                                          ? 'Registered'
+                                                          : 'Register',
+                                                      style: TextStyle(
+                                                          color: isPressed
+                                                              ? green
+                                                              : white,
+                                                          fontFamily: 'Arial',
+                                                          fontSize: 12,
+                                                          fontWeight:
+                                                              FontWeight.bold)),
+                                                ),
+                                              )),
+                                        ]),
+                                    IconButton(
+                                        onPressed: () {},
+                                        icon: Icon(Icons.add_alarm_outlined,
+                                            size: 27, color: green))
+                                  ],
+                                )
+                              ])
+                        ],
+                      ),
+                    ],
+                  ),
+                )),
+          ),
         ),
         SizedBox(height: 15)
       ],

@@ -14,7 +14,7 @@ class _ProfileState extends State<Profile> {
   List<UserStuff> _stuff = [];
   int itemLength = 0;
   
-
+  
   @override
   void initState() {
     // TODO: implement initState

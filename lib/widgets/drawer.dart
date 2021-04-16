@@ -5,6 +5,7 @@ import 'package:geocoder/geocoder.dart';
 import 'package:swapper/routes.dart';
 import 'package:swapper/net/auth_service.dart';
 import 'dart:async';
+import 'package:swapper/views/charity/charity.dart';
 
 class DrawerCustom extends StatefulWidget {
   @override
@@ -128,8 +129,7 @@ class _DrawerCustomState extends State<DrawerCustom> {
                                 Icon(Icons.location_on_rounded,
                                     size: 23, color: Colors.red),
                                 SizedBox(width: 15),
-                                Text(
-                                    " $locationAddress",
+                                Text(" $locationAddress",
                                     style: TextStyle(
                                         fontSize: 13,
                                         fontFamily: 'Arial',
@@ -160,7 +160,7 @@ class _DrawerCustomState extends State<DrawerCustom> {
                                     width: 23,
                                     height: 23),
                                 SizedBox(width: 15),
-                                Text('1 coins',
+                                Text('$coins'+'coins',
                                     style: TextStyle(
                                         fontSize: 13,
                                         fontFamily: 'Arial',
@@ -195,7 +195,7 @@ class _DrawerCustomState extends State<DrawerCustom> {
                                 child: IconButton(
                                     icon: Icon(Icons.chevron_right_rounded,
                                         size: 25, color: Colors.black),
-                                    onPressed: () {}),
+                                    onPressed: ()=> Charity()),
                               )
                             ]),
                       ),

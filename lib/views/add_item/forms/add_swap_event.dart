@@ -8,6 +8,9 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:io';
 
+import 'package:swapper/widgets/datepick_widget.dart';
+
+
 class AddSwapEvent extends StatefulWidget {
   @override
   _AddSwapEventState createState() => _AddSwapEventState();
@@ -26,21 +29,15 @@ class _AddSwapEventState extends State<AddSwapEvent> {
   TextEditingController _date = TextEditingController();
 
   DateTime selectedDate = DateTime.now();
-
-  _selectDate(BuildContext context) async {
-  final DateTime picked = await showDatePicker(
-    context: context,
-    initialDate: selectedDate, // Refer step 1
-    firstDate: DateTime.now(),
-    lastDate: DateTime(2025),
-  );
-  if (picked != null && picked != selectedDate)
-    setState(() {
-      selectedDate = picked;
-    });
-}
+  final storage = FirebaseStorage.instance;
+  final picker = ImagePicker();
+  PickedFile image;
+ 
+ 
 
   @override
+
+  
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -68,11 +65,29 @@ class _AddSwapEventState extends State<AddSwapEvent> {
                     strokeWidth: 2,
                     dashPattern: [2, 2, 2, 2],
                     color: green,
-                    child: Container(
+                    child: image==null ? Container(
                       color: Color.fromRGBO(248, 248, 248, 1.0),
                       width: MediaQuery.of(context).size.width / 1.2,
                       height: 150,
                       child: Icon(Icons.camera_alt, color: darkGreen, size: 40),
+                    ) : Stack(
+                      children: [ Container(
+                          width: MediaQuery.of(context).size.width / 1.2,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage(image.path),
+                              fit: BoxFit.cover,
+                            ),
+                        )
+                      ),
+                      Container(
+                      color: Color.fromRGBO(248, 248, 248, 0),
+                      width: MediaQuery.of(context).size.width / 1.2,
+                      height: 150,
+                      child: Icon(Icons.camera_alt, color: darkGreen, size: 40),
+                    )
+                      ]
                     ),
                   ),
                 ),
@@ -198,7 +213,7 @@ class _AddSwapEventState extends State<AddSwapEvent> {
                                 color: lightGreen,
                                 borderRadius: BorderRadius.circular(5)),
                                 ), 
-                                onPressed: _selectDate(context)
+                                onPressed: () => Navigator.push(context,MaterialPageRoute(builder: (context) => DatetimePickerWidget()),)
                                 )
                         ],
                       ),
@@ -502,7 +517,21 @@ class _AddSwapEventState extends State<AddSwapEvent> {
                       SizedBox(height: 25),
                       TextButton(
                           onPressed: () {
+                            if(coins>=10){
                             addStuffData();
+                            }
+                            else AlertDialog(
+                              title: Text('Insufficient quantity of swap-coins'),
+                              content: Text('For arranging swap-event, you need 10 swap-coins. \n But you have only $coins swap-coins'),
+                              actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                    },
+                              child: Text('OK')
+                            )
+                              ]
+                            );
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -548,12 +577,13 @@ class _AddSwapEventState extends State<AddSwapEvent> {
         FirebaseFirestore.instance.collection('stuff');
 
     collectionReference.add(userStuff);
+
+    Navigator.push(context, MaterialPageRoute(builder: (context) => AddSwapEvent()));
+
   }
 
   imageUpload() async {
-    final storage = FirebaseStorage.instance;
-    final picker = ImagePicker();
-    PickedFile image;
+    
 
     await Permission.photos.request();
 

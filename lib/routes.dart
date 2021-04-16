@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:swapper/authentication/signin.dart';
-import 'package:swapper/authentication/signup.dart';
+import 'package:swapper/bloc/authentication/signin.dart';
+import 'package:swapper/bloc/authentication/signup.dart';
 import 'package:swapper/views/home.dart';
-import 'package:swapper/authentication/forget/forgotpassword.dart';
+import 'package:swapper/bloc/authentication/forget/forgotpassword.dart';
 import 'package:swapper/views/welcome/welone.dart';
 import 'package:swapper/loadingtohome.dart';
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserStuff {
+  String uid;
   String title;
   String username;
   String category;
@@ -22,6 +23,7 @@ class UserStuff {
     @required this.description,
     @required this.imgUrl,
     @required this.location,
+    this.uid,
     this.preferedSwaps,
     this.publishDate,
     this.isLiked = false,
