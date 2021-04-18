@@ -1,26 +1,26 @@
-import 'dart:developer';
-
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:swapper/const.dart';
+import 'package:swapper/views/chat/emptypersonalchat.dart';
+
+import '../../routes.dart';
 
 bool favorites = false;
 
-class MoreInfoEvent extends StatefulWidget {
+class ItemOne extends StatefulWidget {
   @override
-  _MoreInfoEventState createState() => _MoreInfoEventState();
+  _ItemOneState createState() => _ItemOneState();
 }
 
-class _MoreInfoEventState extends State<MoreInfoEvent> {
+class _ItemOneState extends State<ItemOne> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: white,
+          backgroundColor: green,
           title: Text(
-            'Swap event for vintage items!',
+            'Fendi T-shirt',
             style: TextStyle(
-                color: green,
+                color: white,
                 fontFamily: 'Arial',
                 fontWeight: FontWeight.bold,
                 fontSize: 20),
@@ -28,9 +28,9 @@ class _MoreInfoEventState extends State<MoreInfoEvent> {
           elevation: 0.0,
           centerTitle: true,
           leading: IconButton(
-            icon: Icon(Icons.chevron_left_sharp, color: green, size: 27),
+            icon: Icon(Icons.chevron_left_sharp, color: white, size: 27),
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.of(context).pushNamed(AppRoutes.swich);
             },
           ),
         ),
@@ -44,7 +44,7 @@ class _MoreInfoEventState extends State<MoreInfoEvent> {
                     height: 310,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: AssetImage('assets/images/event1.png'),
+                            image: AssetImage('assets/images/fendi.png'),
                             fit: BoxFit.cover)),
                   ),
                   Positioned(
@@ -96,7 +96,7 @@ class _MoreInfoEventState extends State<MoreInfoEvent> {
                           fontFamily: 'Arial',
                           fontWeight: FontWeight.bold)),
                   ),
-                  Text('The event is for true lovers and connoisseurs of vintage. From 17:00 to 21:00, visitors will enjoy a rich program with a buffet, games, performances by famous artists, as well as a show of new vintage trends in 2021. Read more on the website www.gra.kz. Entrance is exclusively masked',
+                  Text('Was worn only twice, aproximately new, size is  Medium, were bought in USA,orignal. In perfect state, bought it to my husband, but it doesnt fit',
                                               style: TextStyle(
                                               color: Color.fromRGBO(100, 100, 100, 1.0),
                                               fontSize: 15,
@@ -105,59 +105,55 @@ class _MoreInfoEventState extends State<MoreInfoEvent> {
                                               SizedBox(height: 4,),
                                       Row(
                                     children: [
-                                      Text('Date: ',
+                                      Text('Category: ',
                                           style: TextStyle(
                                               color: Color.fromRGBO(100, 100, 100, 1.0),
                                               fontSize: 15,
                                               fontFamily: 'Arial',
                                               fontWeight: FontWeight.bold)),
-                                      Text('09.06.2021',
+                                      Text('Fashion',
                                           style: TextStyle(
-                                              color: Color.fromRGBO(100, 100, 100, 1.0),
+                                              color: Colors.blue[900],
                                               fontSize: 15,
                                               fontFamily: 'Arial',
-                                              fontWeight: FontWeight.normal)),
+                                              fontWeight: FontWeight.bold)),
                                     ]),
 SizedBox(height: 4,),                                    Row(
                                     children: [
-                                      Text('Address: ',
+                                      Text('Preferef swaps: ',
                                           style: TextStyle(
                                               color: Color.fromRGBO(100, 100, 100, 1.0),
                                               fontSize: 15,
                                               fontFamily: 'Arial',
                                               fontWeight: FontWeight.bold)),
-                                    Text('Nazarbayeva 35',
+                                    Text('Fashion,',
                                           style: TextStyle(
-                                              color: Color.fromRGBO(100, 100, 100, 1.0),
+                                              color: Colors.blue[900],
                                               fontSize: 15,
                                               fontFamily: 'Arial',
-                                              fontWeight: FontWeight.normal)),
-                                    ],
-                                    ),
+                                              fontWeight: FontWeight.bold)),
+                                              Text('Hobby,',
+                                          style: TextStyle(
+                                              color: Colors.yellow[900],
+                                              fontSize: 15,
+                                              fontFamily: 'Arial',
+                                              fontWeight: FontWeight.bold)),
+                                            Text('Home&Garden',
+                                          style: TextStyle(
+                                              color: Colors.green[500],
+                                              fontSize: 15,
+                                              fontFamily: 'Arial',
+                                              fontWeight: FontWeight.bold)),
+                                    ]),
                                     SizedBox(height: 4,),
                                 Row(children: [
-                                  Text('Stuff:',
+                                  Text('Location:',
                                       style: TextStyle(
                                           color: Color.fromRGBO(100, 100, 100, 1.0),
                                           fontSize: 15,
                                           fontFamily: 'Arial',
                                           fontWeight: FontWeight.bold)),
-                                  Text('vintage clothes',
-                                      style: TextStyle(
-                                          color: Color.fromRGBO(100, 100, 100, 1.0),
-                                          fontSize: 15,
-                                          fontFamily: 'Arial',
-                                          fontWeight: FontWeight.normal)),
-              ],),
-              SizedBox(height: 4,),
-                                Row(children: [
-                                  Text('Amount of people:',
-                                      style: TextStyle(
-                                          color: Color.fromRGBO(100, 100, 100, 1.0),
-                                          fontSize: 15,
-                                          fontFamily: 'Arial',
-                                          fontWeight: FontWeight.bold)),
-                                  Text('100',
+                                  Text(' Pavlodar,Kazakhstan',
                                       style: TextStyle(
                                           color: Color.fromRGBO(100, 100, 100, 1.0),
                                           fontSize: 15,
@@ -167,13 +163,48 @@ SizedBox(height: 4,),                                    Row(
                                     ]),
             ),
           ),
-        
+          Padding(
+            padding: EdgeInsets.all(20),
+            child: TextButton(
+              child: Container(
+                color: green,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(100, 15, 100,15),
+                      child: Text(
+                        'Deal in chat',
+                        style: TextStyle(
+                          color: white,
+                          fontFamily: 'Arial',
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      ),
+                      Icon(
+                        Icons.arrow_right,
+                        size: 35,
+                        color: white
+                      )
+                  ],
+                ),
+              ),
+              onPressed: () {
+                  Navigator.push(
+            context,
+                MaterialPageRoute(
+                builder: (context) => EmptylChat()));
+              },
+            ),
+            ),
             Padding(
             padding: const EdgeInsets.all(12.0),
             child: Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Organizator',
+                'Owner',
                 style: TextStyle(
                   color: Color.fromRGBO(100, 100, 100, 1.0),
                   fontSize: 18,
@@ -203,7 +234,7 @@ SizedBox(height: 4,),                                    Row(
                       SizedBox(height: 30,),
                       Align(
                         alignment: Alignment.centerLeft,
-                        child: Text('Arman Shakamanov',
+                        child: Text('Asem Tulebayeva',
                             style: TextStyle(
                             color:  white,
                             fontSize: 18,

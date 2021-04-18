@@ -10,7 +10,7 @@ const mint = Color.fromRGBO(122, 170, 133, 1.0);
 const gray = Color.fromRGBO(112, 112, 112, 1.0);
 const greenSlight = Color.fromRGBO(75, 186, 100, 1.0);
 
-String locationAddress;
+String locationAddress="Pavlodar,Kazakhstan";
 String name;
 String emailAdress;
 int coins = 5;

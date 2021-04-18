@@ -9,33 +9,33 @@ final myStuff = [
       description:
           'In perfect state, size is 11 inch, \n were bought in USA,orignal',
       imgUrl: 'assets/images/boots.jpg',
-      location: "Tver', Russia",
+      location: "Pavlodar,Kazakhstan",
       ),
   UserStuff(
-      title: 'NIKE FG456 Boots 1 year use only',
+      title: 'Classic milk-colored skirt',
       username: 'Igor',
       category: 'Fashion',
       description:
           'In perfect state, size is 11 inch, \n were bought in USA,orignal',
-      imgUrl: 'assets/images/boots.jpg',
-      location: "Tver', Russia",
+      imgUrl: 'assets/images/skirt.jpg',
+      location: "Pavlodar,Kazakhstaa",
       ),
   UserStuff(
-      title: 'NIKE FG456 Boots 1 year use only',
+      title: 'Ukulele Soprano Indonesia',
       username: 'Igor',
       category: 'Fashion',
       description:
           'In perfect state, size is 11 inch, \n were bought in USA,orignal',
-      imgUrl: 'assets/images/boots.jpg',
-      location: "Tver', Russia",
+      imgUrl: 'assets/images/ukulele.jpg',
+      location: "Pavlodar,Kazakhsta",
       ),
   UserStuff(
-      title: 'NIKE FG456 Boots 1 year use only',
+      title: 'PJs from Louis Vitton',
       username: 'Igor',
       category: 'Fashion',
       description:
           'In perfect state, size is 11 inch, \n were bought in USA,orignal',
-      imgUrl: 'assets/images/boots.jpg',
-      location: "Tver', Russia",
+      imgUrl: 'assets/images/pj.jpg',
+      location: "Pavlodar,Kazakhsta",
       ),
 ];

@@ -8,8 +8,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'dart:io';
 
-import 'package:swapper/widgets/datepick_widget.dart';
-
 
 class AddSwapEvent extends StatefulWidget {
   @override
@@ -32,12 +30,56 @@ class _AddSwapEventState extends State<AddSwapEvent> {
   final storage = FirebaseStorage.instance;
   final picker = ImagePicker();
   PickedFile image;
- 
- 
+
+  DateTime dateTime;
+
+  Future pickDateTime(BuildContext context) async {
+    final date = await pickDate(context);
+    if (date == null) return;
+
+    final time = await pickTime(context);
+    if (time == null) return;
+
+    setState(() {
+      dateTime = DateTime(
+        date.year,
+        date.month,
+        date.day,
+        time.hour,
+        time.minute,
+      );
+    });
+  }
+
+  Future<DateTime> pickDate(BuildContext context) async {
+    final initialDate = DateTime.now();
+    final newDate = await showDatePicker(
+      context: context,
+      initialDate: dateTime ?? initialDate,
+      firstDate: DateTime(DateTime.now().year - 5),
+      lastDate: DateTime(DateTime.now().year + 5),
+    );
+
+    if (newDate == null) return null;
+
+    return newDate;
+  }
+
+  Future<TimeOfDay> pickTime(BuildContext context) async {
+    final initialTime = TimeOfDay(hour: 9, minute: 0);
+    final newTime = await showTimePicker(
+      context: context,
+      initialTime: dateTime != null
+          ? TimeOfDay(hour: dateTime.hour, minute: dateTime.minute)
+          : initialTime,
+    );
+
+    if (newTime == null) return null;
+
+    return newTime;
+  }
 
   @override
-
-  
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -65,30 +107,32 @@ class _AddSwapEventState extends State<AddSwapEvent> {
                     strokeWidth: 2,
                     dashPattern: [2, 2, 2, 2],
                     color: green,
-                    child: image==null ? Container(
-                      color: Color.fromRGBO(248, 248, 248, 1.0),
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      height: 150,
-                      child: Icon(Icons.camera_alt, color: darkGreen, size: 40),
-                    ) : Stack(
-                      children: [ Container(
-                          width: MediaQuery.of(context).size.width / 1.2,
-                        height: 150,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage(image.path),
-                              fit: BoxFit.cover,
-                            ),
-                        )
-                      ),
-                      Container(
-                      color: Color.fromRGBO(248, 248, 248, 0),
-                      width: MediaQuery.of(context).size.width / 1.2,
-                      height: 150,
-                      child: Icon(Icons.camera_alt, color: darkGreen, size: 40),
-                    )
-                      ]
-                    ),
+                    child: image == null
+                        ? Container(
+                            color: Color.fromRGBO(248, 248, 248, 1.0),
+                            width: MediaQuery.of(context).size.width / 1.2,
+                            height: 150,
+                            child: Icon(Icons.camera_alt,
+                                color: darkGreen, size: 40),
+                          )
+                        : Stack(children: [
+                            Container(
+                                width: MediaQuery.of(context).size.width / 1.2,
+                                height: 150,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(image.path),
+                                    fit: BoxFit.cover,
+                                  ),
+                                )),
+                            Container(
+                              color: Color.fromRGBO(248, 248, 248, 0),
+                              width: MediaQuery.of(context).size.width / 1.2,
+                              height: 150,
+                              child: Icon(Icons.camera_alt,
+                                  color: darkGreen, size: 40),
+                            )
+                          ]),
                   ),
                 ),
                 SizedBox(height: 20),
@@ -168,54 +212,51 @@ class _AddSwapEventState extends State<AddSwapEvent> {
                         ),
                       ),
                       SizedBox(height: 5),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: MediaQuery.of(context).size.width / 2,
-                            height: 40,
-                            decoration: BoxDecoration(
-                              border: Border()
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(5,0,0,0),
+                      Container(
+                        width: MediaQuery.of(context).size.width / 1.229,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(5, 10, 0, 0),
                               child: Text(
                                 '${selectedDate.toLocal()}'.split(' ')[0],
                                 style: TextStyle(
-                              color: Colors.black,
-                              fontFamily: 'Arial',
-                              fontSize: 14,
-                              fontWeight: FontWeight.normal,
-                          ),
-                              ),
-                            )
-                          ),
-                          TextButton(
-                            child: Container(
-                            width: MediaQuery.of(context).size.width / 1.2,
-                            height: 40,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment : CrossAxisAlignment.center,
-                              children: [
-                                Text('Pick',
-                                style: TextStyle(
-                                  color: white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 13,
-                                  fontFamily: 'Arial'
-                                )
+                                  color: Colors.black,
+                                  fontFamily: 'Arial',
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.normal,
                                 ),
-                              ],
+                              ),
                             ),
-                            decoration: BoxDecoration(
-                                color: lightGreen,
-                                borderRadius: BorderRadius.circular(5)),
-                                ), 
-                                onPressed: () => Navigator.push(context,MaterialPageRoute(builder: (context) => DatetimePickerWidget()),)
-                                )
-                        ],
+                            TextButton(
+                              child: Container(
+                                width: 145,
+                                height: 40,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text('Pick',
+                                        style: TextStyle(
+                                            color: white,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 13,
+                                            fontFamily: 'Arial')),
+                                  ],
+                                ),
+                                decoration: BoxDecoration(
+                                    color: green,
+                                    borderRadius: BorderRadius.circular(5)),
+                              ),
+                              onPressed: () => {
+                                pickDateTime(context),
+                                selectedDate=dateTime
+                                },
+                            )
+                          ],
+                        ),
                       ),
                       SizedBox(height: 15),
                       Container(
@@ -517,21 +558,21 @@ class _AddSwapEventState extends State<AddSwapEvent> {
                       SizedBox(height: 25),
                       TextButton(
                           onPressed: () {
-                            if(coins>=10){
-                            addStuffData();
-                            }
-                            else AlertDialog(
-                              title: Text('Insufficient quantity of swap-coins'),
-                              content: Text('For arranging swap-event, you need 10 swap-coins. \n But you have only $coins swap-coins'),
-                              actions: [
-                              TextButton(
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                    },
-                              child: Text('OK')
-                            )
-                              ]
-                            );
+                            if (coins >= 10) {
+                              addStuffData();
+                            } else
+                              AlertDialog(
+                                  title: Text(
+                                      'Insufficient quantity of swap-coins'),
+                                  content: Text(
+                                      'For arranging swap-event, you need 10 swap-coins. \n But you have only $coins swap-coins'),
+                                  actions: [
+                                    TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                        child: Text('OK'))
+                                  ]);
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -578,13 +619,11 @@ class _AddSwapEventState extends State<AddSwapEvent> {
 
     collectionReference.add(userStuff);
 
-    Navigator.push(context, MaterialPageRoute(builder: (context) => AddSwapEvent()));
-
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => AddSwapEvent()));
   }
 
   imageUpload() async {
-    
-
     await Permission.photos.request();
 
     var permissionStatus = await Permission.photos.status;

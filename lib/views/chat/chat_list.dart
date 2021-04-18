@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swapper/const.dart';
 import 'package:swapper/models/chats.dart';
+import 'package:swapper/views/chat/personalchat.dart';
 
 class ChatList extends StatefulWidget {
   @override
@@ -136,57 +137,60 @@ class _ChatListState extends State<ChatList> {
                     padding: const EdgeInsets.only(right: 20),
                     child: Column(
                       children: <Widget>[
-                        Container(
-                          width: 70,
-                          height: 70,
-                          child: Stack(
-                            children: <Widget>[
-                              chats_json[index]['story']
-                                  ? Container(
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          border: Border.all(
-                                              color: green, width: 3)),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(3.0),
-                                        child: Container(
-                                          width: 70,
-                                          height: 70,
-                                          decoration: BoxDecoration(
-                                              shape: BoxShape.circle,
-                                              image: DecorationImage(
-                                                  image: AssetImage(
-                                                      chats_json[index]['img']),
-                                                  fit: BoxFit.cover)),
-                                        ),
-                                      ),
-                                    )
-                                  : Container(
-                                      width: 65,
-                                      height: 65,
-                                      decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: DecorationImage(
-                                              image: AssetImage(
-                                                  chats_json[index]['img']),
-                                              fit: BoxFit.cover)),
-                                    ),
-                              chats_json[index]['online']
-                                  ? Positioned(
-                                      top: 48,
-                                      left: 52,
-                                      child: Container(
-                                        width: 20,
-                                        height: 20,
+                        InkWell(
+                        
+                          child: Container(
+                            width: 70,
+                            height: 70,
+                            child: Stack(
+                              children: <Widget>[
+                                chats_json[index]['story']
+                                    ? Container(
                                         decoration: BoxDecoration(
-                                            color: green,
                                             shape: BoxShape.circle,
                                             border: Border.all(
-                                                color: white, width: 3)),
+                                                color: green, width: 3)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(3.0),
+                                          child: Container(
+                                            width: 70,
+                                            height: 70,
+                                            decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                image: DecorationImage(
+                                                    image: AssetImage(
+                                                        chats_json[index]['img']),
+                                                    fit: BoxFit.cover)),
+                                          ),
+                                        ),
+                                      )
+                                    : Container(
+                                        width: 65,
+                                        height: 65,
+                                        decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            image: DecorationImage(
+                                                image: AssetImage(
+                                                    chats_json[index]['img']),
+                                                fit: BoxFit.cover)),
                                       ),
-                                    )
-                                  : Container()
-                            ],
+                                chats_json[index]['online']
+                                    ? Positioned(
+                                        top: 48,
+                                        left: 52,
+                                        child: Container(
+                                          width: 20,
+                                          height: 20,
+                                          decoration: BoxDecoration(
+                                              color: green,
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                  color: white, width: 3)),
+                                        ),
+                                      )
+                                    : Container()
+                              ],
+                            ),
                           ),
                         ),
                         SizedBox(
@@ -277,10 +281,15 @@ class _ChatListState extends State<ChatList> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(
-                              userMessages[index]['name'],
-                              style: TextStyle(
-                                  fontSize: 17, fontWeight: FontWeight.w500),
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => PersonalChat()));
+                              },
+                              child: Text(
+                                userMessages[index]['name'],
+                                style: TextStyle(
+                                    fontSize: 17, fontWeight: FontWeight.w500),
+                              ),
                             ),
                             SizedBox(
                               height: 5,

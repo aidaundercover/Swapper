@@ -3,6 +3,7 @@ import 'package:swapper/bloc/authentication/signin.dart';
 import 'package:swapper/bloc/authentication/signup.dart';
 import 'package:swapper/views/home.dart';
 import 'package:swapper/bloc/authentication/forget/forgotpassword.dart';
+import 'package:swapper/views/switch-swap/switch_swap.dart';
 import 'package:swapper/views/welcome/welone.dart';
 import 'package:swapper/loadingtohome.dart';
 
@@ -14,6 +15,7 @@ class AppRoutes {
   static const String home = '/home';
   static const String forgotPassword = '/forgot-password';
   static const String welcome = '/welcome';
+  static const String swich = '/switch';
 
 
   static Map<String, WidgetBuilder> define() {
@@ -21,6 +23,7 @@ class AppRoutes {
       authLogin: (context) => LoginPage(),
       authSignup: (context) => SignUp(),
       home: (context) => Home(),
+      swich: (context) =>SwitchSwap(),
       forgotPassword: (context) => ForgotPassword(),
       welcome: (context) => WelcomeOne(),
     };

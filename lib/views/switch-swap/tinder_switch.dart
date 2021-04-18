@@ -50,9 +50,8 @@ class _TinderStuffState extends State<TinderStuff>
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.chevron_left_outlined, color: Colors.grey, size: 40),
-          onPressed: () => Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SwitchSwap())),
-        ),
+          onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => SwitchSwap()));}
+          ),
         title: Text(
           'DISCOVER',
           style: TextStyle(

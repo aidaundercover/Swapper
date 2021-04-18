@@ -274,10 +274,10 @@ class _AddStuffState extends State<AddStuff> {
                       SizedBox(height: 5),
                       Container(
                         width: MediaQuery.of(context).size.width / 1.2,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                    color: lightGreen,
-                                    borderRadius: BorderRadius.circular(7)),
+                        height: 50,
+                        decoration: BoxDecoration(
+                            color: lightGreen,
+                            borderRadius: BorderRadius.circular(7)),
                         child: TextButton(
                             onPressed: () {
                               Navigator.push(
@@ -286,17 +286,12 @@ class _AddStuffState extends State<AddStuff> {
                                       builder: (context) => CategoryList()));
                             },
                             child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Pick a category',
-                                  style:TextStyle(
-                                    color: green
-                                  )
-                                )
-                              ]
-                            )),
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text('Pick a category',
+                                      style: TextStyle(color: green))
+                                ])),
                       ),
                       SizedBox(height: 15),
                       Container(
@@ -373,26 +368,26 @@ class _AddStuffState extends State<AddStuff> {
                       SizedBox(height: 5),
                       Container(
                         width: MediaQuery.of(context).size.width / 1.2,
-                                height: 50,
-                                decoration: BoxDecoration(
-                                    color: lightGreen,
-                                    borderRadius: BorderRadius.circular(7)),
+                        height: 50,
+                        decoration: BoxDecoration(
+                            color: lightGreen,
+                            borderRadius: BorderRadius.circular(7)),
                         child: TextButton(
                             onPressed: () {
                               _showMultiSelect(context);
                             },
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Choose',
-                                      style: TextStyle(
-                                        color: darkGreen,
-                                      ),
-                                    ),
-                                  ],
-                                )),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Choose',
+                                  style: TextStyle(
+                                    color: darkGreen,
+                                  ),
+                                ),
+                              ],
+                            )),
                       ),
                       SizedBox(height: 10),
                       Container(
@@ -456,6 +451,17 @@ class _AddStuffState extends State<AddStuff> {
                       TextButton(
                           onPressed: () {
                             addStuffData();
+                            coins++;
+                            return AlertDialog(
+                              title: Text('You got 1 swop-coin'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () {
+                                Navigator.pop(context);
+                               },
+                              child: Text('OK'))
+          ],
+                            );
                           },
                           child: Container(
                             decoration: BoxDecoration(

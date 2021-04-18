@@ -40,7 +40,7 @@ class _HomeState extends State<Home> {
         //optional, default as 0
       ),
       backgroundColor: Colors.white,
-      body: _pageOptions[selectedPage],
+      body: [SwapEvents(), SwitchSwap(), AddItem(), ChatList(), Profile()][selectedPage],
     );
   }
 }

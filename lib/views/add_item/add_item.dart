@@ -111,7 +111,7 @@ class _AddItemState extends State<AddItem> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                  Text("Add ",
+                  Text("Add event",
                   style:TextStyle(
                     color: Colors.black,
                     fontSize: 33,

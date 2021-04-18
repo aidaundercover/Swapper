@@ -35,9 +35,9 @@ class _CharityState extends State<Charity> {
             builder: (context) => IconButton(
                 icon: Icon(Icons.arrow_back_ios_outlined, 
                 size: 25, color: green),
-                onPressed: () => SwapEvents()),
+                onPressed: () {Navigator.push(context, MaterialPageRoute(builder: (context) => SwapEvents()));},
           ),
-      ),
+      ),),
       body: Stack(
         children: [
           GoogleMap(

@@ -6,6 +6,7 @@ import 'package:swapper/routes.dart';
 import 'package:swapper/net/auth_service.dart';
 import 'dart:async';
 import 'package:swapper/views/charity/charity.dart';
+import 'package:swapper/views/settings/settings_main.dart';
 
 class DrawerCustom extends StatefulWidget {
   @override
@@ -160,7 +161,31 @@ class _DrawerCustomState extends State<DrawerCustom> {
                                     width: 23,
                                     height: 23),
                                 SizedBox(width: 15),
-                                Text('$coins'+'coins',
+                                Text('$coins' + 'coins',
+                                    style: TextStyle(
+                                        fontSize: 13,
+                                        fontFamily: 'Arial',
+                                        fontWeight: FontWeight.normal,
+                                        color: Colors.black)),
+                              ]),
+                            ]),
+                      ),
+                      Divider(height: 1),
+                      Container(
+                        height: 60,
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Row(children: [
+                                SizedBox(width: 20),
+                                Icon(
+                                  Icons.favorite_outlined,
+                                  size: 23,
+                                  color: Colors.redAccent
+                                ),
+                                SizedBox(width: 15),
+                                Text('Favourites',
                                     style: TextStyle(
                                         fontSize: 13,
                                         fontFamily: 'Arial',
@@ -195,7 +220,12 @@ class _DrawerCustomState extends State<DrawerCustom> {
                                 child: IconButton(
                                     icon: Icon(Icons.chevron_right_rounded,
                                         size: 25, color: Colors.black),
-                                    onPressed: ()=> Charity()),
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => Charity()));
+                                    }),
                               )
                             ]),
                       ),
@@ -253,7 +283,13 @@ class _DrawerCustomState extends State<DrawerCustom> {
                                 child: IconButton(
                                     icon: Icon(Icons.chevron_right_rounded,
                                         size: 25, color: Colors.black),
-                                    onPressed: () {}),
+                                    onPressed: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  SettingsMainPage()));
+                                    }),
                               )
                             ]),
                       ),

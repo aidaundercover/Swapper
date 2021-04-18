@@ -6,7 +6,6 @@ import 'package:swapper/bloc/authentication/signin.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:swapper/views/home.dart';
-import 'package:catcher/catcher.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,24 +14,15 @@ Future<void> main() async {
   await Firebase.initializeApp();
   FlutterError.onError = (FlutterErrorDetails details) {
     FlutterError.dumpErrorToConsole(details);
-    if (kReleaseMode)
-      exit(1);
+    if (kReleaseMode) exit(1);
   };
-   CatcherOptions debugOptions =
-      CatcherOptions(DialogReportMode(), [ConsoleHandler()]);
-      
-  /// Release configuration. Same as above, but once user accepts dialog, user will be prompted to send email with crash to support.
-  CatcherOptions releaseOptions = CatcherOptions(DialogReportMode(), [
-    EmailManualHandler(["swapper@email.com"])
-  ]);
-
-  
 
   /// STEP 2. Pass your root widget (MyApp) along with Catcher configuration:
-  Catcher(rootWidget: MaterialApp(
+  runApp(
+    MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: username==null ? LoginPage() : Home(),
+      home: username == null ? LoginPage() : Home(),
       routes: AppRoutes.define(),
-    ), debugConfig: debugOptions, releaseConfig: releaseOptions);
-  
+    ),
+  );
 }
