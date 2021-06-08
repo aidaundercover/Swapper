@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "127049751101",
+    "project_id": "swapper-7fdd2",
+    "storage_bucket": "swapper-7fdd2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127049751101:android:4a5caa7451eb24f951a854",
+        "android_client_info": {
+          "package_name": "com.undercover.swapper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "127049751101-uic1cgh9oh92o2q8ac3pu8sjbnpe4qup.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.undercover.swapper",
+            "certificate_hash": "b93450c35ae5d7f409a62a607294743db7b8e1de"
+          }
+        },
+        {
+          "client_id": "127049751101-65fs4ma2rf9kfiebvgti7svl81gbdi6a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoqAdwBZnhE0LV5jdvFaboBkRPAdG3arc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "127049751101-65fs4ma2rf9kfiebvgti7svl81gbdi6a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
