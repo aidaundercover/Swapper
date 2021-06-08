@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:swapper/const.dart';
 import 'package:swapper/routes.dart';
@@ -73,8 +75,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     fontSize: 15,
                     fontWeight: FontWeight.normal,
                   ),
-                  validator: (String input) {
-                    if (input.isEmpty) {
+                  validator: (String? input) {
+                    if (input!.isEmpty) {
                       return 'Please enter you e-mail';
                     }
                     return null;
