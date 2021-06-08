@@ -98,9 +98,9 @@ class _LoginPageState extends State<LoginPage> {
                                       fontWeight: FontWeight.normal,
                                     ),
                                     onSaved: (input) =>
-                                      emailControllerSignIn.text = input,
-                                    validator:(String input) {
-                                      if (input.isEmpty) {
+                                      emailControllerSignIn.text = input!,
+                                    validator:(String? input) {
+                                      if (input!.isEmpty) {
                                         return 'Please enter you e-mail';
                                       }
                                       return null;
@@ -142,14 +142,14 @@ class _LoginPageState extends State<LoginPage> {
                                       fontSize: 14,
                                       fontWeight: FontWeight.normal,
                                     ),
-                                    validator: (String input) {
-                                      if (input.isEmpty) {
+                                    validator: (String? input) {
+                                      if (input!.isEmpty) {
                                         return 'Please enter your password';
                                       }
                                       return null;
                                     },
                                     onSaved: (input) =>
-                                        passwordControllerSignIn.text = input,
+                                        passwordControllerSignIn.text = input!,
                                     decoration: InputDecoration(
                                       suffixIcon: IconButton(
                                         icon: Icon(
@@ -290,17 +290,17 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> signIn() async {
   final formState = _formKey.currentState;
-  if (formState.validate()) {
+  if (formState!.validate()) {
     formState.save();
     try {
       UserCredential user = await _auth.signInWithEmailAndPassword(
           email: emailControllerSignIn.text, password: passwordControllerSignIn.text);
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      prefs.setString('displayName', user.user.displayName);
+      prefs.setString('displayName', user.user!.displayName!);
       Navigator.of(context).pushNamed(AppRoutes.home);
       
     } catch (e) {
-      print(e.message);
+      print(e);
     }
   }
 }
